@@ -1,3 +1,9 @@
+/***********************************************
+**
+**  Source Code Developed By: H.V.L.Hasanka
+**
+***********************************************/
+
 #ifndef LOGINWINDOW_H
 #define LOGINWINDOW_H
 
