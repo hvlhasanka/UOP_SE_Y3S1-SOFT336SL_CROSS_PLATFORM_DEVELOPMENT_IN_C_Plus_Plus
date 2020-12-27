@@ -10,6 +10,8 @@
 #include <QMainWindow>
 #include <QLineEdit>
 
+#include <authenticatelogic.h>
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class LoginWindow; }
 QT_END_NAMESPACE
@@ -24,9 +26,17 @@ public:
 
 private slots:
     void on_showPassword_checkBox_stateChanged(int arg1);
+    void on_forgotPassword_pushButton_clicked();
+
+    void on_emailAddress_lineEdit_textChanged(const QString &arg1);
+
+    void on_password_lineEdit_textChanged(const QString &arg1);
 
 private:
     Ui::LoginWindow *ui;
     QLineEdit *password_lineEdit;
+    // Connecting the authenticate.h
+    // Retireving the authenticate.h class path to a pointer
+    AuthenticateLogic *auth;
 };
 #endif // LOGINWINDOW_H

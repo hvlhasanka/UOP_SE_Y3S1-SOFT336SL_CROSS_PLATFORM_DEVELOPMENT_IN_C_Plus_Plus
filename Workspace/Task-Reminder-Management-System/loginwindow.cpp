@@ -8,6 +8,10 @@
 #include "ui_loginwindow.h"
 
 #include <QPixmap>
+#include <QMessageBox>
+#include <QInputDialog>
+#include <QDebug>
+#include <QRegularExpression>
 
 LoginWindow::LoginWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -35,6 +39,8 @@ LoginWindow::LoginWindow(QWidget *parent)
     // Setting the cover image of the logo_label
     ui->logo_label->setPixmap(logoImagePix.scaled(logoLabelWidth, logoLabelHeight, Qt::KeepAspectRatio));
 
+    // Creating an object of Authenticate class
+    auth = new AuthenticateLogic;
 }
 
 LoginWindow::~LoginWindow()
@@ -56,5 +62,67 @@ void LoginWindow::on_showPassword_checkBox_stateChanged(int arg1)
         // If it is unchecked the 'password_lineEdit' text will be invisible - password value
         password_lineEdit = ui->password_lineEdit;
         password_lineEdit->setEchoMode(QLineEdit::Password);
+    }
+}
+
+// If the user clicks on 'Forgot Password?' push button
+void LoginWindow::on_forgotPassword_pushButton_clicked()
+{
+
+    // Showing message box to explain the procedure
+    QString forgotPasswordResponseEmailAddress = QInputDialog::getText(this, "Password Recovery",
+                                                                       "Unfortunately you are unable to recover the existing password, \n"
+                                                                       "you are required to update the password.\n\n"
+                                                                       "Please enter your email address and a pin code will be emailed.\n");
+    qDebug() << forgotPasswordResponseEmailAddress;
+   /*
+    QMessageBox::question(this, "Password Recovery",
+                          "Unfortunately you are unable to recover the existing password, "
+                          "you are required to update the password."
+                          "Please enter your email address and a pin code will be emailed."
+                          , "Cancel", "Continue");
+
+*/
+}
+
+void LoginWindow::on_emailAddress_lineEdit_textChanged(const QString &arg1)
+{
+    // Checking whether the user entered email address value is in the correct regular expression
+    // arg1 = ui->emailAddress_lineEdit->text();
+    QString enteredEmailAddressValue = arg1;
+    QRegularExpression re("^[A-Za-z0-9_]+@[a-zA-Z_]+?.[a-zA-Z]{2,3}+");
+    QRegularExpressionMatch validationCheck = re.match(enteredEmailAddressValue);
+    bool validationResponse = validationCheck.hasMatch();
+    if(validationResponse == true){
+        ui->emailAddress_lineEdit->setStyleSheet("border: 2px solid green;"
+                                                 "background-color: rgb(255, 255, 255);");
+    }
+    else if (validationResponse == false){
+        ui->emailAddress_lineEdit->setStyleSheet("border: 2px solid red;"
+                                                 "background-color: rgb(255, 255, 255);");
+    }
+}
+
+void LoginWindow::on_password_lineEdit_textChanged(const QString &arg1)
+{
+    // Checking whether the user entered password value is in the correct regular expression
+    // arg1 = ui->password_lineEdit->text();
+    QString enteredPasswordValue = arg1;
+    // Password Guidelines:
+    //  Minimum of seven characters
+    //  Atleast one uppercase letter
+    //  Atleast one lowercase letter
+    //  Atleast one numeric character
+    //  Atleast one special character
+    QRegularExpression re("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#[\\$%[\\^&[\\*])(?=.{7,})");
+    QRegularExpressionMatch validationCheck = re.match(enteredPasswordValue);
+    bool validationResponse = validationCheck.hasMatch();
+    if(validationResponse == true){
+        ui->password_lineEdit->setStyleSheet("border: 2px solid green;"
+                                                 "background-color: rgb(255, 255, 255);");
+    }
+    else if (validationResponse == false){
+        ui->password_lineEdit->setStyleSheet("border: 2px solid red;"
+                                                 "background-color: rgb(255, 255, 255);");
     }
 }
