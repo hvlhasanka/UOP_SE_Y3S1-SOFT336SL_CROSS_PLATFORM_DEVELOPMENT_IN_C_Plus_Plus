@@ -26,10 +26,10 @@ CREATE TABLE Login(
   PasswordHash VARCHAR(150),
   asAccountStatusID INT NOT NULL, 
   PRIMARY KEY (LoginID),
-  FOREIGN KEY (asAccountStatusID) REFERENCES AccountStatus(AccountStatus)
+  FOREIGN KEY (asAccountStatusID) REFERENCES AccountStatus(AccountStatusID)
 )ENGINE=INNODB;
 
--- Inserting records into Table 1 - Login
+-- Inserting records into Table 2 - Login
 INSERT INTO Login(EmailAddress, PasswordHash, asAccountStatusID)
 Values ("mchatte@toplist.cz", "8944854914295023676", 1); -- Password: ChattEddie3$
 
@@ -74,7 +74,7 @@ CREATE TABLE Account(
     dvDoNotDistrubBooleanValueID INT NOT NULL,
     lLoginID INT NOT NULL,
     PRIMARY KEY (AccountID),
-    FOREIGN KEY (atAccountTypeID) REFERENCES AccountTypeID(AccountTypeID),
+    FOREIGN KEY (atAccountTypeID) REFERENCES AccountType(AccountTypeID),
     FOREIGN KEY (dvDoNotDistrubBooleanValueID) REFERENCES BooleanValue(BooleanValueID),
     FOREIGN KEY (lLoginID) REFERENCES Login(LoginID)
 )ENGINE=INNODB;
@@ -134,15 +134,15 @@ VALUES
 ("526871", 1, "2020-12-28 19:55:28", 1);
 
 
--- Creating Table 9 - CategoryColor
+-- Creating Table 9 - CategoryColour
 CREATE TABLE CategoryColour(
 	ColourID INT NOT NULL AUTO_INCREMENT,
     HexColourCode VARCHAR(7) NOT NULL,
     PRIMARY KEY (ColourID)
 )ENGINE=INNODB;
 
--- Inserting records into Table 9 - CategoryColor
-INSERT INTO CategoryColor(HexColourCode)
+-- Inserting records into Table 9 - CategoryColour
+INSERT INTO CategoryColour(HexColourCode)
 VALUES
 ("#0C99E4");
 
@@ -178,7 +178,7 @@ CREATE TABLE Task(
     PRIMARY KEY (TaskID),
     FOREIGN KEY (bvImportantBooleanValueID) REFERENCES BooleanValue(BooleanValueID),
     FOREIGN KEY (aAccountID) REFERENCES Account(AccountID),
-    FOREIGN KEY (cCategoryID) REFERENCES cCategory(CategoryID)
+    FOREIGN KEY (cCategoryID) REFERENCES Category(CategoryID)
 )ENGINE=INNODB;
 
 -- Inserting records into Table 11 - Task
@@ -195,14 +195,14 @@ ADD FOREIGN KEY (tPinnedTaskID) REFERENCES Task(TaskID);
 -- MODIFICATION TO EXISTING TABLE: Updating the records after altering Table 10 - Category with a new foreign key
 UPDATE Category
 SET tPinnedTaskID = 1
-WHERE Category = 1;
+WHERE CategoryID = 1;
 
 
 -- Creating Table 12 - SnoozeDuration
 CREATE TABLE SnoozeDuration(
 	SnoozeDurationID INT NOT NULL AUTO_INCREMENT,
     SnoozeDuration VARCHAR(2) NOT NULL,
-    PRIMARY KEY(SnoozeDuration)
+    PRIMARY KEY(SnoozeDurationID)
 )ENGINE=INNODB;
 
 -- Inserting into Table 12 - SnoozeDuration
@@ -218,9 +218,9 @@ VALUES
 
 -- Create Table 13 - NoOfSnoozes
 CREATE TABLE NoOfSnoozes(
-	NoOfSnoozesID INT NOT NULL,
+	NoOfSnoozesID INT NOT NULL AUTO_INCREMENT,
     NoOfSnoozes VARCHAR(2) NOT NULL,
-    PRIMARY KEY(NoOfSnoozeID)
+    PRIMARY KEY(NoOfSnoozesID)
 )ENGINE=INNODB;
 
 -- Inserting into Table 13 - NoOfSnoozes
@@ -258,10 +258,10 @@ CREATE TABLE Reminder(
     rdRepeatOccasionID INT,
     tTaskID INT NOT NULL,
     PRIMARY KEY (ReminderID),
-    FOREIGN KEY (sdSnoozeDurationID) REFERENCES SnoozeDurationID(SnoozeDurationID),
-    FOREIGN KEY (nosNoOfSnoozesID) REFERENCES NoOfSnoozesID(NoOfSnoozesID),
+    FOREIGN KEY (sdSnoozeDurationID) REFERENCES SnoozeDuration(SnoozeDurationID),
+    FOREIGN KEY (nosNoOfSnoozesID) REFERENCES NoOfSnoozes(NoOfSnoozesID),
     FOREIGN KEY (rdRepeatOccasionID) REFERENCES RepeatOccasion(RepeatOccasionID),
-    FOREIGN KEY (tTaskID) REFERENCES TaskID(TaskID)
+    FOREIGN KEY (tTaskID) REFERENCES Task(TaskID)
 )ENGINE=INNODB;
 
 -- Inserting records into Table 15 - Reminder
@@ -281,7 +281,7 @@ CREATE TABLE Report(
     SubmittedDateTime DATETIME NOT NULL,
     aAccountID INT NOT NULL,
     PRIMARY KEY (ReportID),
-    FOREIGN KEY (aAccountID) REFERENCES AccountID(AccountID)
+    FOREIGN KEY (aAccountID) REFERENCES Account(AccountID)
 )ENGINE=INNODB;
 
 -- Inserting records into Table 16 - Report
