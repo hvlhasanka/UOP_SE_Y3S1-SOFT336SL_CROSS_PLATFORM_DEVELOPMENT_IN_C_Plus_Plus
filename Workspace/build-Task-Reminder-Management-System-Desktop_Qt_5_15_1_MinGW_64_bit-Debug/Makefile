@@ -227,6 +227,7 @@ Makefile: ../Task-Reminder-Management-System/Task-Reminder-Management-System.pro
 		I:/Files/Qt/5.15.1/mingw81_64/mkspecs/features/qt_config.prf \
 		I:/Files/Qt/5.15.1/mingw81_64/mkspecs/win32-g++/qmake.conf \
 		I:/Files/Qt/5.15.1/mingw81_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		I:/Files/Qt/5.15.1/mingw81_64/mkspecs/features/exclusive_builds.prf \
 		I:/Files/Qt/5.15.1/mingw81_64/mkspecs/features/toolchain.prf \
 		I:/Files/Qt/5.15.1/mingw81_64/mkspecs/features/default_pre.prf \
@@ -255,7 +256,6 @@ Makefile: ../Task-Reminder-Management-System/Task-Reminder-Management-System.pro
 		I:/Files/Qt/5.15.1/mingw81_64/lib/Qt5Gui.prl \
 		I:/Files/Qt/5.15.1/mingw81_64/lib/Qt5Core.prl \
 		I:/Files/Qt/5.15.1/mingw81_64/lib/qtmain.prl \
-		.qmake.stash \
 		I:/Files/Qt/5.15.1/mingw81_64/mkspecs/features/build_pass.prf
 	$(QMAKE) -o Makefile ..\Task-Reminder-Management-System\Task-Reminder-Management-System.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 I:/Files/Qt/5.15.1/mingw81_64/mkspecs/features/spec_pre.prf:
@@ -415,6 +415,7 @@ I:/Files/Qt/5.15.1/mingw81_64/mkspecs/features/qt_functions.prf:
 I:/Files/Qt/5.15.1/mingw81_64/mkspecs/features/qt_config.prf:
 I:/Files/Qt/5.15.1/mingw81_64/mkspecs/win32-g++/qmake.conf:
 I:/Files/Qt/5.15.1/mingw81_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 I:/Files/Qt/5.15.1/mingw81_64/mkspecs/features/exclusive_builds.prf:
 I:/Files/Qt/5.15.1/mingw81_64/mkspecs/features/toolchain.prf:
 I:/Files/Qt/5.15.1/mingw81_64/mkspecs/features/default_pre.prf:
@@ -443,7 +444,6 @@ I:/Files/Qt/5.15.1/mingw81_64/lib/Qt5Widgets.prl:
 I:/Files/Qt/5.15.1/mingw81_64/lib/Qt5Gui.prl:
 I:/Files/Qt/5.15.1/mingw81_64/lib/Qt5Core.prl:
 I:/Files/Qt/5.15.1/mingw81_64/lib/qtmain.prl:
-.qmake.stash:
 I:/Files/Qt/5.15.1/mingw81_64/mkspecs/features/build_pass.prf:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ..\Task-Reminder-Management-System\Task-Reminder-Management-System.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"

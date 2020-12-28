@@ -7,6 +7,7 @@
 #ifndef AUTHENTICATELOGIC_H
 #define AUTHENTICATELOGIC_H
 
+#include <functional>
 #include <string>
 #include <regex>
 #include <QDebug>
@@ -22,7 +23,8 @@ public:
     void setEmailAddress(string emailAddressValue);
     void setPasswordHash(string passwordHashValue);
     // Function Methods
-
+    string generatePasswordHash(string passwordValue);
+    string loginCredentialVerification(string enteredEmailAddress, string enteredPasswordHash);
 
 private:
     // Private string variables

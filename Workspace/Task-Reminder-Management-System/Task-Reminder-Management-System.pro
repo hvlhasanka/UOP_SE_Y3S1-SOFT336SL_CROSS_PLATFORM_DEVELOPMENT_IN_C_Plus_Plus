@@ -9,16 +9,22 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    adminaccountwindow.cpp \
     authenticatelogic.cpp \
     main.cpp \
-    loginwindow.cpp
+    loginwindow.cpp \
+    useraccountwindow.cpp
 
 HEADERS += \
+    adminaccountwindow.h \
     authenticatelogic.h \
-    loginwindow.h
+    loginwindow.h \
+    useraccountwindow.h
 
 FORMS += \
-    loginwindow.ui
+    adminaccountwindow.ui \
+    loginwindow.ui \
+    useraccountwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
