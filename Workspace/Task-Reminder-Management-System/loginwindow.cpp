@@ -168,13 +168,22 @@ void LoginWindow::on_login_pushButton_clicked()
 {
     // Retrieving the user entered password from the user interface
     QString enteredEmailAddress = ui->emailAddress_lineEdit->text();
+    // Setting entered password value
+    if(enteredEmailAddressValueAcceptable == true){
+        auth->setEmailAddress(enteredEmailAddress);
+    }
+
     // Retrieving the user entered password from the user interface
     QString enteredPassword = ui->password_lineEdit->text();
     // Generating hash value of entered password value
     QString generatedPasswordHash = QString::fromStdString(auth->generatePasswordHash(enteredPassword.toStdString()));
+    // Setting generated password hash of the entered password
+    if(enteredEmailAddressValueAcceptable == true){
+        auth->setPasswordHash(generatedPasswordHash);
+    }
 
-    QString loginCredentialsVerification = auth->loginCredentialVerification(enteredEmailAddress, generatedPasswordHash);
-
+    QString loginCredentialsVerification = auth->loginCredentialVerification();
+    qDebug() << loginCredentialsVerification;
     if(loginCredentialsVerification == "Verification Successful: Account Type: AdminAccount"){
 
         this->hide();
@@ -199,6 +208,11 @@ void LoginWindow::on_login_pushButton_clicked()
         QMessageBox::critical(this, "LOGIN ERROR", "Entered password is incorrect, please reenter the password.");
 
     }
+    else if(loginCredentialsVerification == "Verification Unsuccessful: No Account Available with Entered Email Address"){
+
+          QMessageBox::critical(this, "LOGIN ERROR", "No Account Available with the Entered Credentials, please register to continue.");
+
+    }
     else if(loginCredentialsVerification == "Verification Unsuccessful: Database Connection Error"){
 
         QMessageBox::critical(this, "LOGIN ERROR", "Database Connection has lost, please submit a report.");
@@ -207,6 +221,11 @@ void LoginWindow::on_login_pushButton_clicked()
     else if(loginCredentialsVerification == "Verification Unsuccessful: SQL query execution error"){
 
         QMessageBox::critical(this, "LOGIN ERROR", "SQL query execution was unsuccessful, please submit a report including your email address.");
+
+    }
+    else if(loginCredentialsVerification == "default"){
+
+        QMessageBox::critical(this, "LOGIN ERROR", "Please submit a report including your email address.");
 
     }
 

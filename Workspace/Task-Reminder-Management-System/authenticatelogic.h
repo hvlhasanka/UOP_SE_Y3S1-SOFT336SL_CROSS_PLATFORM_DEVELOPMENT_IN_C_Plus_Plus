@@ -26,22 +26,23 @@ public:
     // Default constructor
     AuthenticateLogic();
     // Setter Methods
-    void setEmailAddress(string emailAddressValue);
-    void setPasswordHash(string passwordHashValue);
+    void setEmailAddress(QString emailAddressValue);
+    void setPasswordHash(QString passwordHashValue);
     // Function Methods
     bool validateEnteredEmailAddress(QString enteredEmailAddress);
     bool validateEnteredPassword(QString enteredPasswordValue);
     string generatePasswordHash(string passwordValue);
-    QString loginCredentialVerification(QString enteredEmailAddress, QString generatedPasswordHash);
+    QString loginCredentialVerification();
+    QString registerNewUser();
 
 private:
+    // Private string variables
+    QString emailAddress;
+    QString generatedPasswordHash;
+    // Private methods
     // Connecting the databaseconnecion.h
     // Retireving the databaseconnecion.h class path to a pointer
     DatabaseConnection *trms_dbConnection;
-    // Private string variables
-    string emailAddress;
-    string passwordHash;
-    // Private methods
 };
 
 #endif // AUTHENTICATELOGIC_H

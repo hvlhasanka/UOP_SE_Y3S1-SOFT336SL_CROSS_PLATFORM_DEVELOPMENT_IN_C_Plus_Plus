@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_UserRegistrationWindow_t {
-    QByteArrayData data[12];
-    char stringdata0[339];
+    QByteArrayData data[13];
+    char stringdata0[370];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -43,7 +43,8 @@ QT_MOC_LITERAL(7, 161, 34), // "on_middleName_lineEdit_textCh..."
 QT_MOC_LITERAL(8, 196, 36), // "on_emailAddress_lineEdit_text..."
 QT_MOC_LITERAL(9, 233, 32), // "on_password_lineEdit_textChanged"
 QT_MOC_LITERAL(10, 266, 32), // "on_lastName_lineEdit_textChanged"
-QT_MOC_LITERAL(11, 299, 39) // "on_confirmPassword_lineEdit_t..."
+QT_MOC_LITERAL(11, 299, 39), // "on_confirmPassword_lineEdit_t..."
+QT_MOC_LITERAL(12, 339, 30) // "on_register_pushButton_clicked"
 
     },
     "UserRegistrationWindow\0"
@@ -55,7 +56,8 @@ QT_MOC_LITERAL(11, 299, 39) // "on_confirmPassword_lineEdit_t..."
     "on_emailAddress_lineEdit_textChanged\0"
     "on_password_lineEdit_textChanged\0"
     "on_lastName_lineEdit_textChanged\0"
-    "on_confirmPassword_lineEdit_textChanged"
+    "on_confirmPassword_lineEdit_textChanged\0"
+    "on_register_pushButton_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -65,7 +67,7 @@ static const uint qt_meta_data_UserRegistrationWindow[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       9,   14, // methods
+      10,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -73,15 +75,16 @@ static const uint qt_meta_data_UserRegistrationWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   59,    2, 0x08 /* Private */,
-       3,    0,   60,    2, 0x08 /* Private */,
-       4,    1,   61,    2, 0x08 /* Private */,
-       6,    1,   64,    2, 0x08 /* Private */,
-       7,    1,   67,    2, 0x08 /* Private */,
-       8,    1,   70,    2, 0x08 /* Private */,
-       9,    1,   73,    2, 0x08 /* Private */,
-      10,    1,   76,    2, 0x08 /* Private */,
-      11,    1,   79,    2, 0x08 /* Private */,
+       1,    0,   64,    2, 0x08 /* Private */,
+       3,    0,   65,    2, 0x08 /* Private */,
+       4,    1,   66,    2, 0x08 /* Private */,
+       6,    1,   69,    2, 0x08 /* Private */,
+       7,    1,   72,    2, 0x08 /* Private */,
+       8,    1,   75,    2, 0x08 /* Private */,
+       9,    1,   78,    2, 0x08 /* Private */,
+      10,    1,   81,    2, 0x08 /* Private */,
+      11,    1,   84,    2, 0x08 /* Private */,
+      12,    0,   87,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -93,6 +96,7 @@ static const uint qt_meta_data_UserRegistrationWindow[] = {
     QMetaType::Void, QMetaType::QString,    5,
     QMetaType::Void, QMetaType::QString,    5,
     QMetaType::Void, QMetaType::QString,    5,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -112,6 +116,7 @@ void UserRegistrationWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _
         case 6: _t->on_password_lineEdit_textChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         case 7: _t->on_lastName_lineEdit_textChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         case 8: _t->on_confirmPassword_lineEdit_textChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 9: _t->on_register_pushButton_clicked(); break;
         default: ;
         }
     }
@@ -146,13 +151,13 @@ int UserRegistrationWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 9)
+        if (_id < 10)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 9;
+        _id -= 10;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 9)
+        if (_id < 10)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 9;
+        _id -= 10;
     }
     return _id;
 }

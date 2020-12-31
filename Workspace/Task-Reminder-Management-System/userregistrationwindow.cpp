@@ -299,3 +299,42 @@ void UserRegistrationWindow::on_checkBox_stateChanged(int arg1)
     }
 }
 
+// When user clicks on 'Register' button
+void UserRegistrationWindow::on_register_pushButton_clicked()
+{
+    /* Checking whether the enter email address already existing in the database */
+    bool databaseConnected = trms_dbConnection->openDatebaseConnection();
+    if(databaseConnected == true){
+
+        // Declaring new QSqlQuery object by passing the database name
+        QSqlQuery emailAddressQuery(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
+
+        // Preparing sql query for execution
+        emailAddressQuery.prepare(QString("SELECT EmailAddress FROM Login WHERE EmailAddress = ':enteredEmailAddress'"));
+
+        // Executing sql query and checking the status
+        if(!emailAddressQuery.exec()){
+            qDebug() << "SQL query execution error";
+            qDebug() << emailAddressQuery.lastError();
+        }
+        else{
+            QSqlQueryModel *modal = new QSqlQueryModel();
+            modal->setQuery(emailAddressQuery);
+            ui->accountType_comboBox->setModel(modal);
+        }
+
+    }
+    else if(databaseConnected == false){
+
+
+    }
+
+    int enteredMiddleNameStringLength = ui->middleName_lineEdit->text().length();
+
+    if(enteredMiddleNameStringLength == 0){
+
+
+
+    }
+
+}

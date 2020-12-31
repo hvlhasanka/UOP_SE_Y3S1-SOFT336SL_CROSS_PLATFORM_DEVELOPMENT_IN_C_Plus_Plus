@@ -37,7 +37,6 @@ private slots:
     void on_emailAddress_lineEdit_textChanged(const QString &arg1);
     void on_password_lineEdit_textChanged(const QString &arg1);
     void on_login_pushButton_clicked();
-
     void on_register_pushButton_clicked();
 
 private:

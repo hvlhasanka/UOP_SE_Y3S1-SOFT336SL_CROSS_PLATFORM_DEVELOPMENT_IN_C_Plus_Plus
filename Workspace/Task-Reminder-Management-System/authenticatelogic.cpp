@@ -15,12 +15,12 @@ AuthenticateLogic::AuthenticateLogic()
 
 /* Setter Methods */
 
-void AuthenticateLogic::setEmailAddress(string emailAddressValue){
+void AuthenticateLogic::setEmailAddress(QString emailAddressValue){
     emailAddress = emailAddressValue;
 }
 
-void AuthenticateLogic::setPasswordHash(string passwordHashValue){
-    passwordHash = passwordHashValue;
+void AuthenticateLogic::setPasswordHash(QString passwordHashValue){
+    generatedPasswordHash = passwordHashValue;
 }
 
 /* Function Methods */
@@ -58,7 +58,7 @@ string AuthenticateLogic::generatePasswordHash(string passwordValue){
     return hashValue;
 }
 
-QString AuthenticateLogic::loginCredentialVerification(QString enteredEmailAddress, QString generatedPasswordHash){
+QString AuthenticateLogic::loginCredentialVerification(){
 
     QString passwordHashDB;
     QString accountStatusDB;
@@ -80,7 +80,7 @@ QString AuthenticateLogic::loginCredentialVerification(QString enteredEmailAddre
                               "INNER JOIN AccountType at ON at.AccountTypeID = a.atAccountTypeID "
                               "WHERE EmailAddress=:enteredEmailAddress;"));
 
-        vertificationQuery.bindValue(":enteredEmailAddress", enteredEmailAddress);
+        vertificationQuery.bindValue(":enteredEmailAddress", emailAddress);
 
         // Executing sql query and checking the status
         if(!vertificationQuery.exec()){
@@ -89,11 +89,13 @@ QString AuthenticateLogic::loginCredentialVerification(QString enteredEmailAddre
             return "Verification Unsuccessful: SQL query execution error";
         }
         else{
-            while (vertificationQuery.next())
-            {
+            if(vertificationQuery.next()){
                passwordHashDB = vertificationQuery.value(0).toString();
                accountStatusDB = vertificationQuery.value(1).toString();
                accountTypeDB = vertificationQuery.value(2).toString();
+            }
+            else{
+                return "Verification Unsuccessful: No Account Available with Entered Email Address";
             }
         }
     }
@@ -104,8 +106,8 @@ QString AuthenticateLogic::loginCredentialVerification(QString enteredEmailAddre
 
     // Closing database connection
     trms_dbConnection->closeDatebaseConnection();
-
-
+qDebug() << accountStatusDB;
+qDebug() << passwordHashDB;
     /* Checking whether the password hash value match */
     if(generatedPasswordHash == passwordHashDB){
 
@@ -113,10 +115,10 @@ QString AuthenticateLogic::loginCredentialVerification(QString enteredEmailAddre
         if(accountStatusDB == "Active"){
 
             /* Checking account type of the user */
-            if(accountTypeDB == "StandardUserAccount" || accountTypeDB == "PremiumUserAccount"){
+            if(accountTypeDB == "Standard User Account" || accountTypeDB == "Premium User Account"){
                 return "Verification Successful: Account Type: UserAccount";
             }
-            else if(accountTypeDB == "AdminAccount"){
+            else if(accountTypeDB == "Admin Account"){
                 return "Verification Successful: Account Type: AdminAccount";
             }
         }
@@ -128,6 +130,4 @@ QString AuthenticateLogic::loginCredentialVerification(QString enteredEmailAddre
     else if(generatedPasswordHash != passwordHashDB){
         return "Verification Unsuccessful: Password Incorrect";
     }
-
-    return "default";
 }
