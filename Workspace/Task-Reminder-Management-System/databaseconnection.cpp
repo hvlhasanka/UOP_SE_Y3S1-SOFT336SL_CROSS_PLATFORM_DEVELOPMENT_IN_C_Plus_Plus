@@ -53,5 +53,6 @@ void DatabaseConnection::closeDatebaseConnection(){
     // Closing established database connection
     databaseConnection.close();
     databaseConnection.removeDatabase(QSqlDatabase::defaultConnection);
+    qDebug() << "Database Connection Closed";
 
 }

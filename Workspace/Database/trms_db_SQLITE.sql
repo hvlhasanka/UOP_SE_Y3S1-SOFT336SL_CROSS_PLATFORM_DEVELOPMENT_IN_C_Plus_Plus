@@ -37,8 +37,8 @@ CREATE TABLE AccountType(
 -- Inserting records INTO Table 3 - AccountType
 INSERT INTO AccountType(AccountType)
 VALUES
-("StandardUserAccount"),
-("PremiumUserAccount"),
+("Standard User Account"),
+("Premium User Account"),
 ("AdminAccount");
 
 

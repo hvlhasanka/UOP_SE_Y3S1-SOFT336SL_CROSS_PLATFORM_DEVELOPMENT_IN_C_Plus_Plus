@@ -14,19 +14,22 @@ SOURCES += \
     databaseconnection.cpp \
     main.cpp \
     loginwindow.cpp \
-    useraccountwindow.cpp
+    useraccountwindow.cpp \
+    userregistrationwindow.cpp
 
 HEADERS += \
     adminaccountwindow.h \
     authenticatelogic.h \
     databaseconnection.h \
     loginwindow.h \
-    useraccountwindow.h
+    useraccountwindow.h \
+    userregistrationwindow.h
 
 FORMS += \
     adminaccountwindow.ui \
     loginwindow.ui \
-    useraccountwindow.ui
+    useraccountwindow.ui \
+    userregistrationwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

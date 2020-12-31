@@ -1,0 +1,11 @@
+release/adminaccountwindow.o
+release/authenticatelogic.o
+release/databaseconnection.o
+release/main.o
+release/loginwindow.o
+release/useraccountwindow.o
+release/userregistrationwindow.o
+release/moc_adminaccountwindow.o
+release/moc_loginwindow.o
+release/moc_useraccountwindow.o
+release/moc_userregistrationwindow.o

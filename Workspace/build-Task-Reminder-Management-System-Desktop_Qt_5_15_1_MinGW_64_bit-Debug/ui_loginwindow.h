@@ -38,6 +38,7 @@ public:
     QLabel *emailAddress_label;
     QLabel *password_label;
     QLineEdit *emailAddress_lineEdit;
+    QPushButton *report_pushButton;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -46,7 +47,7 @@ public:
         if (LoginWindow->objectName().isEmpty())
             LoginWindow->setObjectName(QString::fromUtf8("LoginWindow"));
         LoginWindow->setEnabled(true);
-        LoginWindow->resize(790, 503);
+        LoginWindow->resize(790, 518);
         QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -61,7 +62,7 @@ public:
         coverImage_label->setGeometry(QRect(20, 0, 361, 451));
         signInForm_frame = new QFrame(centralwidget);
         signInForm_frame->setObjectName(QString::fromUtf8("signInForm_frame"));
-        signInForm_frame->setGeometry(QRect(390, 0, 391, 451));
+        signInForm_frame->setGeometry(QRect(390, 0, 391, 461));
         signInForm_frame->setFrameShape(QFrame::StyledPanel);
         signInForm_frame->setFrameShadow(QFrame::Raised);
         logo_label = new QLabel(signInForm_frame);
@@ -86,7 +87,7 @@ public:
         showPassword_checkBox->setFont(font1);
         forgotPassword_pushButton = new QPushButton(signInForm_frame);
         forgotPassword_pushButton->setObjectName(QString::fromUtf8("forgotPassword_pushButton"));
-        forgotPassword_pushButton->setGeometry(QRect(274, 412, 111, 31));
+        forgotPassword_pushButton->setGeometry(QRect(274, 390, 111, 31));
         QFont font2;
         font2.setFamily(QString::fromUtf8("Segoe UI"));
         font2.setPointSize(9);
@@ -94,7 +95,7 @@ public:
         forgotPassword_pushButton->setStyleSheet(QString::fromUtf8("background-color: rgb(248, 248, 248);"));
         register_pushButton = new QPushButton(signInForm_frame);
         register_pushButton->setObjectName(QString::fromUtf8("register_pushButton"));
-        register_pushButton->setGeometry(QRect(10, 410, 111, 31));
+        register_pushButton->setGeometry(QRect(10, 390, 111, 31));
         register_pushButton->setFont(font2);
         register_pushButton->setStyleSheet(QString::fromUtf8("background-color: rgb(248, 248, 248);"));
         password_lineEdit = new QLineEdit(signInForm_frame);
@@ -122,6 +123,11 @@ public:
         emailAddress_lineEdit->setGeometry(QRect(120, 240, 261, 31));
         emailAddress_lineEdit->setFont(font3);
         emailAddress_lineEdit->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
+        report_pushButton = new QPushButton(signInForm_frame);
+        report_pushButton->setObjectName(QString::fromUtf8("report_pushButton"));
+        report_pushButton->setGeometry(QRect(320, 430, 61, 31));
+        report_pushButton->setFont(font2);
+        report_pushButton->setStyleSheet(QString::fromUtf8("background-color: rgb(248, 248, 248);"));
         LoginWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(LoginWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -148,6 +154,7 @@ public:
         register_pushButton->setText(QCoreApplication::translate("LoginWindow", "REGISTER", nullptr));
         emailAddress_label->setText(QCoreApplication::translate("LoginWindow", "Email Address", nullptr));
         password_label->setText(QCoreApplication::translate("LoginWindow", "Password", nullptr));
+        report_pushButton->setText(QCoreApplication::translate("LoginWindow", "REPORT", nullptr));
     } // retranslateUi
 
 };

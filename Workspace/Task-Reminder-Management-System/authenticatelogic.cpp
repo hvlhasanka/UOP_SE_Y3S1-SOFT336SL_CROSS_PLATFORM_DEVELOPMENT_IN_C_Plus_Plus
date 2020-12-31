@@ -10,7 +10,7 @@
 AuthenticateLogic::AuthenticateLogic()
 {
     // Creating an object of DatabaseConnection class
-    trms_dbConnection = new DatabaseConnection;
+    trms_dbConnection = new DatabaseConnection();
 }
 
 /* Setter Methods */
@@ -69,7 +69,7 @@ QString AuthenticateLogic::loginCredentialVerification(QString enteredEmailAddre
     // Opening database connection
     bool databaseConnection = trms_dbConnection->openDatebaseConnection();
 
-    if(databaseConnection){
+    if(databaseConnection == true){
         // Declaring new QSqlQuery object by passing the database name
         QSqlQuery vertificationQuery(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
 

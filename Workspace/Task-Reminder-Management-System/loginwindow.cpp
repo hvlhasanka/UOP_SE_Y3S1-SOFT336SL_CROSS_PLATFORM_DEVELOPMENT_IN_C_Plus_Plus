@@ -42,10 +42,10 @@ LoginWindow::LoginWindow(QWidget *parent)
     ui->logo_label->setPixmap(logoImagePix.scaled(logoLabelWidth, logoLabelHeight, Qt::KeepAspectRatio));
 
     // Disabling login push button
-   // ui->login_pushButton->setEnabled(false);
+    ui->login_pushButton->setEnabled(false);
 
     // Creating an object of Authenticate class
-    auth = new AuthenticateLogic;
+    auth = new AuthenticateLogic();
 }
 
 LoginWindow::~LoginWindow()
@@ -102,26 +102,25 @@ void LoginWindow::on_emailAddress_lineEdit_textChanged(const QString &arg1)
         ui->emailAddress_lineEdit->setStyleSheet("border: 2px solid green;"
                                                  "background-color: rgb(255, 255, 255);");
         // Setting enteredEmailAddressValue to true
-        enteredEmailAddressValue = true;
+        enteredEmailAddressValueAcceptable = true;
         if(enteredPasswordValueAcceptable == true){
             // Enabling login push button
-          //  ui->login_pushButton->setEnabled(true);
+            ui->login_pushButton->setEnabled(true);
         }
         else if(enteredPasswordValueAcceptable == false){
             // Disabling login push button
-         //   ui->login_pushButton->setEnabled(false);
+            ui->login_pushButton->setEnabled(false);
         }
     }
     else if (validationResponse == false){
         // Changing lineEdit border styles
-        /*
+
         ui->emailAddress_lineEdit->setStyleSheet("border: 2px solid red;"
-                                                 "background-color: rgb(255, 255, 255);"//);
-*/
-// Disabling login push button
-      //  ui->login_pushButton->setEnabled(false);
+                                                 "background-color: rgb(255, 255, 255);");
+        // Disabling login push button
+        ui->login_pushButton->setEnabled(false);
         // Setting enteredEmailAddressValue to false as the entered email address value is not acceptable
-        enteredEmailAddressValue = false;
+        enteredEmailAddressValueAcceptable = false;
     }
 }
 
@@ -144,11 +143,11 @@ void LoginWindow::on_password_lineEdit_textChanged(const QString &arg1)
         // Checking whether the enteredEmailAddressValueAcceptable is also true to enable the login push button
         if(enteredEmailAddressValueAcceptable == true){
             // Enabling login push button
-           // ui->login_pushButton->setEnabled(true);
+            ui->login_pushButton->setEnabled(true);
         }
         else if(enteredEmailAddressValueAcceptable == false){
             // Disabling login push button
-           // ui->login_pushButton->setEnabled(false);
+            ui->login_pushButton->setEnabled(false);
         }
     }
     else if (validationResponse == false){
@@ -157,7 +156,7 @@ void LoginWindow::on_password_lineEdit_textChanged(const QString &arg1)
                                                  "background-color: rgb(255, 255, 255);");
 
         // Disabling login push button
-       // ui->login_pushButton->setEnabled(false);
+        ui->login_pushButton->setEnabled(false);
 
         // Setting enteredPasswordValueAcceptable to false as the entered password value is not acceptable
         enteredPasswordValueAcceptable = false;
@@ -210,5 +209,14 @@ void LoginWindow::on_login_pushButton_clicked()
         QMessageBox::critical(this, "LOGIN ERROR", "SQL query execution was unsuccessful, please submit a report including your email address.");
 
     }
+
+}
+
+// When the user clicks on the 'REGISTER' push button
+void LoginWindow::on_register_pushButton_clicked()
+{
+
+    userRegistrationWindowForm = new UserRegistrationWindow(this);
+    userRegistrationWindowForm->show();
 
 }
