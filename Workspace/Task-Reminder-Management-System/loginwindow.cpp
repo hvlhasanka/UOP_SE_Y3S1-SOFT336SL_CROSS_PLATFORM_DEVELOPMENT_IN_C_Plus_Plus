@@ -42,7 +42,7 @@ LoginWindow::LoginWindow(QWidget *parent)
     ui->logo_label->setPixmap(logoImagePix.scaled(logoLabelWidth, logoLabelHeight, Qt::KeepAspectRatio));
 
     // Disabling login push button
-    ui->login_pushButton->setEnabled(false);
+    //ui->login_pushButton->setEnabled(false);
 
     // Creating an object of Authenticate class
     auth = new AuthenticateLogic;
@@ -96,9 +96,7 @@ void LoginWindow::on_emailAddress_lineEdit_textChanged(const QString &arg1)
     // Checking whether the user entered email address value is in the correct regular expression
     // arg1 = ui->emailAddress_lineEdit->text();
     QString enteredEmailAddressValue = arg1;
-    QRegularExpression re("^[A-Za-z0-9_]+@[a-zA-Z_]+?.[a-zA-Z]{2,3}+");
-    QRegularExpressionMatch validationCheck = re.match(enteredEmailAddressValue);
-    bool validationResponse = validationCheck.hasMatch();
+    bool validationResponse = auth->validateEnteredEmailAddress(enteredEmailAddressValue);
     if(validationResponse == true){
         // Changing lineEdit border styles
         ui->emailAddress_lineEdit->setStyleSheet("border: 2px solid green;"
@@ -131,16 +129,7 @@ void LoginWindow::on_password_lineEdit_textChanged(const QString &arg1)
     // Checking whether the user entered password value is in the correct regular expression
     // arg1 = ui->password_lineEdit->text();
     QString enteredPasswordValue = arg1;
-    // Password Guidelines:
-    //  Minimum of seven (7) characters
-    //  Maximum of twenty (20) characters
-    //  Atleast one uppercase letter
-    //  Atleast one lowercase letter
-    //  Atleast one numeric character
-    //  Atleast one special character
-    QRegularExpression re("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#[\\$%[\\^&[\\*])(?=.{7,20})");
-    QRegularExpressionMatch validationCheck = re.match(enteredPasswordValue);
-    bool validationResponse = validationCheck.hasMatch();
+    bool validationResponse = auth->validateEnteredPassword(enteredPasswordValue);
     if(validationResponse == true){
         // Changing lineEdit border styles
         ui->password_lineEdit->setStyleSheet("border: 2px solid green;"
@@ -177,6 +166,7 @@ void LoginWindow::on_login_pushButton_clicked()
     // Generating hash value of entered password value
     QString enteredPasswordHash = QString::fromStdString(auth->generatePasswordHash(enteredPassword.toStdString()));
 
-    QString loginCredentialsVerification = auth->loginCredentialVerification(enteredEmailAddress.toStdString(), enteredPasswordHash.toStdString());
+    string loginCredentialsVerification = auth->loginCredentialVerification(enteredEmailAddress.toStdString(), enteredPasswordHash.toStdString());
+
 
 }

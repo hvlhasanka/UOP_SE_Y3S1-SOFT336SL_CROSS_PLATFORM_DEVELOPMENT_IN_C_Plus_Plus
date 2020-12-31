@@ -254,6 +254,7 @@ Makefile: ../Task-Reminder-Management-System/Task-Reminder-Management-System.pro
 		../Task-Reminder-Management-System/Task-Reminder-Management-System.pro \
 		I:/Files/Qt/5.15.1/mingw81_64/lib/Qt5Widgets.prl \
 		I:/Files/Qt/5.15.1/mingw81_64/lib/Qt5Gui.prl \
+		I:/Files/Qt/5.15.1/mingw81_64/lib/Qt5Sql.prl \
 		I:/Files/Qt/5.15.1/mingw81_64/lib/Qt5Core.prl \
 		I:/Files/Qt/5.15.1/mingw81_64/lib/qtmain.prl \
 		I:/Files/Qt/5.15.1/mingw81_64/mkspecs/features/build_pass.prf
@@ -442,6 +443,7 @@ I:/Files/Qt/5.15.1/mingw81_64/mkspecs/features/lex.prf:
 ../Task-Reminder-Management-System/Task-Reminder-Management-System.pro:
 I:/Files/Qt/5.15.1/mingw81_64/lib/Qt5Widgets.prl:
 I:/Files/Qt/5.15.1/mingw81_64/lib/Qt5Gui.prl:
+I:/Files/Qt/5.15.1/mingw81_64/lib/Qt5Sql.prl:
 I:/Files/Qt/5.15.1/mingw81_64/lib/Qt5Core.prl:
 I:/Files/Qt/5.15.1/mingw81_64/lib/qtmain.prl:
 I:/Files/Qt/5.15.1/mingw81_64/mkspecs/features/build_pass.prf:

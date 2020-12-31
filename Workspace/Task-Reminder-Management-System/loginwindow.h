@@ -9,6 +9,7 @@
 
 #include <QMainWindow>
 #include <QLineEdit>
+#include <QMessageBox>
 
 #include <authenticatelogic.h>
 
