@@ -210,7 +210,7 @@ void LoginWindow::on_login_pushButton_clicked()
     }
     else if(loginCredentialsVerification == "Verification Unsuccessful: No Account Available with Entered Email Address"){
 
-          QMessageBox::critical(this, "LOGIN ERROR", "No Account Available with the Entered Credentials, please register to continue.");
+        QMessageBox::critical(this, "LOGIN ERROR", "No Account Available with the Entered Credentials, please register to continue.");
 
     }
     else if(loginCredentialsVerification == "Verification Unsuccessful: Database Connection Error"){

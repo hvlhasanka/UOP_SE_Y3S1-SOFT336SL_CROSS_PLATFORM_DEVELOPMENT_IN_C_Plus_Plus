@@ -61,7 +61,7 @@ CREATE TABLE Account(
   FirstName VARCHAR(40) NOT NULL,
   MiddleName VARCHAR(40),
   LastName VARCHAR(50) NOT NULL,
-  CreatedDateTime DATETIME NOT NULL,
+  CreatedDateTime DATETIME DEFAULT CURRENT_TIMESTAMP,
   atAccountTypeID INTEGER NOT NULL,
   dvDoNotDistrubBooleanValueID INTEGER NOT NULL,
   lLoginID INTEGER NOT NULL,
@@ -71,9 +71,9 @@ CREATE TABLE Account(
 );
 
 -- Inserting records INTO Table 5 - Account
-INSERT INTO Account(FirstName, MiddleName, LastName, CreatedDateTime, atAccountTypeID, dvDoNotDistrubBooleanValueID, lLoginID)
+INSERT INTO Account(FirstName, MiddleName, LastName, atAccountTypeID, dvDoNotDistrubBooleanValueID, lLoginID)
 VALUES
-("Eddie", "Mellicent", "Chatt", "2020-12-28 12:55:28", 1, 2, 1);
+("Eddie", "Mellicent", "Chatt", 1, 2, 1);
 
 
 -- Creating Table 6 - AccountActivity

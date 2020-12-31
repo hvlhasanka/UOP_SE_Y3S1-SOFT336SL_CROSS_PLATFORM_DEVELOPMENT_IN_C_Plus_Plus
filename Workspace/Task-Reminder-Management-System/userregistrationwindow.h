@@ -5,6 +5,8 @@
 #include <QMessageBox>
 
 #include <databaseconnection.h>
+#include <authenticatelogic.h>
+#include <loginwindow.h>
 
 namespace Ui {
 class UserRegistrationWindow;
@@ -44,6 +46,12 @@ private:
     // Connecting the databaseconnecion.h
     // Retireving the databaseconnecion.h class path to a pointer
     DatabaseConnection *trms_dbConnection;
+    // Connecting the authenticate.h
+    // Retireving the authenticate.h class path to a pointer
+    AuthenticateLogic *auth;
+    // Connecting the loginwindow.h
+    // Retireving the loginwindow.h class path to a pointer
+    LoginWindow *loginWindowForm;
 };
 
 #endif // USERREGISTRATIONWINDOW_H

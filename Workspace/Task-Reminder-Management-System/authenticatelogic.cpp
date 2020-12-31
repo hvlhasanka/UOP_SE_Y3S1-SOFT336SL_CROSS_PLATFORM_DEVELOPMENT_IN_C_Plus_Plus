@@ -106,8 +106,7 @@ QString AuthenticateLogic::loginCredentialVerification(){
 
     // Closing database connection
     trms_dbConnection->closeDatebaseConnection();
-qDebug() << accountStatusDB;
-qDebug() << passwordHashDB;
+
     /* Checking whether the password hash value match */
     if(generatedPasswordHash == passwordHashDB){
 
@@ -130,4 +129,160 @@ qDebug() << passwordHashDB;
     else if(generatedPasswordHash != passwordHashDB){
         return "Verification Unsuccessful: Password Incorrect";
     }
+    return "default";
+}
+
+
+QString AuthenticateLogic::checkEmailAddressAvailability(QString enteredEmailAddress){
+    bool databaseConnection = trms_dbConnection->openDatebaseConnection();
+    if(databaseConnection == true){
+
+        // Declaring new QSqlQuery object by passing the database name
+        QSqlQuery emailAddressAvailabilityQuery(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
+
+        // Preparing sql query for execution
+        emailAddressAvailabilityQuery.prepare(QString("SELECT * FROM Login WHERE EmailAddress=:enteredEmailAddress;"));
+
+        emailAddressAvailabilityQuery.bindValue(":enteredEmailAddress", enteredEmailAddress);
+
+        // Executing sql query and checking the status
+        if(!emailAddressAvailabilityQuery.exec()){
+            qDebug() << "SQL query execution error";
+            qDebug() << emailAddressAvailabilityQuery.lastError();
+            return "Execution Unsuccessful: SQL query execution error";
+        }
+        else{
+            if(emailAddressAvailabilityQuery.next()){
+                return "Account Available with Entered Email Address";
+             }
+            else{
+                return "Account Unavailable with Entered Email Address";
+            }
+        }
+
+    }
+    else if(databaseConnection == false){
+        qDebug() << "Database Connection Error";
+        return "Execution Unsuccessful: Database Connection Error";
+    }
+    trms_dbConnection->closeDatebaseConnection();
+    return "default";
+}
+
+
+QString AuthenticateLogic::registerNewUser(QString enteredFirstName, QString enteredMiddleName,
+                                           QString enteredLastName, QString enteredEmailAddress,
+                                           QString generatedConfirmPasswordHash, QString selectedAccountType){
+
+    bool databaseConnection = trms_dbConnection->openDatebaseConnection();
+    if(databaseConnection == true){
+
+        int successfulQueryExecutions = 0;
+
+        /* Inserting record into the 'Login' relation (table)  */
+        // Declaring new QSqlQuery object by passing the database name
+        QSqlQuery loginQuery(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
+
+        // Preparing sql query for execution
+        loginQuery.prepare(QString("INSERT INTO Login(EmailAddress, PasswordHash, asAccountStatusID) VALUES "
+                                              "(:enteredEmailAddress, :generatedConfirmPasswordHash, 1);"));
+
+        loginQuery.bindValue(":enteredEmailAddress", enteredEmailAddress);
+        loginQuery.bindValue(":generatedConfirmPasswordHash", generatedConfirmPasswordHash);
+
+        // Executing sql query and checking the status
+        if(!loginQuery.exec()){
+            qDebug() << "SQL query execution error";
+            qDebug() << loginQuery.lastError();
+            return "Execution Unsuccessful: SQL query execution error";
+        }
+        else{
+            successfulQueryExecutions++;
+        }
+
+        /* Retrieving the 'LoginID' from the 'Login' relation (table) of the newly added record */
+        QString loginIDDB;
+        // Declaring new QSqlQuery object by passing the database name
+        QSqlQuery loginIDQuery(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
+
+        // Preparing sql query for execution
+        loginIDQuery.prepare(QString("SELECT LoginID FROM Login WHERE EmailAddress=:enteredEmailAddress;"));
+
+        loginIDQuery.bindValue(":enteredEmailAddress", enteredEmailAddress);
+
+        // Executing sql query and checking the status
+        if(!loginIDQuery.exec()){
+            qDebug() << "SQL query execution error";
+            qDebug() << loginIDQuery.lastError();
+            return "Execution Unsuccessful: SQL query execution error";
+        }
+        else{
+            if(loginIDQuery.next()){
+                loginIDDB = loginIDQuery.value(0).toString();
+            }
+            successfulQueryExecutions++;
+        }
+
+        /* Retrieving the 'AccountTypeID' from the 'AccountType' relation (table) for the user selected account type */
+        QString accountTypeIDDB;
+        // Declaring new QSqlQuery object by passing the database name
+        QSqlQuery accountTypeIDQuery(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
+
+        // Preparing sql query for execution
+        accountTypeIDQuery.prepare(QString("SELECT AccountTypeID FROM AccountType WHERE AccountType=:selectedAccountType"));
+
+        accountTypeIDQuery.bindValue(":selectedAccountType", selectedAccountType);
+
+        // Executing sql query and checking the status
+        if(!accountTypeIDQuery.exec()){
+            qDebug() << "SQL query execution error";
+            qDebug() << accountTypeIDQuery.lastError();
+            return "Execution Unsuccessful: SQL query execution error";
+        }
+        else{
+            if(accountTypeIDQuery.next()){
+                accountTypeIDDB = accountTypeIDQuery.value(0).toString();
+            }
+            successfulQueryExecutions++;
+        }
+
+        /* Inserting record into the 'Account' relation (table)  */
+        // Declaring new QSqlQuery object by passing the database name
+        QSqlQuery accountQuery(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
+
+        // Preparing sql query for execution
+        accountQuery.prepare(QString("INSERT INTO Account(FirstName, MiddleName, LastName, atAccountTypeID, dvDoNotDistrubBooleanValueID, lLoginID) VALUES "
+                                              "(:enteredFirstName, :enteredMiddleName, :enteredLastName, :selectedAccountTypeID, 2, :generatedLoginID);"));
+
+        accountQuery.bindValue(":enteredFirstName", enteredFirstName);
+        accountQuery.bindValue(":enteredMiddleName", enteredMiddleName);
+        accountQuery.bindValue(":enteredLastName", enteredLastName);
+        accountQuery.bindValue(":selectedAccountTypeID", accountTypeIDDB);
+        accountQuery.bindValue(":generatedLoginID", loginIDDB);
+
+        // Executing sql query and checking the status
+        if(!accountQuery.exec()){
+            qDebug() << "SQL query execution error";
+            qDebug() << accountQuery.lastError();
+            return "Execution Unsuccessful: SQL query execution error";
+        }
+        else{
+            successfulQueryExecutions++;
+        }
+
+        if(successfulQueryExecutions == 4){
+            return "New Account Successfully Created";
+        }
+        else{
+            return "New Account Creation Error";
+        }
+
+    }
+    else if(databaseConnection == false){
+        qDebug() << "Database Connection Error";
+        return "Execution Unsuccessful: Database Connection Error";
+    }
+
+    trms_dbConnection->closeDatebaseConnection();
+    return "default";
 }

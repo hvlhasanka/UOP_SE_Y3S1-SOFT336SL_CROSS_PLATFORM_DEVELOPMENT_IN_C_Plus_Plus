@@ -23,6 +23,9 @@ UserRegistrationWindow::UserRegistrationWindow(QWidget *parent) :
     // Creating an object of DatabaseConnection class
     trms_dbConnection = new DatabaseConnection();
 
+    // Creating an object of Authenticate class
+    auth = new AuthenticateLogic();
+
     /* Retrieving account type values from the database and assigning it to account type combobox */
     bool connectionStatus = trms_dbConnection->openDatebaseConnection();
     if(connectionStatus == true){
@@ -302,38 +305,137 @@ void UserRegistrationWindow::on_checkBox_stateChanged(int arg1)
 // When user clicks on 'Register' button
 void UserRegistrationWindow::on_register_pushButton_clicked()
 {
-    /* Checking whether the enter email address already existing in the database */
-    bool databaseConnected = trms_dbConnection->openDatebaseConnection();
-    if(databaseConnected == true){
 
-        // Declaring new QSqlQuery object by passing the database name
-        QSqlQuery emailAddressQuery(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
+    QString enteredFirstName = ui->firstName_lineEdit->text();
+    QString enteredMiddleName = ui->middleName_lineEdit->text();
+    QString enteredLastName = ui->lastName_lineEdit->text();
+    QString enteredEmailAddress = ui->emailAddress_lineEdit->text();
+    QString enteredPassword = ui->password_lineEdit->text();
+    QString enteredConfirmPassword = ui->confirmPassword_lineEdit->text();
+    QString selectedAccountType = ui->accountType_comboBox->currentText();
 
-        // Preparing sql query for execution
-        emailAddressQuery.prepare(QString("SELECT EmailAddress FROM Login WHERE EmailAddress = ':enteredEmailAddress'"));
-
-        // Executing sql query and checking the status
-        if(!emailAddressQuery.exec()){
-            qDebug() << "SQL query execution error";
-            qDebug() << emailAddressQuery.lastError();
-        }
-        else{
-            QSqlQueryModel *modal = new QSqlQueryModel();
-            modal->setQuery(emailAddressQuery);
-            ui->accountType_comboBox->setModel(modal);
-        }
-
-    }
-    else if(databaseConnected == false){
-
-
-    }
-
+    // Getting the string length of the middleName text, to check whether user has entered any characters
     int enteredMiddleNameStringLength = ui->middleName_lineEdit->text().length();
 
+    // If the user has not entered any characters
     if(enteredMiddleNameStringLength == 0){
 
+        if(enteredFirstNameValueAcceptable == true && enteredLastNameValueAcceptable == true
+                && enteredEmailAddressValueAcceptable == true && enteredPasswordValueAcceptable == true
+                && enteredConfirmPasswordValueAcceptable == true && checkedTermsAndConditions == true){
 
+            // Checking whether the entered password and confirm passwords are matching
+            if(enteredPassword == enteredConfirmPassword){
+
+                // Checking the availability of the entered email address
+                QString emailAddressAvailablilityStatus = auth->checkEmailAddressAvailability(enteredEmailAddress);
+
+                if(emailAddressAvailablilityStatus == "Account Unavailable with Entered Email Address"){
+
+                    // Generating password hash of the entered confirm password
+                    // Generating hash value of entered confirm password value
+                    QString generatedPasswordHash = QString::fromStdString(auth->generatePasswordHash(enteredConfirmPassword.toStdString()));
+
+                    QString userRegistrationStatus = auth->registerNewUser(enteredFirstName,
+                                                                           "",
+                                                                           enteredLastName,
+                                                                           enteredEmailAddress,
+                                                                           generatedPasswordHash,
+                                                                           selectedAccountType);
+
+                    if(userRegistrationStatus == "New Account Successfully Created"){
+                        QMessageBox::information(this, "NEW ACCOUNT REGISTERED", "Please entered your login credentials to login.");
+                    }
+                    else if(userRegistrationStatus == "New Account Creation Error"){
+                        QMessageBox::critical(this, "ACCOUNT REGISTRATION ERROR", "Please submit a report and try again later.\nApologies for the inconvenience.");
+                    }
+                    else if(userRegistrationStatus == "Execution Unsuccessful: SQL query execution error"){
+                        QMessageBox::critical(this, "ACCOUNT REGISTRATION ERROR", "Please submit a report and try again later.\nApologies for the inconvenience.");
+                    }
+                    else if(userRegistrationStatus == "Execution Unsuccessful: Database Connection Error"){
+                        QMessageBox::critical(this, "ACCOUNT REGISTRATION ERROR", "Please submit a report and try again later.\nApologies for the inconvenience.");
+                    }
+                }
+                else if(emailAddressAvailablilityStatus == "Account Available with Entered Email Address"){
+                    QMessageBox::critical(this, "REGISTRATION ERROR", "Account with the entered email address is already available, please enter another email address");
+                }
+                else if(emailAddressAvailablilityStatus == "Execution Unsuccessful: SQL query execution error"){
+                    QMessageBox::critical(this, "REGISTRATION ERROR", "SQL query execution error, please submit a report.\nApologies for the inconvenience.");
+                }
+                else if(emailAddressAvailablilityStatus == "Execution Unsuccessful: Database Connection Error"){
+                    QMessageBox::critical(this, "REGISTRATION ERROR", "Unable to connect to the database, please submit a report.\nApologies for the inconvenience.");
+                }
+            }
+            else{
+                QMessageBox::critical(this, "REGISTRATION ERROR", "Entered passwords do not match, please re-enter.");
+            }
+        }
+        else{
+            qDebug() << "Relavant fields does not contain acceptable values";
+        }
+    }
+    else{
+    // If the user has entered any characters
+
+        if(enteredFirstNameValueAcceptable == true && enteredMiddleNameValueAcceptable == true
+                && enteredLastNameValueAcceptable == true && enteredEmailAddressValueAcceptable == true
+                && enteredPasswordValueAcceptable == true && enteredConfirmPasswordValueAcceptable == true
+                && checkedTermsAndConditions == true){
+
+            // Checking whether the entered password and confirm passwords are matching
+            if(enteredPassword == enteredConfirmPassword){
+
+                // Checking the availability of the entered email address
+                QString emailAddressAvailablilityStatus = auth->checkEmailAddressAvailability(enteredEmailAddress);
+
+                if(emailAddressAvailablilityStatus == "Account Unavailable with Entered Email Address"){
+
+                    // Generating password hash of the entered confirm password
+                    // Generating hash value of entered confirm password value
+                    QString generatedPasswordHash = QString::fromStdString(auth->generatePasswordHash(enteredConfirmPassword.toStdString()));
+
+
+
+                    QString userRegistrationStatus = auth->registerNewUser(enteredFirstName,
+                                                                           enteredMiddleName,
+                                                                           enteredLastName,
+                                                                           enteredEmailAddress,
+                                                                           generatedPasswordHash,
+                                                                           selectedAccountType);
+
+                    if(userRegistrationStatus == "New Account Successfully Created"){
+                        QMessageBox::information(this, "NEW ACCOUNT REGISTERED", "Please entered your login credentials to login.");
+                        this->hide();
+                        loginWindowForm = new LoginWindow(this);
+                        loginWindowForm->show();
+                    }
+                    else if(userRegistrationStatus == "New Account Creation Error"){
+                        QMessageBox::critical(this, "ACCOUNT REGISTRATION ERROR", "Please submit a report and try again later.\nApologies for the inconvenience.");
+                    }
+                    else if(userRegistrationStatus == "Execution Unsuccessful: SQL query execution error"){
+                        QMessageBox::critical(this, "ACCOUNT REGISTRATION ERROR", "Please submit a report and try again later.\nApologies for the inconvenience.");
+                    }
+                    else if(userRegistrationStatus == "Execution Unsuccessful: Database Connection Error"){
+                        QMessageBox::critical(this, "ACCOUNT REGISTRATION ERROR", "Please submit a report and try again later.\nApologies for the inconvenience.");
+                    }
+                }
+                else if(emailAddressAvailablilityStatus == "Account Available with Entered Email Address"){
+                    QMessageBox::critical(this, "REGISTRATION ERROR", "Account with the entered email address is already available, please enter another email address");
+                }
+                else if(emailAddressAvailablilityStatus == "Execution Unsuccessful: SQL query execution error"){
+                    QMessageBox::critical(this, "REGISTRATION ERROR", "SQL query execution error, please submit a report.\nApologies for the inconvenience.");
+                }
+                else if(emailAddressAvailablilityStatus == "Execution Unsuccessful: Database Connection Error"){
+                    QMessageBox::critical(this, "REGISTRATION ERROR", "Unable to connect to the database, please submit a report.\nApologies for the inconvenience.");
+                }
+            }
+            else{
+                QMessageBox::critical(this, "REGISTRATION ERROR", "Entered passwords do not match, please re-enter.");
+            }
+        }
+        else{
+            qDebug() << "Relavant fields does not contain acceptable values";
+        }
 
     }
 

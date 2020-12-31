@@ -33,12 +33,20 @@ public:
     bool validateEnteredPassword(QString enteredPasswordValue);
     string generatePasswordHash(string passwordValue);
     QString loginCredentialVerification();
-    QString registerNewUser();
+    QString checkEmailAddressAvailability(QString enteredEmailAddress);
+    QString registerNewUser(QString enteredFirstName, QString enteredMiddleName,
+                            QString enteredLastName, QString enteredEmailAddress,
+                            QString generatedConfirmPasswordHash, QString selectedAccountType);
 
 private:
     // Private string variables
     QString emailAddress;
     QString generatedPasswordHash;
+    QString userID;
+    QString accountType;
+    QString firstName;
+    QString middleName;
+    QString lastName;
     // Private methods
     // Connecting the databaseconnecion.h
     // Retireving the databaseconnecion.h class path to a pointer
