@@ -11,6 +11,7 @@ CONFIG += c++11
 SOURCES += \
     adminaccountwindow.cpp \
     authenticatelogic.cpp \
+    databaseconnection.cpp \
     main.cpp \
     loginwindow.cpp \
     useraccountwindow.cpp
@@ -18,6 +19,7 @@ SOURCES += \
 HEADERS += \
     adminaccountwindow.h \
     authenticatelogic.h \
+    databaseconnection.h \
     loginwindow.h \
     useraccountwindow.h
 

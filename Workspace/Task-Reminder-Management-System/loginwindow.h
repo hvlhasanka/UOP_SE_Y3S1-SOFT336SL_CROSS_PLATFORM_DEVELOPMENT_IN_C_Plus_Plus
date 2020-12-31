@@ -12,6 +12,8 @@
 #include <QMessageBox>
 
 #include <authenticatelogic.h>
+#include <useraccountwindow.h>
+#include <adminaccountwindow.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class LoginWindow; }
@@ -40,5 +42,11 @@ private:
     // Connecting the authenticate.h
     // Retireving the authenticate.h class path to a pointer
     AuthenticateLogic *auth;
+    // Connecting the useraccountwindow.h
+    // Retireving the useraccountwindow.h class path to a pointer
+    UserAccountWindow *userAccountWindowForm;
+    // Connecting the adminaccountwindow.h
+    // Retireving the adminaccountwindow.h class path to a pointer
+    AdminAccountWindow *adminAccountWindowForm;
 };
 #endif // LOGINWINDOW_H

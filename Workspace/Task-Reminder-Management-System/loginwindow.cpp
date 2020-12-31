@@ -42,7 +42,7 @@ LoginWindow::LoginWindow(QWidget *parent)
     ui->logo_label->setPixmap(logoImagePix.scaled(logoLabelWidth, logoLabelHeight, Qt::KeepAspectRatio));
 
     // Disabling login push button
-    //ui->login_pushButton->setEnabled(false);
+   // ui->login_pushButton->setEnabled(false);
 
     // Creating an object of Authenticate class
     auth = new AuthenticateLogic;
@@ -105,19 +105,21 @@ void LoginWindow::on_emailAddress_lineEdit_textChanged(const QString &arg1)
         enteredEmailAddressValue = true;
         if(enteredPasswordValueAcceptable == true){
             // Enabling login push button
-            ui->login_pushButton->setEnabled(true);
+          //  ui->login_pushButton->setEnabled(true);
         }
         else if(enteredPasswordValueAcceptable == false){
             // Disabling login push button
-            ui->login_pushButton->setEnabled(false);
+         //   ui->login_pushButton->setEnabled(false);
         }
     }
     else if (validationResponse == false){
         // Changing lineEdit border styles
+        /*
         ui->emailAddress_lineEdit->setStyleSheet("border: 2px solid red;"
-                                                 "background-color: rgb(255, 255, 255);");
-        // Disabling login push button
-        ui->login_pushButton->setEnabled(false);
+                                                 "background-color: rgb(255, 255, 255);"//);
+*/
+// Disabling login push button
+      //  ui->login_pushButton->setEnabled(false);
         // Setting enteredEmailAddressValue to false as the entered email address value is not acceptable
         enteredEmailAddressValue = false;
     }
@@ -131,26 +133,32 @@ void LoginWindow::on_password_lineEdit_textChanged(const QString &arg1)
     QString enteredPasswordValue = arg1;
     bool validationResponse = auth->validateEnteredPassword(enteredPasswordValue);
     if(validationResponse == true){
+
         // Changing lineEdit border styles
         ui->password_lineEdit->setStyleSheet("border: 2px solid green;"
                                                  "background-color: rgb(255, 255, 255);");
+
         // Setting enteredPasswordValueAcceptable to true
         enteredPasswordValueAcceptable = true;
+
         // Checking whether the enteredEmailAddressValueAcceptable is also true to enable the login push button
         if(enteredEmailAddressValueAcceptable == true){
             // Enabling login push button
-            ui->login_pushButton->setEnabled(true);
+           // ui->login_pushButton->setEnabled(true);
         }
         else if(enteredEmailAddressValueAcceptable == false){
             // Disabling login push button
-            ui->login_pushButton->setEnabled(false);
+           // ui->login_pushButton->setEnabled(false);
         }
     }
     else if (validationResponse == false){
+
         ui->password_lineEdit->setStyleSheet("border: 2px solid red;"
                                                  "background-color: rgb(255, 255, 255);");
+
         // Disabling login push button
-        ui->login_pushButton->setEnabled(false);
+       // ui->login_pushButton->setEnabled(false);
+
         // Setting enteredPasswordValueAcceptable to false as the entered password value is not acceptable
         enteredPasswordValueAcceptable = false;
     }
@@ -164,9 +172,43 @@ void LoginWindow::on_login_pushButton_clicked()
     // Retrieving the user entered password from the user interface
     QString enteredPassword = ui->password_lineEdit->text();
     // Generating hash value of entered password value
-    QString enteredPasswordHash = QString::fromStdString(auth->generatePasswordHash(enteredPassword.toStdString()));
+    QString generatedPasswordHash = QString::fromStdString(auth->generatePasswordHash(enteredPassword.toStdString()));
 
-    string loginCredentialsVerification = auth->loginCredentialVerification(enteredEmailAddress.toStdString(), enteredPasswordHash.toStdString());
+    QString loginCredentialsVerification = auth->loginCredentialVerification(enteredEmailAddress, generatedPasswordHash);
 
+    if(loginCredentialsVerification == "Verification Successful: Account Type: AdminAccount"){
+
+        this->hide();
+        userAccountWindowForm = new UserAccountWindow(this);
+        userAccountWindowForm->show();
+
+    }
+    else if(loginCredentialsVerification == "Verification Successful: Account Type: UserAccount"){
+
+        this->hide();
+        adminAccountWindowForm = new AdminAccountWindow(this);
+        adminAccountWindowForm->show();
+
+    }
+    else if(loginCredentialsVerification == "Verification Unsuccessful: Account Disabled"){
+
+        QMessageBox::critical(this, "LOGIN ERROR", "Account is disabled, please submit a report including your email address.");
+
+    }
+    else if(loginCredentialsVerification == "Verification Unsuccessful: Password Incorrect"){
+
+        QMessageBox::critical(this, "LOGIN ERROR", "Entered password is incorrect, please reenter the password.");
+
+    }
+    else if(loginCredentialsVerification == "Verification Unsuccessful: Database Connection Error"){
+
+        QMessageBox::critical(this, "LOGIN ERROR", "Database Connection has lost, please submit a report.");
+
+    }
+    else if(loginCredentialsVerification == "Verification Unsuccessful: SQL query execution error"){
+
+        QMessageBox::critical(this, "LOGIN ERROR", "SQL query execution was unsuccessful, please submit a report including your email address.");
+
+    }
 
 }

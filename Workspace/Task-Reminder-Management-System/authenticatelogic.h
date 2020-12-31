@@ -15,7 +15,9 @@
 #include <QRegularExpression>
 #include <QRegularExpressionMatch>
 #include <QtSql>
-#include "QSqlError"
+
+#include <databaseconnection.h>
+
 using namespace std;
 
 class AuthenticateLogic
@@ -30,16 +32,16 @@ public:
     bool validateEnteredEmailAddress(QString enteredEmailAddress);
     bool validateEnteredPassword(QString enteredPasswordValue);
     string generatePasswordHash(string passwordValue);
-    string loginCredentialVerification(string enteredEmailAddress, string enteredPasswordHash);
+    QString loginCredentialVerification(QString enteredEmailAddress, QString generatedPasswordHash);
 
 private:
-    QSqlDatabase databaseConnection;
+    // Connecting the databaseconnecion.h
+    // Retireving the databaseconnecion.h class path to a pointer
+    DatabaseConnection *trms_dbConnection;
     // Private string variables
     string emailAddress;
     string passwordHash;
     // Private methods
-
-
 };
 
 #endif // AUTHENTICATELOGIC_H

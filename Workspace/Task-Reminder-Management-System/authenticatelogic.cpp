@@ -9,16 +9,8 @@
 // Public default constructor
 AuthenticateLogic::AuthenticateLogic()
 {
-    databaseConnection = QSqlDatabase::addDatabase("QSQLITE", "trms_db");
-    databaseConnection.setDatabaseName("C:/Users/Lucas.L.H.H/Documents/GitHub/UOP_SE_Y3S1-SOFT336SL_CROSS_PLATFORM_DEVELOPMENT_IN_C_Plus_Plus/Workspace/Database/trms_db.db");
-
-    if(!databaseConnection.open()){
-       qDebug() << "doesnot work";
-    }
-
-    if (databaseConnection.open()){
-        qDebug() << databaseConnection.lastError();
-    }
+    // Creating an object of DatabaseConnection class
+    trms_dbConnection = new DatabaseConnection;
 }
 
 /* Setter Methods */
@@ -66,34 +58,76 @@ string AuthenticateLogic::generatePasswordHash(string passwordValue){
     return hashValue;
 }
 
-string AuthenticateLogic::loginCredentialVerification(string enteredEmailAddress, string enteredPasswordHash){
+QString AuthenticateLogic::loginCredentialVerification(QString enteredEmailAddress, QString generatedPasswordHash){
 
-    QSqlQuery query(QSqlDatabase::database("trms_db"));
+    QString passwordHashDB;
+    QString accountStatusDB;
+    QString accountTypeDB;
 
-    query.prepare(QString("SELECT l.EmailAddress, l.PasswordHash, acts.AccountStatus, at.AccountType FROM "
-                          "Login l INNER JOIN Account a ON l.LoginID = a.lLoginID "
-                          "INNER JOIN AccountStatus acts ON acts.AccountStatusID = l.asAccountStatusID "
-                          "INNER JOIN AccountType at ON at.AccountTypeID = a.atAccountTypeID "
-                          "WHERE EmailAddress='mchatte@toplist.cz';"));
+    /* Retrieving the password hash, account status, and account type from the database */
 
-    if(!query.exec()){
-        qDebug() << "jj";
+    // Opening database connection
+    bool databaseConnection = trms_dbConnection->openDatebaseConnection();
+
+    if(databaseConnection){
+        // Declaring new QSqlQuery object by passing the database name
+        QSqlQuery vertificationQuery(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
+
+        // Preparing sql query for execution
+        vertificationQuery.prepare(QString("SELECT l.PasswordHash, acts.AccountStatus, at.AccountType FROM "
+                              "Login l INNER JOIN Account a ON l.LoginID = a.lLoginID "
+                              "INNER JOIN AccountStatus acts ON acts.AccountStatusID = l.asAccountStatusID "
+                              "INNER JOIN AccountType at ON at.AccountTypeID = a.atAccountTypeID "
+                              "WHERE EmailAddress=:enteredEmailAddress;"));
+
+        vertificationQuery.bindValue(":enteredEmailAddress", enteredEmailAddress);
+
+        // Executing sql query and checking the status
+        if(!vertificationQuery.exec()){
+            qDebug() << "SQL query execution error";
+            qDebug() << vertificationQuery.lastError();
+            return "Verification Unsuccessful: SQL query execution error";
+        }
+        else{
+            while (vertificationQuery.next())
+            {
+               passwordHashDB = vertificationQuery.value(0).toString();
+               accountStatusDB = vertificationQuery.value(1).toString();
+               accountTypeDB = vertificationQuery.value(2).toString();
+            }
+        }
+    }
+    else{
+        qDebug() << "Database Connection Error";
+        return "Verification Unsuccessful: Database Connection Error";
     }
 
-    int idName = query.record().indexOf("EmailAddress");
-    while (query.next())
-    {
-       QString name = query.value(idName).toString();
-       qDebug() << name;
+    // Closing database connection
+    trms_dbConnection->closeDatebaseConnection();
+
+
+    /* Checking whether the password hash value match */
+    if(generatedPasswordHash == passwordHashDB){
+
+        /* Checking account status of the user */
+        if(accountStatusDB == "Active"){
+
+            /* Checking account type of the user */
+            if(accountTypeDB == "StandardUserAccount" || accountTypeDB == "PremiumUserAccount"){
+                return "Verification Successful: Account Type: UserAccount";
+            }
+            else if(accountTypeDB == "AdminAccount"){
+                return "Verification Successful: Account Type: AdminAccount";
+            }
+        }
+        else if(accountStatusDB == "Disabled"){
+            return "Verification Unsuccessful: Account Disabled";
+        }
+
+    }
+    else if(generatedPasswordHash != passwordHashDB){
+        return "Verification Unsuccessful: Password Incorrect";
     }
 
-    databaseConnection.close();
-    databaseConnection.removeDatabase(QSqlDatabase::defaultConnection);
-
-
-
-
-
-  //  QSqlDatabase * db = new QSqlDatabase;
-   // qDebug() << db->drivers();
+    return "default";
 }
