@@ -166,29 +166,35 @@ void LoginWindow::on_password_lineEdit_textChanged(const QString &arg1)
 // When the user clicks on the 'login_pushButton'
 void LoginWindow::on_login_pushButton_clicked()
 {
-    // Retrieving the user entered password from the user interface
-    QString enteredEmailAddress = ui->emailAddress_lineEdit->text();
+    QString enteredEmailAddress;
     // Setting entered password value
     if(enteredEmailAddressValueAcceptable == true){
-        auth->setEmailAddress(enteredEmailAddress);
+        // Retrieving the user entered password from the user interface
+        enteredEmailAddress = ui->emailAddress_lineEdit->text();
     }
 
     // Retrieving the user entered password from the user interface
     QString enteredPassword = ui->password_lineEdit->text();
-    // Generating hash value of entered password value
-    QString generatedPasswordHash = QString::fromStdString(auth->generatePasswordHash(enteredPassword.toStdString()));
-    // Setting generated password hash of the entered password
-    if(enteredEmailAddressValueAcceptable == true){
-        auth->setPasswordHash(generatedPasswordHash);
+    QString enteredPasswordHash;
+    if(enteredPasswordValueAcceptable == true){
+        // Generating hash value of entered password value
+        enteredPasswordHash = QString::fromStdString(auth->generatePasswordHash(enteredPassword.toStdString()));
     }
 
-    QString loginCredentialsVerification = auth->loginCredentialVerification();
-    qDebug() << loginCredentialsVerification;
+    QString loginCredentialsVerification = auth->loginCredentialVerification(enteredEmailAddress, enteredPasswordHash);
+
     if(loginCredentialsVerification == "Verification Successful: Account Type: AdminAccount"){
 
         this->hide();
         userAccountWindowForm = new UserAccountWindow(this);
         userAccountWindowForm->show();
+
+        /* Setting accountAcitivity to online */
+        auth->setAccountActivityID(1);
+        auth->setAccountActivity("Online");
+
+        /* Recording session start */
+        auth->addSessionStartToDB();
 
     }
     else if(loginCredentialsVerification == "Verification Successful: Account Type: UserAccount"){
@@ -196,6 +202,13 @@ void LoginWindow::on_login_pushButton_clicked()
         this->hide();
         adminAccountWindowForm = new AdminAccountWindow(this);
         adminAccountWindowForm->show();
+
+        /* Setting accountAcitivity to online */
+        auth->setAccountActivityID(1);
+        auth->setAccountActivity("Online");
+
+        /* Recording session start */
+        auth->addSessionStartToDB();
 
     }
     else if(loginCredentialsVerification == "Verification Unsuccessful: Account Disabled"){

@@ -345,6 +345,7 @@ void UserRegistrationWindow::on_register_pushButton_clicked()
 
                     if(userRegistrationStatus == "New Account Successfully Created"){
                         QMessageBox::information(this, "NEW ACCOUNT REGISTERED", "Please entered your login credentials to login.");
+                        this->hide();
                     }
                     else if(userRegistrationStatus == "New Account Creation Error"){
                         QMessageBox::critical(this, "ACCOUNT REGISTRATION ERROR", "Please submit a report and try again later.\nApologies for the inconvenience.");
@@ -406,8 +407,6 @@ void UserRegistrationWindow::on_register_pushButton_clicked()
                     if(userRegistrationStatus == "New Account Successfully Created"){
                         QMessageBox::information(this, "NEW ACCOUNT REGISTERED", "Please entered your login credentials to login.");
                         this->hide();
-                        loginWindowForm = new LoginWindow(this);
-                        loginWindowForm->show();
                     }
                     else if(userRegistrationStatus == "New Account Creation Error"){
                         QMessageBox::critical(this, "ACCOUNT REGISTRATION ERROR", "Please submit a report and try again later.\nApologies for the inconvenience.");
