@@ -21,21 +21,22 @@ QT_BEGIN_NAMESPACE
 class Ui_UserAccountWindow
 {
 public:
-    QMenuBar *menubar;
     QWidget *centralwidget;
+    QMenuBar *menubar;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *UserAccountWindow)
     {
         if (UserAccountWindow->objectName().isEmpty())
             UserAccountWindow->setObjectName(QString::fromUtf8("UserAccountWindow"));
-        UserAccountWindow->resize(800, 600);
-        menubar = new QMenuBar(UserAccountWindow);
-        menubar->setObjectName(QString::fromUtf8("menubar"));
-        UserAccountWindow->setMenuBar(menubar);
+        UserAccountWindow->resize(805, 677);
         centralwidget = new QWidget(UserAccountWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         UserAccountWindow->setCentralWidget(centralwidget);
+        menubar = new QMenuBar(UserAccountWindow);
+        menubar->setObjectName(QString::fromUtf8("menubar"));
+        menubar->setGeometry(QRect(0, 0, 805, 21));
+        UserAccountWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(UserAccountWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
         UserAccountWindow->setStatusBar(statusbar);

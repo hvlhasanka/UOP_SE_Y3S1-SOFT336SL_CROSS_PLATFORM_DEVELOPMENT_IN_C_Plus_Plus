@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
     /* Splash Screen and Opening Login Screen Source Code */
     // Assign image of splash screen
     QSplashScreen *splash = new QSplashScreen;
-    splash->setPixmap(QPixmap(":/imgs/assets/images/Splash-Screen.jpg"));
+    splash->setPixmap(QPixmap(":/images/Splash-Screen.jpg"));
     splash->show();
     // Setting timer of splash screen
 

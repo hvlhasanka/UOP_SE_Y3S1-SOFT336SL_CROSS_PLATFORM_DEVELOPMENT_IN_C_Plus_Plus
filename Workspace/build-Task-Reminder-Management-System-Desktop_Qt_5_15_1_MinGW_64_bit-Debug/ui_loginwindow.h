@@ -152,8 +152,14 @@ public:
         showPassword_checkBox->setText(QCoreApplication::translate("LoginWindow", "Show Password", nullptr));
         forgotPassword_pushButton->setText(QCoreApplication::translate("LoginWindow", "Forgot Password?", nullptr));
         register_pushButton->setText(QCoreApplication::translate("LoginWindow", "REGISTER", nullptr));
+#if QT_CONFIG(tooltip)
+        password_lineEdit->setToolTip(QCoreApplication::translate("LoginWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:10pt;\">Enter Password</span></p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
         emailAddress_label->setText(QCoreApplication::translate("LoginWindow", "Email Address", nullptr));
         password_label->setText(QCoreApplication::translate("LoginWindow", "Password", nullptr));
+#if QT_CONFIG(tooltip)
+        emailAddress_lineEdit->setToolTip(QCoreApplication::translate("LoginWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:10pt;\">Enter Email Address</span></p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
         report_pushButton->setText(QCoreApplication::translate("LoginWindow", "REPORT", nullptr));
     } // retranslateUi
 

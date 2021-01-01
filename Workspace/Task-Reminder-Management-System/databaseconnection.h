@@ -14,8 +14,8 @@ public:
     bool openDatebaseConnection();
     void closeDatebaseConnection();
     // Setter Methods
-    void setDatabaseName();
-    void setDatabaseDBFilePath();
+    void setDatabaseName(QString databaseName);
+    void setDatabaseDBFilePath(QString databaseDBFilePath);
     // Getter Methods
     QString getDatabaseName();
     QString getDatabaseDBFilePath();

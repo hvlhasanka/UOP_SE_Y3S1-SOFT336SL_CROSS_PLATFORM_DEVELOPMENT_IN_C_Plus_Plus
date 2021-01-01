@@ -47,7 +47,7 @@ public:
     QLabel *label_3;
     QLabel *accountType_label;
     QLabel *label_6;
-    QCheckBox *checkBox;
+    QCheckBox *termsAndConditions_checkBox;
     QLineEdit *middleName_lineEdit;
     QLabel *confirmPassword_label;
     QLabel *emailAddress_label_4;
@@ -60,7 +60,7 @@ public:
     QLabel *name_label;
     QLabel *label;
     QLabel *label_8;
-    QPushButton *pushButton;
+    QPushButton *viewTermsAndConditions_pushButton;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -68,7 +68,7 @@ public:
     {
         if (UserRegistrationWindow->objectName().isEmpty())
             UserRegistrationWindow->setObjectName(QString::fromUtf8("UserRegistrationWindow"));
-        UserRegistrationWindow->resize(573, 688);
+        UserRegistrationWindow->resize(571, 688);
         QFont font;
         font.setFamily(QString::fromUtf8("Microsoft Sans Serif"));
         font.setPointSize(16);
@@ -199,13 +199,13 @@ public:
         label_6->setGeometry(QRect(500, 340, 16, 21));
         label_6->setFont(font4);
         label_6->setStyleSheet(QString::fromUtf8("color: rgb(255, 21, 0);"));
-        checkBox = new QCheckBox(frame);
-        checkBox->setObjectName(QString::fromUtf8("checkBox"));
-        checkBox->setGeometry(QRect(170, 510, 261, 31));
+        termsAndConditions_checkBox = new QCheckBox(frame);
+        termsAndConditions_checkBox->setObjectName(QString::fromUtf8("termsAndConditions_checkBox"));
+        termsAndConditions_checkBox->setGeometry(QRect(170, 510, 261, 31));
         QFont font8;
         font8.setFamily(QString::fromUtf8("Microsoft Tai Le"));
         font8.setPointSize(12);
-        checkBox->setFont(font8);
+        termsAndConditions_checkBox->setFont(font8);
         middleName_lineEdit = new QLineEdit(frame);
         middleName_lineEdit->setObjectName(QString::fromUtf8("middleName_lineEdit"));
         middleName_lineEdit->setGeometry(QRect(230, 210, 261, 31));
@@ -265,18 +265,18 @@ public:
         label_8->setGeometry(QRect(500, 450, 16, 21));
         label_8->setFont(font4);
         label_8->setStyleSheet(QString::fromUtf8("color: rgb(255, 21, 0);"));
-        pushButton = new QPushButton(frame);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(160, 540, 261, 31));
+        viewTermsAndConditions_pushButton = new QPushButton(frame);
+        viewTermsAndConditions_pushButton->setObjectName(QString::fromUtf8("viewTermsAndConditions_pushButton"));
+        viewTermsAndConditions_pushButton->setGeometry(QRect(160, 540, 261, 31));
         QFont font10;
         font10.setFamily(QString::fromUtf8("Nirmala UI Semilight"));
         font10.setPointSize(12);
-        pushButton->setFont(font10);
-        pushButton->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
+        viewTermsAndConditions_pushButton->setFont(font10);
+        viewTermsAndConditions_pushButton->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
         UserRegistrationWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(UserRegistrationWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 573, 30));
+        menubar->setGeometry(QRect(0, 0, 571, 31));
         UserRegistrationWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(UserRegistrationWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -294,28 +294,51 @@ public:
         viewPasswordGuidelines_pushButton->setText(QCoreApplication::translate("UserRegistrationWindow", "View Password Guidelines", nullptr));
         emailAddress_label_2->setText(QCoreApplication::translate("UserRegistrationWindow", "First Name", nullptr));
 #if QT_CONFIG(tooltip)
-        confirmPassword_lineEdit->setToolTip(QCoreApplication::translate("UserRegistrationWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:10pt; font-weight:600; color:#000000;\">Password Guidelines:</span></p><p align=\"center\"><span style=\" font-family:'Courier New'; font-size:10pt; color:#000000;\">Minimum of seven(7)characters</span></p><p align=\"center\"><span style=\" font-family:'Courier New'; font-size:10pt; color:#000000;\">Maximum of twenty(20)characters</span></p><p align=\"center\"><span style=\" font-family:'Courier New'; font-size:10pt; color:#000000;\">At least one uppercase letter</span></p><p align=\"center\"><span style=\" font-family:'Courier New'; font-size:10pt; color:#000000;\">At least one lowercase letter</span></p><p align=\"center\"><span style=\" font-family:'Courier New'; font-size:10pt; color:#000000;\">At least one numeric character</span></p><p align=\"center\"><span style=\" font-family:'Courier New'; font-size:10pt; color:#000000;\">At least one special character</span></p></body></html>", nullptr));
+        confirmPassword_lineEdit->setToolTip(QCoreApplication::translate("UserRegistrationWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:10pt;\">Re-enter Suitable Password</span></p><p align=\"center\"><span style=\" font-size:10pt; font-weight:600; color:#000000;\">Password Guidelines:</span></p><p align=\"center\"><span style=\" font-family:'Courier New'; font-size:10pt; color:#000000;\">Minimum of seven(7)characters</span></p><p align=\"center\"><span style=\" font-family:'Courier New'; font-size:10pt; color:#000000;\">Maximum of twenty(20)characters</span></p><p align=\"center\"><span style=\" font-family:'Courier New'; font-size:10pt; color:#000000;\">At least one uppercase letter</span></p><p align=\"center\"><span style=\" font-family:'Courier New'; font-size:10pt; color:#000000;\">At least one lowercase letter</span></p><p align=\"center\"><span style=\" font-family:'Courier New'; font-size:10pt; color:#000000;\">At least one numeric character</span></p><p align=\"center\"><span style=\" font-family:'Courier New'; font-size:10pt; color:#000000;\">At least one special charac"
+                        "ter</span></p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
         label_4->setText(QCoreApplication::translate("UserRegistrationWindow", "*", nullptr));
         label_5->setText(QCoreApplication::translate("UserRegistrationWindow", "*", nullptr));
         password_label->setText(QCoreApplication::translate("UserRegistrationWindow", "Password", nullptr));
+#if QT_CONFIG(tooltip)
+        lastName_lineEdit->setToolTip(QCoreApplication::translate("UserRegistrationWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:10pt;\">Enter Last Name</span></p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(tooltip)
+        emailAddress_lineEdit->setToolTip(QCoreApplication::translate("UserRegistrationWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:10pt;\">Enter Valid Email Address</span></p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
         label_9->setText(QCoreApplication::translate("UserRegistrationWindow", "*", nullptr));
         label_2->setText(QCoreApplication::translate("UserRegistrationWindow", "TRMS - ", nullptr));
         label_7->setText(QCoreApplication::translate("UserRegistrationWindow", "*", nullptr));
         register_pushButton->setText(QCoreApplication::translate("UserRegistrationWindow", "REGISTER", nullptr));
+#if QT_CONFIG(tooltip)
+        password_lineEdit->setToolTip(QCoreApplication::translate("UserRegistrationWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:10pt;\">Enter Suitable Password</span></p><p align=\"center\"><span style=\" font-size:10pt; font-weight:600; color:#000000;\">Password Guidelines:</span></p><p align=\"center\"><span style=\" font-family:'Courier New'; font-size:10pt; color:#000000;\">Minimum of seven(7)characters</span></p><p align=\"center\"><span style=\" font-family:'Courier New'; font-size:10pt; color:#000000;\">Maximum of twenty(20)characters</span></p><p align=\"center\"><span style=\" font-family:'Courier New'; font-size:10pt; color:#000000;\">At least one uppercase letter</span></p><p align=\"center\"><span style=\" font-family:'Courier New'; font-size:10pt; color:#000000;\">At least one lowercase letter</span></p><p align=\"center\"><span style=\" font-family:'Courier New'; font-size:10pt; color:#000000;\">At least one numeric character</span></p><p align=\"center\"><span style=\" font-family:'Courier New'; font-size:10pt; color:#000000;\">At least one special character"
+                        "</span></p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
         label_3->setText(QCoreApplication::translate("UserRegistrationWindow", "Task Reminder Management System", nullptr));
         accountType_label->setText(QCoreApplication::translate("UserRegistrationWindow", "Account Type", nullptr));
         label_6->setText(QCoreApplication::translate("UserRegistrationWindow", "*", nullptr));
-        checkBox->setText(QCoreApplication::translate("UserRegistrationWindow", "I accept the Terms and Conditions", nullptr));
+#if QT_CONFIG(tooltip)
+        termsAndConditions_checkBox->setToolTip(QCoreApplication::translate("UserRegistrationWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:10pt;\">Review Terms and Conditions before Agreeing</span></p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
+        termsAndConditions_checkBox->setText(QCoreApplication::translate("UserRegistrationWindow", "I accept the Terms and Conditions", nullptr));
+#if QT_CONFIG(tooltip)
+        middleName_lineEdit->setToolTip(QCoreApplication::translate("UserRegistrationWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:10pt;\">Enter Middle Name</span></p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
         confirmPassword_label->setText(QCoreApplication::translate("UserRegistrationWindow", "Confirm Password", nullptr));
         emailAddress_label_4->setText(QCoreApplication::translate("UserRegistrationWindow", "Last Name", nullptr));
+#if QT_CONFIG(tooltip)
+        accountType_comboBox->setToolTip(QCoreApplication::translate("UserRegistrationWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:10pt;\">Select Suitable Account Type</span></p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
         logo_label->setText(QCoreApplication::translate("UserRegistrationWindow", "LOGO", nullptr));
         label_10->setText(QCoreApplication::translate("UserRegistrationWindow", "*", nullptr));
+#if QT_CONFIG(tooltip)
+        firstName_lineEdit->setToolTip(QCoreApplication::translate("UserRegistrationWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:10pt;\">Enter First Name</span></p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
         emailAddress_label_3->setText(QCoreApplication::translate("UserRegistrationWindow", "Middle Name", nullptr));
         name_label->setText(QCoreApplication::translate("UserRegistrationWindow", "NAME", nullptr));
         label->setText(QCoreApplication::translate("UserRegistrationWindow", "User Registration", nullptr));
         label_8->setText(QCoreApplication::translate("UserRegistrationWindow", "*", nullptr));
-        pushButton->setText(QCoreApplication::translate("UserRegistrationWindow", "View Terms and Conditions", nullptr));
+        viewTermsAndConditions_pushButton->setText(QCoreApplication::translate("UserRegistrationWindow", "View Terms and Conditions", nullptr));
     } // retranslateUi
 
 };

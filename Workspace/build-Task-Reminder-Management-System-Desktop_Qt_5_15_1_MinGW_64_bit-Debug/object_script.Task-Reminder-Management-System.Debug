@@ -4,9 +4,12 @@ debug/authenticatelogic.o
 debug/databaseconnection.o
 debug/main.o
 debug/loginwindow.o
+debug/reportsubmissionwindow.o
 debug/useraccountwindow.o
 debug/userregistrationwindow.o
+debug/qrc_assets.o
 debug/moc_adminaccountwindow.o
 debug/moc_loginwindow.o
+debug/moc_reportsubmissionwindow.o
 debug/moc_useraccountwindow.o
 debug/moc_userregistrationwindow.o

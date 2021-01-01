@@ -9,7 +9,7 @@ UserRegistrationWindow::UserRegistrationWindow(QWidget *parent) :
 
     /* Logo Image Implementation Source Code */
     // Getting the logo image
-    QPixmap logoImagePix("C:/Users/Lucas.L.H.H/Documents/GitHub/UOP_SE_Y3S1-SOFT336SL_CROSS_PLATFORM_DEVELOPMENT_IN_C_Plus_Plus/Workspace/Task-Reminder-Management-System/assets/images/TRMS-Logo-Without-Text.jpg");
+    QPixmap logoImagePix(":/images/TRMS-Logo-Without-Text.jpg");
     // Getting the width of the logo_label
     int logoLabelWidth = ui->logo_label->width();
     // Getting the height of the logo_label
@@ -54,14 +54,6 @@ UserRegistrationWindow::UserRegistrationWindow(QWidget *parent) :
 UserRegistrationWindow::~UserRegistrationWindow()
 {
     delete ui;
-}
-
-// If user clicks on the 'Register' push button
-void UserRegistrationWindow::on_login_pushButton_clicked()
-{
-
-
-
 }
 
 // If user clicks on 'View Password Guidelines' button
@@ -281,7 +273,7 @@ void UserRegistrationWindow::on_confirmPassword_lineEdit_textChanged(const QStri
 }
 
 // When user checks the 'termsAndConditions' checkbox
-void UserRegistrationWindow::on_checkBox_stateChanged(int arg1)
+void UserRegistrationWindow::on_termsAndConditions_checkBox_stateChanged(int arg1)
 {
     if(arg1){
         checkedTermsAndConditions = true;
@@ -439,3 +431,6 @@ void UserRegistrationWindow::on_register_pushButton_clicked()
     }
 
 }
+
+
+

@@ -257,7 +257,8 @@ Makefile: ../Task-Reminder-Management-System/Task-Reminder-Management-System.pro
 		I:/Files/Qt/5.15.1/mingw81_64/lib/Qt5Sql.prl \
 		I:/Files/Qt/5.15.1/mingw81_64/lib/Qt5Core.prl \
 		I:/Files/Qt/5.15.1/mingw81_64/lib/qtmain.prl \
-		I:/Files/Qt/5.15.1/mingw81_64/mkspecs/features/build_pass.prf
+		I:/Files/Qt/5.15.1/mingw81_64/mkspecs/features/build_pass.prf \
+		../Task-Reminder-Management-System/assets.qrc
 	$(QMAKE) -o Makefile ..\Task-Reminder-Management-System\Task-Reminder-Management-System.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 I:/Files/Qt/5.15.1/mingw81_64/mkspecs/features/spec_pre.prf:
 I:/Files/Qt/5.15.1/mingw81_64/mkspecs/qdevice.pri:
@@ -447,6 +448,7 @@ I:/Files/Qt/5.15.1/mingw81_64/lib/Qt5Sql.prl:
 I:/Files/Qt/5.15.1/mingw81_64/lib/Qt5Core.prl:
 I:/Files/Qt/5.15.1/mingw81_64/lib/qtmain.prl:
 I:/Files/Qt/5.15.1/mingw81_64/mkspecs/features/build_pass.prf:
+../Task-Reminder-Management-System/assets.qrc:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ..\Task-Reminder-Management-System\Task-Reminder-Management-System.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 

@@ -2,18 +2,18 @@
 
 DatabaseConnection::DatabaseConnection()
 {
-    this->setDatabaseName();
-    this->setDatabaseDBFilePath();
+    this->setDatabaseName("trms_db");
+    this->setDatabaseDBFilePath(":/database/trms_db.db");
 }
 
 /* Setter Methods */
 
-void DatabaseConnection::setDatabaseName(){
-    databaseName = "trms_db";
+void DatabaseConnection::setDatabaseName(QString databaseName){
+    this->databaseName = databaseName;
 }
 
-void DatabaseConnection::setDatabaseDBFilePath(){
-    databaseDBFilePath = ":/database/assets/database/trms_db.db";
+void DatabaseConnection::setDatabaseDBFilePath(QString databaseDBFilePath){
+    this->databaseDBFilePath = databaseDBFilePath;
 }
 
 /* Getter Methods */

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>573</width>
+    <width>571</width>
     <height>688</height>
    </rect>
   </property>
@@ -444,7 +444,7 @@
       <string>*</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="checkBox">
+    <widget class="QCheckBox" name="termsAndConditions_checkBox">
      <property name="geometry">
       <rect>
        <x>170</x>
@@ -710,7 +710,7 @@
       <string>*</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="viewTermsAndConditions_pushButton">
      <property name="geometry">
       <rect>
        <x>160</x>
@@ -739,8 +739,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>573</width>
-     <height>30</height>
+     <width>571</width>
+     <height>31</height>
     </rect>
    </property>
   </widget>

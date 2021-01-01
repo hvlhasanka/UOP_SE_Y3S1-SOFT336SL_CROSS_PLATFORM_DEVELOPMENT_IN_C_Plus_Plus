@@ -29,10 +29,9 @@ public:
     bool selectedAccountType;
 
 private slots:
-    void on_login_pushButton_clicked();
     void on_viewPasswordGuidelines_pushButton_clicked();
     void on_firstName_lineEdit_textChanged(const QString &arg1);
-    void on_checkBox_stateChanged(int arg1);
+    void on_termsAndConditions_checkBox_stateChanged(int arg1);
     void on_middleName_lineEdit_textChanged(const QString &arg1);
     void on_emailAddress_lineEdit_textChanged(const QString &arg1);
     void on_password_lineEdit_textChanged(const QString &arg1);
@@ -48,6 +47,7 @@ private:
     // Connecting the authenticate.h
     // Retireving the authenticate.h class path to a pointer
     AuthenticateLogic *auth;
+
 };
 
 #endif // USERREGISTRATIONWINDOW_H

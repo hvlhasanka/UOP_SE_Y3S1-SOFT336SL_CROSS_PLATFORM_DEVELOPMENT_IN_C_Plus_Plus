@@ -23,7 +23,7 @@ LoginWindow::LoginWindow(QWidget *parent)
 
     /* Cover Image Implementation Source Code */
     // Getting the cover image
-    QPixmap coverImagePix(":/imgs/assets/images/Cover-Image.jpg");
+    QPixmap coverImagePix(":/images/Cover-Image.jpg");
     // Getting the width of the coverImage_label
     int coverImageLabelWidth = ui->coverImage_label->width();
     // Getting the height of the coverImage_label
@@ -33,7 +33,7 @@ LoginWindow::LoginWindow(QWidget *parent)
 
     /* Logo Image Implementation Source Code */
     // Getting the logo image
-    QPixmap logoImagePix(":/imgs/assets/images/TRMS-Logo-WithBackground.jpg");
+    QPixmap logoImagePix(":/images/TRMS-Logo-WithBackground.jpg");
     // Getting the width of the logo_label
     int logoLabelWidth = ui->logo_label->width();
     // Getting the height of the logo_label
@@ -250,5 +250,14 @@ void LoginWindow::on_register_pushButton_clicked()
 
     userRegistrationWindowForm = new UserRegistrationWindow(this);
     userRegistrationWindowForm->show();
+
+}
+
+// When the user clicks on the 'REPORT' push button
+void LoginWindow::on_report_pushButton_clicked()
+{
+
+    reportSubmissionWindowFrom = new ReportSubmissionWindow(this);
+    reportSubmissionWindowFrom->show();
 
 }

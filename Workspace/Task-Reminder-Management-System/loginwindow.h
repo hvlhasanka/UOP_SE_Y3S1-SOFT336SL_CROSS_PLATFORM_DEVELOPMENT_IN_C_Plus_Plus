@@ -15,6 +15,7 @@
 #include <useraccountwindow.h>
 #include <adminaccountwindow.h>
 #include <userregistrationwindow.h>
+#include <reportsubmissionwindow.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class LoginWindow; }
@@ -39,6 +40,8 @@ private slots:
     void on_login_pushButton_clicked();
     void on_register_pushButton_clicked();
 
+    void on_report_pushButton_clicked();
+
 private:
     Ui::LoginWindow *ui;
     QLineEdit *password_lineEdit;
@@ -54,5 +57,9 @@ private:
     // Connecting the userregistrationwindow.h
     // Retireving the userregistrationwindow.h class path to a pointer
     UserRegistrationWindow *userRegistrationWindowForm;
+    // Connecting the reportsubmissionwindow.h
+    // Retireving the reportsubmissionwindow.h class path to a pointer
+    ReportSubmissionWindow *reportSubmissionWindowFrom;
+
 };
 #endif // LOGINWINDOW_H
