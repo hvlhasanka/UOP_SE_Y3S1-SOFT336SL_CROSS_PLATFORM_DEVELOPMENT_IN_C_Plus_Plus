@@ -23,7 +23,7 @@ LoginWindow::LoginWindow(QWidget *parent)
 
     /* Cover Image Implementation Source Code */
     // Getting the cover image
-    QPixmap coverImagePix("C:/Users/Lucas.L.H.H/Documents/GitHub/UOP_SE_Y3S1-SOFT336SL_CROSS_PLATFORM_DEVELOPMENT_IN_C_Plus_Plus/Workspace/Task-Reminder-Management-System/assets/images/Cover-Image.jpg");
+    QPixmap coverImagePix(":/imgs/assets/images/Cover-Image.jpg");
     // Getting the width of the coverImage_label
     int coverImageLabelWidth = ui->coverImage_label->width();
     // Getting the height of the coverImage_label
@@ -33,7 +33,7 @@ LoginWindow::LoginWindow(QWidget *parent)
 
     /* Logo Image Implementation Source Code */
     // Getting the logo image
-    QPixmap logoImagePix("C:/Users/Lucas.L.H.H/Documents/GitHub/UOP_SE_Y3S1-SOFT336SL_CROSS_PLATFORM_DEVELOPMENT_IN_C_Plus_Plus/Workspace/Task-Reminder-Management-System/assets/images/TRMS-Logo-WithBackground.jpg");
+    QPixmap logoImagePix(":/imgs/assets/images/TRMS-Logo-WithBackground.jpg");
     // Getting the width of the logo_label
     int logoLabelWidth = ui->logo_label->width();
     // Getting the height of the logo_label

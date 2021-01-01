@@ -1,3 +1,4 @@
+release/accountlogic.o
 release/adminaccountwindow.o
 release/authenticatelogic.o
 release/databaseconnection.o

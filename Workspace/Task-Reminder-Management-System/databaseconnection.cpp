@@ -13,7 +13,7 @@ void DatabaseConnection::setDatabaseName(){
 }
 
 void DatabaseConnection::setDatabaseDBFilePath(){
-    databaseDBFilePath = "C:/Users/Lucas.L.H.H/Documents/GitHub/UOP_SE_Y3S1-SOFT336SL_CROSS_PLATFORM_DEVELOPMENT_IN_C_Plus_Plus/Workspace/Database/trms_db.db";
+    databaseDBFilePath = ":/database/assets/database/trms_db.db";
 }
 
 /* Getter Methods */

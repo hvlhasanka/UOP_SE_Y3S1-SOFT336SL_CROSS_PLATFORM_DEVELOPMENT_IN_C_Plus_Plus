@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/imgs">
+        <file>assets/images/Cover-Image.jpg</file>
+        <file>assets/images/Splash-Screen.jpg</file>
+        <file>assets/images/TRMS-Logo-WithBackground.jpg</file>
+        <file>assets/images/TRMS-Logo.png</file>
+        <file>assets/images/TRMS-Logo-Without-Text.jpg</file>
+    </qresource>
+    <qresource prefix="/database">
+        <file>assets/database/trms_db.db</file>
+    </qresource>
+</RCC>

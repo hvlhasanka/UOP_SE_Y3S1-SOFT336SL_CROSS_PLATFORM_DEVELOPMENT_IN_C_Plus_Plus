@@ -276,7 +276,7 @@ public:
         UserRegistrationWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(UserRegistrationWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 573, 21));
+        menubar->setGeometry(QRect(0, 0, 573, 30));
         UserRegistrationWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(UserRegistrationWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -293,6 +293,9 @@ public:
         emailAddress_label->setText(QCoreApplication::translate("UserRegistrationWindow", "Email Address", nullptr));
         viewPasswordGuidelines_pushButton->setText(QCoreApplication::translate("UserRegistrationWindow", "View Password Guidelines", nullptr));
         emailAddress_label_2->setText(QCoreApplication::translate("UserRegistrationWindow", "First Name", nullptr));
+#if QT_CONFIG(tooltip)
+        confirmPassword_lineEdit->setToolTip(QCoreApplication::translate("UserRegistrationWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:10pt; font-weight:600; color:#000000;\">Password Guidelines:</span></p><p align=\"center\"><span style=\" font-family:'Courier New'; font-size:10pt; color:#000000;\">Minimum of seven(7)characters</span></p><p align=\"center\"><span style=\" font-family:'Courier New'; font-size:10pt; color:#000000;\">Maximum of twenty(20)characters</span></p><p align=\"center\"><span style=\" font-family:'Courier New'; font-size:10pt; color:#000000;\">At least one uppercase letter</span></p><p align=\"center\"><span style=\" font-family:'Courier New'; font-size:10pt; color:#000000;\">At least one lowercase letter</span></p><p align=\"center\"><span style=\" font-family:'Courier New'; font-size:10pt; color:#000000;\">At least one numeric character</span></p><p align=\"center\"><span style=\" font-family:'Courier New'; font-size:10pt; color:#000000;\">At least one special character</span></p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
         label_4->setText(QCoreApplication::translate("UserRegistrationWindow", "*", nullptr));
         label_5->setText(QCoreApplication::translate("UserRegistrationWindow", "*", nullptr));
         password_label->setText(QCoreApplication::translate("UserRegistrationWindow", "Password", nullptr));

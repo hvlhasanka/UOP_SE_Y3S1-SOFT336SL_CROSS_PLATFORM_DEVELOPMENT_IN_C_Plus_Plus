@@ -1,3 +1,4 @@
+debug/accountlogic.o
 debug/adminaccountwindow.o
 debug/authenticatelogic.o
 debug/databaseconnection.o
