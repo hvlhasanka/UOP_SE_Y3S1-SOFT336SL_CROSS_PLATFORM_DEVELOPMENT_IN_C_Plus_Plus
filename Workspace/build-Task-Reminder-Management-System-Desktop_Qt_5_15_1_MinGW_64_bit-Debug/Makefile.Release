@@ -554,6 +554,7 @@ release/moc_loginwindow.cpp: ../Task-Reminder-Management-System/loginwindow.h \
 		../Task-Reminder-Management-System/adminaccountwindow.h \
 		../Task-Reminder-Management-System/userregistrationwindow.h \
 		../Task-Reminder-Management-System/reportsubmissionwindow.h \
+		../Task-Reminder-Management-System/accountlogic.h \
 		release/moc_predefs.h \
 		I:/Files/Qt/5.15.1/mingw81_64/bin/moc.exe
 	I:\Files\Qt\5.15.1\mingw81_64\bin\moc.exe $(DEFINES) --include C:/Users/Lucas.L.H.H/Documents/GitHub/UOP_SE_Y3S1-SOFT336SL_CROSS_PLATFORM_DEVELOPMENT_IN_C_Plus_Plus/Workspace/build-Task-Reminder-Management-System-Desktop_Qt_5_15_1_MinGW_64_bit-Debug/release/moc_predefs.h -II:/Files/Qt/5.15.1/mingw81_64/mkspecs/win32-g++ -IC:/Users/Lucas.L.H.H/Documents/GitHub/UOP_SE_Y3S1-SOFT336SL_CROSS_PLATFORM_DEVELOPMENT_IN_C_Plus_Plus/Workspace/Task-Reminder-Management-System -II:/Files/Qt/5.15.1/mingw81_64/include -II:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets -II:/Files/Qt/5.15.1/mingw81_64/include/QtGui -II:/Files/Qt/5.15.1/mingw81_64/include/QtANGLE -II:/Files/Qt/5.15.1/mingw81_64/include/QtSql -II:/Files/Qt/5.15.1/mingw81_64/include/QtCore -I. -II:/Files/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -II:/Files/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -II:/Files/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -II:/Files/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -II:/Files/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -II:/Files/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\Task-Reminder-Management-System\loginwindow.h -o release\moc_loginwindow.cpp
@@ -667,6 +668,174 @@ release/moc_reportsubmissionwindow.cpp: ../Task-Reminder-Management-System/repor
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qicon.h \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QRegularExpression \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qregularexpression.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QMessageBox \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qmessagebox.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qdialog.h \
+		../Task-Reminder-Management-System/accountlogic.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QString \
+		../Task-Reminder-Management-System/databaseconnection.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/QtSql \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/QtSqlDepends \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QtCore \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QtCoreDepends \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qabstractanimation.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qabstracteventdispatcher.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qeventloop.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qabstractitemmodel.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qabstractnativeeventfilter.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qabstractproxymodel.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qabstractstate.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qabstracttransition.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qanimationgroup.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qarraydataops.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qarraydatapointer.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qbasictimer.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qbitarray.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qbuffer.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qbytearraymatcher.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcache.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcalendar.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcborarray.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcborvalue.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qdatetime.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcborcommon.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/quuid.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcbormap.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcborstream.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcborstreamreader.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qfloat16.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcborstreamwriter.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcollator.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcommandlineoption.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcommandlineparser.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcoreapplication.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qconcatenatetablesproxymodel.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcryptographichash.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qdeadlinetimer.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qelapsedtimer.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qdir.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qfileinfo.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qdiriterator.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qeasingcurve.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qendian.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qeventtransition.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qexception.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qfactoryinterface.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qfileselector.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QObject \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QStringList \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qfilesystemwatcher.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qfinalstate.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qfuture.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qfutureinterface.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qrunnable.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qresultstore.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qfuturesynchronizer.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qfuturewatcher.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qhistorystate.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qidentityproxymodel.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qisenum.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qitemselectionmodel.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qjsonarray.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qjsonvalue.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qjsondocument.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qjsonobject.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qlibrary.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qlibraryinfo.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qversionnumber.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qlinkedlist.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qlockfile.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qloggingcategory.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qmath.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qmessageauthenticationcode.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qmetaobject.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qmimedata.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qmimedatabase.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qmimetype.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qobjectcleanuphandler.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qoperatingsystemversion.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qparallelanimationgroup.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qpauseanimation.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qplugin.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qpointer.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qpluginloader.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qprocess.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qpropertyanimation.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qvariantanimation.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qqueue.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qrandom.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qreadwritelock.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qresource.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qsavefile.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qscopedvaluerollback.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qscopeguard.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qsemaphore.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qsequentialanimationgroup.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qsettings.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qsharedmemory.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qsignalmapper.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qsignaltransition.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qsocketnotifier.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qsortfilterproxymodel.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qstack.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qstandardpaths.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qstate.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qstatemachine.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qstorageinfo.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qstringlistmodel.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qsystemsemaphore.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qtemporarydir.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qtemporaryfile.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qtextboundaryfinder.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qtextcodec.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qthread.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qthreadpool.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qthreadstorage.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qtimeline.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qtimer.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qtimezone.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qtranslator.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qtransposeproxymodel.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qtypetraits.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qwaitcondition.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QDeadlineTimer \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qwineventnotifier.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qxmlstream.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qtcoreversion.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qtsqlglobal.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qtsql-config.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qsqldatabase.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qsqldriver.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qsqldriverplugin.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qsqlerror.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qsqlfield.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qsqlindex.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qsqlrecord.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qsqlquery.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qsqlquerymodel.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qsqlrelationaldelegate.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qitemdelegate.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qabstractitemdelegate.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qstyleoption.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qabstractspinbox.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qvalidator.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qslider.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qabstractslider.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qstyle.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qtabbar.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qrubberband.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qframe.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qlistview.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qabstractitemview.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qabstractscrollarea.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qcombobox.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qsqlrelationaltablemodel.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qsqltablemodel.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qsqlresult.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qtsqlversion.h \
+		../Task-Reminder-Management-System/authenticatelogic.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QDebug \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QRegularExpressionMatch \
 		release/moc_predefs.h \
 		I:/Files/Qt/5.15.1/mingw81_64/bin/moc.exe
 	I:\Files\Qt\5.15.1\mingw81_64\bin\moc.exe $(DEFINES) --include C:/Users/Lucas.L.H.H/Documents/GitHub/UOP_SE_Y3S1-SOFT336SL_CROSS_PLATFORM_DEVELOPMENT_IN_C_Plus_Plus/Workspace/build-Task-Reminder-Management-System-Desktop_Qt_5_15_1_MinGW_64_bit-Debug/release/moc_predefs.h -II:/Files/Qt/5.15.1/mingw81_64/mkspecs/win32-g++ -IC:/Users/Lucas.L.H.H/Documents/GitHub/UOP_SE_Y3S1-SOFT336SL_CROSS_PLATFORM_DEVELOPMENT_IN_C_Plus_Plus/Workspace/Task-Reminder-Management-System -II:/Files/Qt/5.15.1/mingw81_64/include -II:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets -II:/Files/Qt/5.15.1/mingw81_64/include/QtGui -II:/Files/Qt/5.15.1/mingw81_64/include/QtANGLE -II:/Files/Qt/5.15.1/mingw81_64/include/QtSql -II:/Files/Qt/5.15.1/mingw81_64/include/QtCore -I. -II:/Files/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -II:/Files/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -II:/Files/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -II:/Files/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -II:/Files/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -II:/Files/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\Task-Reminder-Management-System\reportsubmissionwindow.h -o release\moc_reportsubmissionwindow.cpp
@@ -1133,7 +1302,245 @@ release/accountlogic.o: ../Task-Reminder-Management-System/accountlogic.cpp ../T
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qstringliteral.h \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qstringalgorithms.h \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qstringview.h \
-		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qstringbuilder.h
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qstringbuilder.h \
+		../Task-Reminder-Management-System/databaseconnection.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/QtSql \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/QtSqlDepends \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QtCore \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QtCoreDepends \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qabstractanimation.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qobject.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qobjectdefs.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qobjectdefs_impl.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qlist.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qalgorithms.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qiterator.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qhashfunctions.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qpair.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qvector.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcontainertools_impl.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qpoint.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qbytearraylist.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qstringlist.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qregexp.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qstringmatcher.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcoreevent.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qscopedpointer.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qmetatype.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qvarlengtharray.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcontainerfwd.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qobject_impl.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qabstracteventdispatcher.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qeventloop.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qabstractitemmodel.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qvariant.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qmap.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qdebug.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qhash.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qtextstream.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qiodevice.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qlocale.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qshareddata.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qset.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcontiguouscache.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qsharedpointer.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qsharedpointer_impl.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qabstractnativeeventfilter.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qabstractproxymodel.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qabstractstate.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qabstracttransition.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qanimationgroup.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qarraydataops.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qarraydatapointer.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qbasictimer.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qbitarray.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qbuffer.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qbytearraymatcher.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcache.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcalendar.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcborarray.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcborvalue.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qdatetime.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcborcommon.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qregularexpression.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qurl.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qurlquery.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/quuid.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcbormap.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcborstream.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcborstreamreader.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qfloat16.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcborstreamwriter.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcollator.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcommandlineoption.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcommandlineparser.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcoreapplication.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qconcatenatetablesproxymodel.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcryptographichash.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qdatastream.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qdeadlinetimer.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qelapsedtimer.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qdir.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qfileinfo.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qfile.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qfiledevice.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qdiriterator.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qeasingcurve.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qendian.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qeventtransition.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qexception.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qfactoryinterface.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qfileselector.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QObject \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QStringList \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qfilesystemwatcher.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qfinalstate.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qfuture.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qfutureinterface.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qrunnable.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qresultstore.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qfuturesynchronizer.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qfuturewatcher.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qhistorystate.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qidentityproxymodel.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qisenum.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qitemselectionmodel.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qjsonarray.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qjsonvalue.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qjsondocument.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qjsonobject.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qlibrary.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qlibraryinfo.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qversionnumber.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qline.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qlinkedlist.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qlockfile.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qloggingcategory.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qmargins.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qmath.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qmessageauthenticationcode.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qmetaobject.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qmimedata.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qmimedatabase.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qmimetype.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qobjectcleanuphandler.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qoperatingsystemversion.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qparallelanimationgroup.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qpauseanimation.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qplugin.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qpointer.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qpluginloader.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qprocess.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qpropertyanimation.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qvariantanimation.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qqueue.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qrandom.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qreadwritelock.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qrect.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qsize.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qresource.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qsavefile.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qscopedvaluerollback.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qscopeguard.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qsemaphore.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qsequentialanimationgroup.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qsettings.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qsharedmemory.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qsignalmapper.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qsignaltransition.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qsocketnotifier.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qsortfilterproxymodel.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qstack.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qstandardpaths.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qstate.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qstatemachine.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qstorageinfo.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qstringlistmodel.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qsystemsemaphore.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qtemporarydir.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qtemporaryfile.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qtextboundaryfinder.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qtextcodec.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qthread.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qthreadpool.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qthreadstorage.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qtimeline.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qtimer.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qtimezone.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qtranslator.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qtransposeproxymodel.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qtypetraits.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qwaitcondition.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QDeadlineTimer \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qwineventnotifier.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qxmlstream.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qtcoreversion.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qtsqlglobal.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qtsql-config.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qsqldatabase.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qsqldriver.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qsqldriverplugin.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qsqlerror.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qsqlfield.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qsqlindex.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qsqlrecord.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qsqlquery.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qsqlquerymodel.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qsqlrelationaldelegate.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qitemdelegate.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qtwidgetsglobal.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qtguiglobal.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qtgui-config.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qtwidgets-config.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qabstractitemdelegate.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qstyleoption.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qabstractspinbox.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qwidget.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qwindowdefs.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qwindowdefs_win.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qpaintdevice.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qpalette.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qcolor.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qrgb.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qrgba64.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qbrush.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qmatrix.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qpolygon.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qregion.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qtransform.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qimage.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qpixelformat.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qpixmap.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qfont.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qfontmetrics.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qfontinfo.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qsizepolicy.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qcursor.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qkeysequence.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qevent.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qvector2d.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qtouchdevice.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qvalidator.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qicon.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qslider.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qabstractslider.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qstyle.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qtabbar.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qtabwidget.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qrubberband.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qframe.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qlistview.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qabstractitemview.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qabstractscrollarea.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qcombobox.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qsqlrelationaltablemodel.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qsqltablemodel.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qsqlresult.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qtsqlversion.h \
+		../Task-Reminder-Management-System/authenticatelogic.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QDebug \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QRegularExpression \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QRegularExpressionMatch
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\accountlogic.o ..\Task-Reminder-Management-System\accountlogic.cpp
 
 release/adminaccountwindow.o: ../Task-Reminder-Management-System/adminaccountwindow.cpp ../Task-Reminder-Management-System/adminaccountwindow.h \
@@ -1243,7 +1650,23 @@ release/adminaccountwindow.o: ../Task-Reminder-Management-System/adminaccountwin
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qtouchdevice.h \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qtabwidget.h \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qicon.h \
-		ui_adminaccountwindow.h
+		ui_adminaccountwindow.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QVariant \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QApplication \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qapplication.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcoreapplication.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qeventloop.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qdesktopwidget.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qguiapplication.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qinputmethod.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QMenuBar \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qmenubar.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qmenu.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qaction.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qactiongroup.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QStatusBar \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qstatusbar.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\adminaccountwindow.o ..\Task-Reminder-Management-System\adminaccountwindow.cpp
 
 release/authenticatelogic.o: ../Task-Reminder-Management-System/authenticatelogic.cpp ../Task-Reminder-Management-System/authenticatelogic.h \
@@ -2071,6 +2494,7 @@ release/main.o: ../Task-Reminder-Management-System/main.cpp ../Task-Reminder-Man
 		../Task-Reminder-Management-System/adminaccountwindow.h \
 		../Task-Reminder-Management-System/userregistrationwindow.h \
 		../Task-Reminder-Management-System/reportsubmissionwindow.h \
+		../Task-Reminder-Management-System/accountlogic.h \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QApplication \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qapplication.h \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qdesktopwidget.h \
@@ -2367,7 +2791,30 @@ release/loginwindow.o: ../Task-Reminder-Management-System/loginwindow.cpp ../Tas
 		../Task-Reminder-Management-System/adminaccountwindow.h \
 		../Task-Reminder-Management-System/userregistrationwindow.h \
 		../Task-Reminder-Management-System/reportsubmissionwindow.h \
+		../Task-Reminder-Management-System/accountlogic.h \
 		ui_loginwindow.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QVariant \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QApplication \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qapplication.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qdesktopwidget.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qguiapplication.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qinputmethod.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QCheckBox \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qcheckbox.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qabstractbutton.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QFrame \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QLabel \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qlabel.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QMenuBar \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qmenubar.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qmenu.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qaction.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qactiongroup.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QPushButton \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qpushbutton.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QStatusBar \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qstatusbar.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QWidget \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/QPixmap \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QInputDialog \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qinputdialog.h \
@@ -2483,17 +2930,182 @@ release/reportsubmissionwindow.o: ../Task-Reminder-Management-System/reportsubmi
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qicon.h \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QRegularExpression \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qregularexpression.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QMessageBox \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qmessagebox.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qdialog.h \
+		../Task-Reminder-Management-System/accountlogic.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QString \
+		../Task-Reminder-Management-System/databaseconnection.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/QtSql \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/QtSqlDepends \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QtCore \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QtCoreDepends \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qabstractanimation.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qabstracteventdispatcher.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qeventloop.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qabstractitemmodel.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qabstractnativeeventfilter.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qabstractproxymodel.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qabstractstate.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qabstracttransition.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qanimationgroup.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qarraydataops.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qarraydatapointer.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qbasictimer.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qbitarray.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qbuffer.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qbytearraymatcher.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcache.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcalendar.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcborarray.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcborvalue.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qdatetime.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcborcommon.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/quuid.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcbormap.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcborstream.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcborstreamreader.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qfloat16.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcborstreamwriter.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcollator.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcommandlineoption.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcommandlineparser.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcoreapplication.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qconcatenatetablesproxymodel.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcryptographichash.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qdeadlinetimer.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qelapsedtimer.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qdir.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qfileinfo.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qdiriterator.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qeasingcurve.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qendian.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qeventtransition.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qexception.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qfactoryinterface.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qfileselector.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QObject \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QStringList \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qfilesystemwatcher.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qfinalstate.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qfuture.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qfutureinterface.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qrunnable.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qresultstore.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qfuturesynchronizer.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qfuturewatcher.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qhistorystate.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qidentityproxymodel.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qisenum.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qitemselectionmodel.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qjsonarray.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qjsonvalue.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qjsondocument.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qjsonobject.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qlibrary.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qlibraryinfo.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qversionnumber.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qlinkedlist.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qlockfile.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qloggingcategory.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qmath.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qmessageauthenticationcode.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qmetaobject.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qmimedata.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qmimedatabase.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qmimetype.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qobjectcleanuphandler.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qoperatingsystemversion.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qparallelanimationgroup.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qpauseanimation.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qplugin.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qpointer.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qpluginloader.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qprocess.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qpropertyanimation.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qvariantanimation.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qqueue.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qrandom.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qreadwritelock.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qresource.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qsavefile.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qscopedvaluerollback.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qscopeguard.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qsemaphore.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qsequentialanimationgroup.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qsettings.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qsharedmemory.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qsignalmapper.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qsignaltransition.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qsocketnotifier.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qsortfilterproxymodel.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qstack.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qstandardpaths.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qstate.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qstatemachine.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qstorageinfo.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qstringlistmodel.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qsystemsemaphore.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qtemporarydir.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qtemporaryfile.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qtextboundaryfinder.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qtextcodec.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qthread.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qthreadpool.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qthreadstorage.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qtimeline.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qtimer.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qtimezone.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qtranslator.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qtransposeproxymodel.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qtypetraits.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qwaitcondition.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QDeadlineTimer \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qwineventnotifier.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qxmlstream.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qtcoreversion.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qtsqlglobal.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qtsql-config.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qsqldatabase.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qsqldriver.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qsqldriverplugin.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qsqlerror.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qsqlfield.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qsqlindex.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qsqlrecord.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qsqlquery.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qsqlquerymodel.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qsqlrelationaldelegate.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qitemdelegate.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qabstractitemdelegate.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qstyleoption.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qabstractspinbox.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qvalidator.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qslider.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qabstractslider.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qstyle.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qtabbar.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qrubberband.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qframe.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qlistview.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qabstractitemview.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qabstractscrollarea.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qcombobox.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qsqlrelationaltablemodel.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qsqltablemodel.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qsqlresult.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtSql/qtsqlversion.h \
+		../Task-Reminder-Management-System/authenticatelogic.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QDebug \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QRegularExpressionMatch \
 		ui_reportsubmissionwindow.h \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QVariant \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QApplication \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qapplication.h \
-		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcoreapplication.h \
-		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qeventloop.h \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qdesktopwidget.h \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qguiapplication.h \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qinputmethod.h \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QFrame \
-		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qframe.h \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QLabel \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qlabel.h \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QLineEdit \
@@ -2514,7 +3126,6 @@ release/reportsubmissionwindow.o: ../Task-Reminder-Management-System/reportsubmi
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qstatusbar.h \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QTextEdit \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qtextedit.h \
-		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qabstractscrollarea.h \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qtextdocument.h \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\reportsubmissionwindow.o ..\Task-Reminder-Management-System\reportsubmissionwindow.cpp
@@ -2626,7 +3237,23 @@ release/useraccountwindow.o: ../Task-Reminder-Management-System/useraccountwindo
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qtouchdevice.h \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qtabwidget.h \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qicon.h \
-		ui_useraccountwindow.h
+		ui_useraccountwindow.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QVariant \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QApplication \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qapplication.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcoreapplication.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qeventloop.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qdesktopwidget.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qguiapplication.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qinputmethod.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QMenuBar \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qmenubar.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qmenu.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qaction.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qactiongroup.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QStatusBar \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qstatusbar.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\useraccountwindow.o ..\Task-Reminder-Management-System\useraccountwindow.cpp
 
 release/userregistrationwindow.o: ../Task-Reminder-Management-System/userregistrationwindow.cpp ../Task-Reminder-Management-System/userregistrationwindow.h \
@@ -2905,7 +3532,36 @@ release/userregistrationwindow.o: ../Task-Reminder-Management-System/userregistr
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QDebug \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QRegularExpression \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QRegularExpressionMatch \
-		ui_userregistrationwindow.h
+		ui_userregistrationwindow.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QVariant \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QApplication \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qapplication.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qdesktopwidget.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qguiapplication.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qinputmethod.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QCheckBox \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qcheckbox.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qabstractbutton.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QComboBox \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QFrame \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QLabel \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qlabel.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QLineEdit \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qlineedit.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qtextcursor.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qtextformat.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qpen.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qtextoption.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QMenuBar \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qmenubar.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qmenu.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qaction.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qactiongroup.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QPushButton \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qpushbutton.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QStatusBar \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qstatusbar.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\userregistrationwindow.o ..\Task-Reminder-Management-System\userregistrationwindow.cpp
 
 release/qrc_assets.o: release/qrc_assets.cpp 

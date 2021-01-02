@@ -36,9 +36,13 @@ public:
     QLabel *label_3;
     QLabel *label_2;
     QLineEdit *subject_lineEdit;
-    QLabel *subject_label_2;
-    QTextEdit *textEdit;
+    QLabel *feedback_label;
     QLabel *label_5;
+    QTextEdit *feedback_textEdit;
+    QLabel *reachableEmailAddress_label;
+    QLabel *label_6;
+    QFrame *line;
+    QLineEdit *authorReachableEmailAddress_lineEdit;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -46,12 +50,12 @@ public:
     {
         if (ReportSubmissionWindow->objectName().isEmpty())
             ReportSubmissionWindow->setObjectName(QString::fromUtf8("ReportSubmissionWindow"));
-        ReportSubmissionWindow->resize(550, 526);
+        ReportSubmissionWindow->resize(550, 572);
         centralwidget = new QWidget(ReportSubmissionWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         frame = new QFrame(centralwidget);
         frame->setObjectName(QString::fromUtf8("frame"));
-        frame->setGeometry(QRect(0, 0, 551, 481));
+        frame->setGeometry(QRect(0, 0, 551, 531));
         frame->setStyleSheet(QString::fromUtf8("background-color: rgb(31, 192, 196);"));
         frame->setFrameShape(QFrame::StyledPanel);
         frame->setFrameShadow(QFrame::Raised);
@@ -60,7 +64,7 @@ public:
         logo_label->setGeometry(QRect(20, 10, 81, 51));
         subject_label = new QLabel(frame);
         subject_label->setObjectName(QString::fromUtf8("subject_label"));
-        subject_label->setGeometry(QRect(70, 150, 91, 21));
+        subject_label->setGeometry(QRect(70, 140, 91, 21));
         QFont font;
         font.setFamily(QString::fromUtf8("Segoe UI"));
         font.setPointSize(14);
@@ -78,7 +82,7 @@ public:
         label->setFont(font1);
         label_4 = new QLabel(frame);
         label_4->setObjectName(QString::fromUtf8("label_4"));
-        label_4->setGeometry(QRect(470, 150, 16, 21));
+        label_4->setGeometry(QRect(470, 140, 16, 21));
         QFont font2;
         font2.setFamily(QString::fromUtf8("Microsoft New Tai Lue"));
         font2.setPointSize(18);
@@ -88,7 +92,7 @@ public:
         label_4->setStyleSheet(QString::fromUtf8("color: rgb(255, 21, 0);"));
         submitReport_pushButton = new QPushButton(frame);
         submitReport_pushButton->setObjectName(QString::fromUtf8("submitReport_pushButton"));
-        submitReport_pushButton->setGeometry(QRect(80, 420, 371, 41));
+        submitReport_pushButton->setGeometry(QRect(90, 460, 371, 41));
         QFont font3;
         font3.setFamily(QString::fromUtf8("MS Shell Dlg 2"));
         font3.setPointSize(14);
@@ -113,25 +117,44 @@ public:
         label_2->setFont(font5);
         subject_lineEdit = new QLineEdit(frame);
         subject_lineEdit->setObjectName(QString::fromUtf8("subject_lineEdit"));
-        subject_lineEdit->setGeometry(QRect(200, 150, 261, 31));
+        subject_lineEdit->setGeometry(QRect(200, 140, 261, 31));
         QFont font6;
         font6.setFamily(QString::fromUtf8("Segoe UI"));
         font6.setPointSize(12);
         subject_lineEdit->setFont(font6);
         subject_lineEdit->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
-        subject_label_2 = new QLabel(frame);
-        subject_label_2->setObjectName(QString::fromUtf8("subject_label_2"));
-        subject_label_2->setGeometry(QRect(70, 200, 131, 21));
-        subject_label_2->setFont(font);
-        textEdit = new QTextEdit(frame);
-        textEdit->setObjectName(QString::fromUtf8("textEdit"));
-        textEdit->setGeometry(QRect(200, 190, 261, 211));
-        textEdit->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
+        feedback_label = new QLabel(frame);
+        feedback_label->setObjectName(QString::fromUtf8("feedback_label"));
+        feedback_label->setGeometry(QRect(70, 190, 131, 21));
+        feedback_label->setFont(font);
         label_5 = new QLabel(frame);
         label_5->setObjectName(QString::fromUtf8("label_5"));
-        label_5->setGeometry(QRect(470, 190, 16, 21));
+        label_5->setGeometry(QRect(470, 180, 16, 21));
         label_5->setFont(font2);
         label_5->setStyleSheet(QString::fromUtf8("color: rgb(255, 21, 0);"));
+        feedback_textEdit = new QTextEdit(frame);
+        feedback_textEdit->setObjectName(QString::fromUtf8("feedback_textEdit"));
+        feedback_textEdit->setGeometry(QRect(200, 180, 261, 171));
+        feedback_textEdit->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
+        reachableEmailAddress_label = new QLabel(frame);
+        reachableEmailAddress_label->setObjectName(QString::fromUtf8("reachableEmailAddress_label"));
+        reachableEmailAddress_label->setGeometry(QRect(70, 360, 291, 31));
+        reachableEmailAddress_label->setFont(font);
+        label_6 = new QLabel(frame);
+        label_6->setObjectName(QString::fromUtf8("label_6"));
+        label_6->setGeometry(QRect(470, 390, 16, 21));
+        label_6->setFont(font2);
+        label_6->setStyleSheet(QString::fromUtf8("color: rgb(255, 21, 0);"));
+        line = new QFrame(frame);
+        line->setObjectName(QString::fromUtf8("line"));
+        line->setGeometry(QRect(20, 430, 511, 20));
+        line->setFrameShape(QFrame::HLine);
+        line->setFrameShadow(QFrame::Sunken);
+        authorReachableEmailAddress_lineEdit = new QLineEdit(frame);
+        authorReachableEmailAddress_lineEdit->setObjectName(QString::fromUtf8("authorReachableEmailAddress_lineEdit"));
+        authorReachableEmailAddress_lineEdit->setGeometry(QRect(200, 390, 261, 31));
+        authorReachableEmailAddress_lineEdit->setFont(font6);
+        authorReachableEmailAddress_lineEdit->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
         ReportSubmissionWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(ReportSubmissionWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -159,11 +182,13 @@ public:
 #if QT_CONFIG(tooltip)
         subject_lineEdit->setToolTip(QCoreApplication::translate("ReportSubmissionWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:10pt;\">Provide a Subject for your Feedback</span></p><p align=\"center\"><br/></p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
-        subject_label_2->setText(QCoreApplication::translate("ReportSubmissionWindow", "Feedback", nullptr));
-#if QT_CONFIG(tooltip)
-        textEdit->setToolTip(QCoreApplication::translate("ReportSubmissionWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:10pt;\">Provide your feedback</span></p></body></html>", nullptr));
-#endif // QT_CONFIG(tooltip)
+        feedback_label->setText(QCoreApplication::translate("ReportSubmissionWindow", "Feedback", nullptr));
         label_5->setText(QCoreApplication::translate("ReportSubmissionWindow", "*", nullptr));
+        reachableEmailAddress_label->setText(QCoreApplication::translate("ReportSubmissionWindow", "Author Reachable Email Address", nullptr));
+        label_6->setText(QCoreApplication::translate("ReportSubmissionWindow", "*", nullptr));
+#if QT_CONFIG(tooltip)
+        authorReachableEmailAddress_lineEdit->setToolTip(QCoreApplication::translate("ReportSubmissionWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:10pt;\">Provide a Subject for your Feedback</span></p><p align=\"center\"><br/></p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
     } // retranslateUi
 
 };

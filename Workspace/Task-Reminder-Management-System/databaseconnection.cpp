@@ -3,7 +3,7 @@
 DatabaseConnection::DatabaseConnection()
 {
     this->setDatabaseName("trms_db");
-    this->setDatabaseDBFilePath(":/database/trms_db.db");
+    this->setDatabaseDBFilePath("C:/Users/Lucas.L.H.H/Documents/GitHub/UOP_SE_Y3S1-SOFT336SL_CROSS_PLATFORM_DEVELOPMENT_IN_C_Plus_Plus/Workspace/Task-Reminder-Management-System/database/trms_db.db");
 }
 
 /* Setter Methods */
@@ -31,8 +31,8 @@ QString DatabaseConnection::getDatabaseDBFilePath(){
 bool DatabaseConnection::openDatebaseConnection(){
 
     // Assigning database configuration
-    databaseConnection = QSqlDatabase::addDatabase("QSQLITE", databaseName);
-    databaseConnection.setDatabaseName(databaseDBFilePath);
+    databaseConnection = QSqlDatabase::addDatabase("QSQLITE", this->databaseName);
+    databaseConnection.setDatabaseName(this->databaseDBFilePath);
 
     // Establishing database connection and checking connection status
     if (!databaseConnection.open()){

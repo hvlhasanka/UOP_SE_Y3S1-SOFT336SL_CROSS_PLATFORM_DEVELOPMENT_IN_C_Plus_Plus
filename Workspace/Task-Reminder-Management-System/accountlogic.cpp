@@ -6,11 +6,14 @@ AccountLogic::AccountLogic()
     // Creating an object of DatabaseConnection class
     trms_dbConnection = new DatabaseConnection();
 
+    // Creating an object of Authenticate class
+    auth = new AuthenticateLogic();
+
 }
 
 
 /* Function Methods */
-QString AccountLogic::submitReport(QString enteredReportSubject, QString enteredReportDescription){
+QString AccountLogic::submitReport(QString enteredReportSubject, QString enteredReportFeedback, QString enteredAuthorReachableEmailAddress){
 
     bool databaseConnected = trms_dbConnection->openDatebaseConnection();
     if(databaseConnected == true){
@@ -20,11 +23,13 @@ QString AccountLogic::submitReport(QString enteredReportSubject, QString entered
         QSqlQuery reportQuery(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
 
         // Preparing sql query for execution
-        reportQuery.prepare(QString("INSERT INTO Report(ReportSubject, Feedback, SubmittedDateTime, rsReviewStatusID) VALUES "
-                                              "(:enteredSubject, :enteredFeedback, 1);"));
+        reportQuery.prepare(QString("INSERT INTO Report(ReportSubject, Feedback, SubmittedDateTime, AuthorReachableEmailAddress) VALUES "
+                                              "(:enteredSubject, :enteredFeedback, :submitedDateTime, :enteredAuthorReachableEmailAddress);"));
 
-        reportQuery.bindValue(":enteredSubject", );
-        reportQuery.bindValue(":enteredFeedback", );
+        reportQuery.bindValue(":enteredSubject", enteredReportSubject);
+        reportQuery.bindValue(":enteredFeedback", enteredReportFeedback);
+        reportQuery.bindValue(":submitedDateTime", auth->retrieveCurrentDateTime());
+        reportQuery.bindValue(":enteredAuthorReachableEmailAddress", enteredAuthorReachableEmailAddress);
 
         // Executing sql query and checking the status
         if(!reportQuery.exec()){
@@ -33,12 +38,14 @@ QString AccountLogic::submitReport(QString enteredReportSubject, QString entered
             return "Execution Unsuccessful: SQL query execution error";
         }
         else{
-
+            return "Report Submission Successful";
         }
 
     }
     else if(databaseConnected == false){
-
+        return "Execution Unsuccessful: Database Connection Error";
     }
+    trms_dbConnection->closeDatebaseConnection();
+    return "default";
 
 }

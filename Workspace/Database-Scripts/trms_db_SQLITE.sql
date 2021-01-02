@@ -272,8 +272,9 @@ CREATE TABLE Report(
   ReportSubject VARCHAR(50) NOT NULL,
   Feedback VARCHAR(150) NOT NULL,
   SubmittedDateTime DATETIME NOT NULL,
-  rsReviewStatusID INTEGER NOT NULL,
-  aAccountID INTEGER NOT NULL,
+  AuthorReachableEmailAddress VARCHAR(100),
+  rsReviewStatusID INTEGER DEFAULT 1,
+  aAccountID INTEGER,
   FOREIGN KEY (aAccountID) REFERENCES Account(AccountID),
   FOREIGN KEY (rsReviewStatusID) REFERENCES ReviewStatus(ReviewStatusID)
 );

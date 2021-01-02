@@ -44,7 +44,7 @@ LoginWindow::LoginWindow(QWidget *parent)
     // Disabling login push button
     ui->login_pushButton->setEnabled(false);
 
-    // Creating an object of Authenticate class
+    // Creating an object of AuthenticateLogin class
     auth = new AuthenticateLogic();
 }
 
