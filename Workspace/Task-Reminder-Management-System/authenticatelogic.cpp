@@ -205,13 +205,16 @@ QString AuthenticateLogic::checkEmailAddressAvailability(QString enteredEmailAdd
         if(!emailAddressAvailabilityQuery.exec()){
             qDebug() << "SQL query execution error";
             qDebug() << emailAddressAvailabilityQuery.lastError();
+            trms_dbConnection->closeDatebaseConnection();
             return "Execution Unsuccessful: SQL query execution error";
         }
         else{
             if(emailAddressAvailabilityQuery.next()){
+                trms_dbConnection->closeDatebaseConnection();
                 return "Account Available with Entered Email Address";
              }
             else{
+                trms_dbConnection->closeDatebaseConnection();
                 return "Account Unavailable with Entered Email Address";
             }
         }
@@ -219,6 +222,7 @@ QString AuthenticateLogic::checkEmailAddressAvailability(QString enteredEmailAdd
     }
     else if(databaseConnection == false){
         qDebug() << "Database Connection Error";
+        trms_dbConnection->closeDatebaseConnection();
         return "Execution Unsuccessful: Database Connection Error";
     }
     trms_dbConnection->closeDatebaseConnection();
@@ -249,6 +253,7 @@ QString AuthenticateLogic::registerNewUser(QString enteredFirstName, QString ent
         if(!loginQuery.exec()){
             qDebug() << "SQL query execution error";
             qDebug() << loginQuery.lastError();
+            trms_dbConnection->closeDatebaseConnection();
             return "Execution Unsuccessful: SQL query execution error";
         }
         else{
@@ -269,6 +274,7 @@ QString AuthenticateLogic::registerNewUser(QString enteredFirstName, QString ent
         if(!loginIDQuery.exec()){
             qDebug() << "SQL query execution error";
             qDebug() << loginIDQuery.lastError();
+            trms_dbConnection->closeDatebaseConnection();
             return "Execution Unsuccessful: SQL query execution error";
         }
         else{
@@ -292,6 +298,7 @@ QString AuthenticateLogic::registerNewUser(QString enteredFirstName, QString ent
         if(!accountTypeIDQuery.exec()){
             qDebug() << "SQL query execution error";
             qDebug() << accountTypeIDQuery.lastError();
+            trms_dbConnection->closeDatebaseConnection();
             return "Execution Unsuccessful: SQL query execution error";
         }
         else{
@@ -322,6 +329,7 @@ QString AuthenticateLogic::registerNewUser(QString enteredFirstName, QString ent
         if(!accountQuery.exec()){
             qDebug() << "SQL query execution error";
             qDebug() << accountQuery.lastError();
+            trms_dbConnection->closeDatebaseConnection();
             return "Execution Unsuccessful: SQL query execution error";
         }
         else{
@@ -329,15 +337,18 @@ QString AuthenticateLogic::registerNewUser(QString enteredFirstName, QString ent
         }
 
         if(successfulQueryExecutions == 4){
+            trms_dbConnection->closeDatebaseConnection();
             return "New Account Successfully Created";
         }
         else{
+            trms_dbConnection->closeDatebaseConnection();
             return "New Account Creation Error";
         }
 
     }
     else if(databaseConnection == false){
         qDebug() << "Database Connection Error";
+        trms_dbConnection->closeDatebaseConnection();
         return "Execution Unsuccessful: Database Connection Error";
     }
 
@@ -372,6 +383,7 @@ QString AuthenticateLogic::loginCredentialVerification(QString enteredEmailAddre
         if(!vertificationQuery.exec()){
             qDebug() << "SQL query execution error";
             qDebug() << vertificationQuery.lastError();
+            trms_dbConnection->closeDatebaseConnection();
             return "Verification Unsuccessful: SQL query execution error";
         }
         else{
@@ -391,12 +403,14 @@ QString AuthenticateLogic::loginCredentialVerification(QString enteredEmailAddre
                 this->setDoNotDistrubBooleanValue(vertificationQuery.value(12).toBool());
             }
             else{
+                trms_dbConnection->closeDatebaseConnection();
                 return "Verification Unsuccessful: No Account Available with Entered Email Address";
             }
         }
     }
     else{
         qDebug() << "Database Connection Error";
+        trms_dbConnection->closeDatebaseConnection();
         return "Verification Unsuccessful: Database Connection Error";
     }
 
@@ -411,20 +425,25 @@ QString AuthenticateLogic::loginCredentialVerification(QString enteredEmailAddre
 
             /* Checking account type of the user */
             if(this->getAccountType() == "Standard User Account" || this->getAccountType() == "Premium User Account"){
+                trms_dbConnection->closeDatebaseConnection();
                 return "Verification Successful: Account Type: UserAccount";
             }
             else if(this->getAccountType() == "Admin Account"){
+                trms_dbConnection->closeDatebaseConnection();
                 return "Verification Successful: Account Type: AdminAccount";
             }
         }
         else if(this->getAccountStatus() == "Disabled"){
+            trms_dbConnection->closeDatebaseConnection();
             return "Verification Unsuccessful: Account Disabled";
         }
 
     }
     else if(this->getPasswordHash() != enteredPasswordHash){
+        trms_dbConnection->closeDatebaseConnection();
         return "Verification Unsuccessful: Password Incorrect";
     }
+    trms_dbConnection->closeDatebaseConnection();
     return "default";
 }
 
@@ -448,14 +467,17 @@ void AuthenticateLogic::addSessionStartToDB(){
         if(!sessionStartQuery.exec()){
             qDebug() << "SQL query execution error";
             qDebug() << sessionStartQuery.lastError();
+            trms_dbConnection->closeDatebaseConnection();
         }
         else{
             qDebug() << "Session Start Recorded";
+            trms_dbConnection->closeDatebaseConnection();
         }
 
     }
     else{
         qDebug() << "Database Connection Error";
+        trms_dbConnection->closeDatebaseConnection();
     }
 
     trms_dbConnection->closeDatebaseConnection();

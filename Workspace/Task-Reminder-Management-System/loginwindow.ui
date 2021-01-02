@@ -20,7 +20,12 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>LoginWindow</string>
+   <string>TRMS</string>
+  </property>
+  <property name="windowIcon">
+   <iconset theme="trms-logo">
+    <normalon>:/images/TRMS-Logo-Without-Text.ico</normalon>
+   </iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="autoFillBackground">

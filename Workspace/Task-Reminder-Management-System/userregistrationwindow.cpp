@@ -48,7 +48,6 @@ UserRegistrationWindow::UserRegistrationWindow(QWidget *parent) :
     }
     trms_dbConnection->closeDatebaseConnection();
 
-
 }
 
 UserRegistrationWindow::~UserRegistrationWindow()

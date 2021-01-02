@@ -17,7 +17,12 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>TRMS - User Registration</string>
+  </property>
+  <property name="windowIcon">
+   <iconset theme="trms-logo">
+    <normalon>:/images/TRMS-Logo-Without-Text.ico</normalon>
+   </iconset>
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>
@@ -734,7 +739,7 @@
     </widget>
    </widget>
   </widget>
-  <widget class="QMenuBar" name="menubar">
+  <widget class="QMenuBar" name="userRegistrationWindow_menubar">
    <property name="geometry">
     <rect>
      <x>0</x>

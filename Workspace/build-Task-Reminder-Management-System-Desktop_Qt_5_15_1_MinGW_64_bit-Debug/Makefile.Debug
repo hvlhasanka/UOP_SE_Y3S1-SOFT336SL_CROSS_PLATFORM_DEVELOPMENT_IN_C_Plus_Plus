@@ -144,6 +144,7 @@ debug/qrc_assets.cpp: ../Task-Reminder-Management-System/assets.qrc \
 		../Task-Reminder-Management-System/images/TRMS-Logo-Without-Text.jpg \
 		../Task-Reminder-Management-System/images/Cover-Image.jpg \
 		../Task-Reminder-Management-System/images/Splash-Screen.jpg \
+		../Task-Reminder-Management-System/images/TRMS-Logo-Without-Text.ico \
 		../Task-Reminder-Management-System/images/TRMS-Logo-WithBackground.jpg \
 		../Task-Reminder-Management-System/database/trms_db.db
 	I:\Files\Qt\5.15.1\mingw81_64\bin\rcc.exe -name assets ..\Task-Reminder-Management-System\assets.qrc -o debug\qrc_assets.cpp
@@ -3534,6 +3535,7 @@ debug/userregistrationwindow.o: ../Task-Reminder-Management-System/userregistrat
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QRegularExpressionMatch \
 		ui_userregistrationwindow.h \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QVariant \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/QIcon \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QApplication \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qapplication.h \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qdesktopwidget.h \

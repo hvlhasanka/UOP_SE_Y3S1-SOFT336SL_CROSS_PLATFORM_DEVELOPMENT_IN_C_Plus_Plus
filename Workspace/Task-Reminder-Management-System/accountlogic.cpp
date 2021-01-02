@@ -35,14 +35,17 @@ QString AccountLogic::submitReport(QString enteredReportSubject, QString entered
         if(!reportQuery.exec()){
             qDebug() << "SQL query execution error";
             qDebug() << reportQuery.lastError();
+            trms_dbConnection->closeDatebaseConnection();
             return "Execution Unsuccessful: SQL query execution error";
         }
         else{
+            trms_dbConnection->closeDatebaseConnection();
             return "Report Submission Successful";
         }
 
     }
     else if(databaseConnected == false){
+        trms_dbConnection->closeDatebaseConnection();
         return "Execution Unsuccessful: Database Connection Error";
     }
     trms_dbConnection->closeDatebaseConnection();

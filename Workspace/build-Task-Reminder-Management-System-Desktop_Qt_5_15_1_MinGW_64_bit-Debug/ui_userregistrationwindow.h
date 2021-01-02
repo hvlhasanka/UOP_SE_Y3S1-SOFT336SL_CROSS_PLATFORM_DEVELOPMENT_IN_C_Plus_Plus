@@ -10,6 +10,7 @@
 #define UI_USERREGISTRATIONWINDOW_H
 
 #include <QtCore/QVariant>
+#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
@@ -61,7 +62,7 @@ public:
     QLabel *label;
     QLabel *label_8;
     QPushButton *viewTermsAndConditions_pushButton;
-    QMenuBar *menubar;
+    QMenuBar *userRegistrationWindow_menubar;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *UserRegistrationWindow)
@@ -73,6 +74,14 @@ public:
         font.setFamily(QString::fromUtf8("Microsoft Sans Serif"));
         font.setPointSize(16);
         UserRegistrationWindow->setFont(font);
+        QIcon icon;
+        QString iconThemeName = QString::fromUtf8("trms-logo");
+        if (QIcon::hasThemeIcon(iconThemeName)) {
+            icon = QIcon::fromTheme(iconThemeName);
+        } else {
+            icon.addFile(QString::fromUtf8(":/images/TRMS-Logo-Without-Text.ico"), QSize(), QIcon::Normal, QIcon::On);
+        }
+        UserRegistrationWindow->setWindowIcon(icon);
         UserRegistrationWindow->setAutoFillBackground(false);
         UserRegistrationWindow->setStyleSheet(QString::fromUtf8(""));
         centralwidget = new QWidget(UserRegistrationWindow);
@@ -274,10 +283,10 @@ public:
         viewTermsAndConditions_pushButton->setFont(font10);
         viewTermsAndConditions_pushButton->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
         UserRegistrationWindow->setCentralWidget(centralwidget);
-        menubar = new QMenuBar(UserRegistrationWindow);
-        menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 571, 31));
-        UserRegistrationWindow->setMenuBar(menubar);
+        userRegistrationWindow_menubar = new QMenuBar(UserRegistrationWindow);
+        userRegistrationWindow_menubar->setObjectName(QString::fromUtf8("userRegistrationWindow_menubar"));
+        userRegistrationWindow_menubar->setGeometry(QRect(0, 0, 571, 31));
+        UserRegistrationWindow->setMenuBar(userRegistrationWindow_menubar);
         statusbar = new QStatusBar(UserRegistrationWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
         UserRegistrationWindow->setStatusBar(statusbar);
@@ -289,7 +298,7 @@ public:
 
     void retranslateUi(QMainWindow *UserRegistrationWindow)
     {
-        UserRegistrationWindow->setWindowTitle(QCoreApplication::translate("UserRegistrationWindow", "MainWindow", nullptr));
+        UserRegistrationWindow->setWindowTitle(QCoreApplication::translate("UserRegistrationWindow", "TRMS - User Registration", nullptr));
         emailAddress_label->setText(QCoreApplication::translate("UserRegistrationWindow", "Email Address", nullptr));
         viewPasswordGuidelines_pushButton->setText(QCoreApplication::translate("UserRegistrationWindow", "View Password Guidelines", nullptr));
         emailAddress_label_2->setText(QCoreApplication::translate("UserRegistrationWindow", "First Name", nullptr));
