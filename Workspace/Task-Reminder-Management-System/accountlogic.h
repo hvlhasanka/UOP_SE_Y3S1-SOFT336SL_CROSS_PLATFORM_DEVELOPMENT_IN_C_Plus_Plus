@@ -15,6 +15,7 @@ public:
     QString submitReport(QString enteredReportSubject,
                          QString enteredReportFeedback,
                          QString enteredAuthorReachableEmailAddress);
+    QString addNewTask();
 
 private:
     // Connecting the databaseconnecion.h

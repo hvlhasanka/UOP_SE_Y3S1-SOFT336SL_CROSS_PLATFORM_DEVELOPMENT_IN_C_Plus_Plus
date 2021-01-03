@@ -16,6 +16,7 @@ SOURCES += \
     main.cpp \
     loginwindow.cpp \
     reportsubmissionwindow.cpp \
+    standarduseraccountlogic.cpp \
     useraccountwindow.cpp \
     userregistrationwindow.cpp
 
@@ -26,6 +27,7 @@ HEADERS += \
     databaseconnection.h \
     loginwindow.h \
     reportsubmissionwindow.h \
+    standarduseraccountlogic.h \
     useraccountwindow.h \
     userregistrationwindow.h
 

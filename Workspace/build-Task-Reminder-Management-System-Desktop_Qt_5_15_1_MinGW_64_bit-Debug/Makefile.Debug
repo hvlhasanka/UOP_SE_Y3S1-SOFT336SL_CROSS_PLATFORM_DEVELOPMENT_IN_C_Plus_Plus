@@ -1651,7 +1651,24 @@ debug/adminaccountwindow.o: ../Task-Reminder-Management-System/adminaccountwindo
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qtouchdevice.h \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qtabwidget.h \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qicon.h \
-		ui_adminaccountwindow.h
+		ui_adminaccountwindow.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QVariant \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/QIcon \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QApplication \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qapplication.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcoreapplication.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qeventloop.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qdesktopwidget.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qguiapplication.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qinputmethod.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QMenuBar \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qmenubar.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qmenu.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qaction.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qactiongroup.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QStatusBar \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qstatusbar.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\adminaccountwindow.o ..\Task-Reminder-Management-System\adminaccountwindow.cpp
 
 debug/authenticatelogic.o: ../Task-Reminder-Management-System/authenticatelogic.cpp ../Task-Reminder-Management-System/authenticatelogic.h \
@@ -2778,6 +2795,29 @@ debug/loginwindow.o: ../Task-Reminder-Management-System/loginwindow.cpp ../Task-
 		../Task-Reminder-Management-System/reportsubmissionwindow.h \
 		../Task-Reminder-Management-System/accountlogic.h \
 		ui_loginwindow.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QVariant \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/QIcon \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QApplication \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qapplication.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qdesktopwidget.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qguiapplication.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qinputmethod.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QCheckBox \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qcheckbox.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qabstractbutton.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QFrame \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QLabel \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qlabel.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QMenuBar \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qmenubar.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qmenu.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qaction.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qactiongroup.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QPushButton \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qpushbutton.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QStatusBar \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qstatusbar.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QWidget \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/QPixmap \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QInputDialog \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qinputdialog.h \
@@ -3061,7 +3101,37 @@ debug/reportsubmissionwindow.o: ../Task-Reminder-Management-System/reportsubmiss
 		../Task-Reminder-Management-System/authenticatelogic.h \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QDebug \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QRegularExpressionMatch \
-		ui_reportsubmissionwindow.h
+		ui_reportsubmissionwindow.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QVariant \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/QIcon \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QApplication \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qapplication.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qdesktopwidget.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qguiapplication.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qinputmethod.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QFrame \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QLabel \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qlabel.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QLineEdit \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qlineedit.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qtextcursor.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qtextformat.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qpen.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qtextoption.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QMenuBar \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qmenubar.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qmenu.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qaction.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qactiongroup.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QPushButton \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qpushbutton.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qabstractbutton.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QStatusBar \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qstatusbar.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QTextEdit \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qtextedit.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qtextdocument.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\reportsubmissionwindow.o ..\Task-Reminder-Management-System\reportsubmissionwindow.cpp
 
 debug/useraccountwindow.o: ../Task-Reminder-Management-System/useraccountwindow.cpp ../Task-Reminder-Management-System/useraccountwindow.h \
@@ -3171,7 +3241,24 @@ debug/useraccountwindow.o: ../Task-Reminder-Management-System/useraccountwindow.
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qtouchdevice.h \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qtabwidget.h \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qicon.h \
-		ui_useraccountwindow.h
+		ui_useraccountwindow.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QVariant \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/QIcon \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QApplication \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qapplication.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qcoreapplication.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/qeventloop.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qdesktopwidget.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qguiapplication.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qinputmethod.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QMenuBar \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qmenubar.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qmenu.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qaction.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qactiongroup.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QStatusBar \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qstatusbar.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\useraccountwindow.o ..\Task-Reminder-Management-System\useraccountwindow.cpp
 
 debug/userregistrationwindow.o: ../Task-Reminder-Management-System/userregistrationwindow.cpp ../Task-Reminder-Management-System/userregistrationwindow.h \
@@ -3450,7 +3537,37 @@ debug/userregistrationwindow.o: ../Task-Reminder-Management-System/userregistrat
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QDebug \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QRegularExpression \
 		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QRegularExpressionMatch \
-		ui_userregistrationwindow.h
+		ui_userregistrationwindow.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtCore/QVariant \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/QIcon \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QApplication \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qapplication.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qdesktopwidget.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qguiapplication.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qinputmethod.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QCheckBox \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qcheckbox.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qabstractbutton.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QComboBox \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QFrame \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QLabel \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qlabel.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QLineEdit \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qlineedit.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qtextcursor.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qtextformat.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qpen.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtGui/qtextoption.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QMenuBar \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qmenubar.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qmenu.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qaction.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qactiongroup.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QPushButton \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qpushbutton.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QStatusBar \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/qstatusbar.h \
+		I:/Files/Qt/5.15.1/mingw81_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\userregistrationwindow.o ..\Task-Reminder-Management-System\userregistrationwindow.cpp
 
 debug/qrc_assets.o: debug/qrc_assets.cpp 
