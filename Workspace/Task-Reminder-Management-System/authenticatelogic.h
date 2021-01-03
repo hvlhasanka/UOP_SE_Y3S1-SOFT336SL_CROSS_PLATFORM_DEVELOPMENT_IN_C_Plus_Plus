@@ -52,9 +52,10 @@ public:
     string generatePasswordHash(string passwordValue);
     QString loginCredentialVerification(QString enteredEmailAddress, QString enteredPasswordHash);
     QString checkEmailAddressAvailability(QString enteredEmailAddress);
-    QString registerNewUser(QString enteredFirstName, QString enteredMiddleName,
-                            QString enteredLastName, QString enteredEmailAddress,
-                            QString generatedConfirmPasswordHash, QString selectedAccountType);
+    QString registerNewUser(QString selectedNamePrefix, QString enteredFirstName,
+                            QString enteredMiddleName, QString enteredLastName,
+                            QString enteredEmailAddress, QString generatedConfirmPasswordHash,
+                            QString selectedAccountType);
     void addSessionStartToDB();
 
 private:

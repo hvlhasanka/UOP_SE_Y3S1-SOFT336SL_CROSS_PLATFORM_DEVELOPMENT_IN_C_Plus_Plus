@@ -175,9 +175,10 @@ QString AuthenticateLogic::checkEmailAddressAvailability(QString enteredEmailAdd
     return "default";
 }
 
-QString AuthenticateLogic::registerNewUser(QString enteredFirstName, QString enteredMiddleName,
-                                           QString enteredLastName, QString enteredEmailAddress,
-                                           QString generatedConfirmPasswordHash, QString selectedAccountType){
+QString AuthenticateLogic::registerNewUser(QString selectedNamePrefix, QString enteredFirstName,
+                                           QString enteredMiddleName, QString enteredLastName,
+                                           QString enteredEmailAddress, QString generatedConfirmPasswordHash,
+                                           QString selectedAccountType){
 
     bool databaseConnection = trms_dbConnection->openDatebaseConnection();
     if(databaseConnection == true){
@@ -203,7 +204,7 @@ QString AuthenticateLogic::registerNewUser(QString enteredFirstName, QString ent
             return "Execution Unsuccessful: SQL query execution error";
         }
         else{
-            successfulQueryExecutions++;
+            successfulQueryExecutions++;qDebug() << "1";
         }
 
         /* Retrieving the 'LoginID' from the 'Login' relation (table) of the newly added record */
@@ -227,31 +228,57 @@ QString AuthenticateLogic::registerNewUser(QString enteredFirstName, QString ent
             if(loginIDQuery.next()){
                 loginIDDB = loginIDQuery.value(0).toString();
             }
-            successfulQueryExecutions++;
+            successfulQueryExecutions++;qDebug() << "2";
         }
 
-        /* Retrieving the 'AccountTypeID' from the 'AccountType' relation (table) for the user selected account type */
-        QString accountTypeIDDB;
+
+        /* Retrieving the 'NamePrefixID' from the 'NamePrefix' relation (table) for the user selected name prefix */
+        QString namePrefixIDDB;
         // Declaring new QSqlQuery object by passing the database name
-        QSqlQuery accountTypeIDQuery(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
+        QSqlQuery namePrefixIDDBQuery(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
 
         // Preparing sql query for execution
-        accountTypeIDQuery.prepare(QString("SELECT AccountTypeID FROM AccountType WHERE AccountType=:selectedAccountType"));
+        namePrefixIDDBQuery.prepare(QString("SELECT NamePrefixID FROM NamePrefix WHERE NamePrefix = :selectedNamePrefix"));
 
-        accountTypeIDQuery.bindValue(":selectedAccountType", selectedAccountType);
+        namePrefixIDDBQuery.bindValue(":selectedNamePrefix", selectedNamePrefix);
 
         // Executing sql query and checking the status
-        if(!accountTypeIDQuery.exec()){
+        if(!namePrefixIDDBQuery.exec()){
             qDebug() << "SQL query execution error";
-            qDebug() << accountTypeIDQuery.lastError();
+            qDebug() << namePrefixIDDBQuery.lastError();
             trms_dbConnection->closeDatebaseConnection();
             return "Execution Unsuccessful: SQL query execution error";
         }
         else{
-            if(accountTypeIDQuery.next()){
-                accountTypeIDDB = accountTypeIDQuery.value(0).toString();
+            if(namePrefixIDDBQuery.next()){
+                namePrefixIDDB = namePrefixIDDBQuery.value(0).toString();
             }
-            successfulQueryExecutions++;
+            successfulQueryExecutions++;qDebug() << "3";
+        }
+
+
+        /* Retrieving the 'AccountTypeID' from the 'AccountType' relation (table) for the user selected account type */
+        QString accountTypeIDDB;
+        // Declaring new QSqlQuery object by passing the database name
+        QSqlQuery accountTypeIDDBQuery(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
+
+        // Preparing sql query for execution
+        accountTypeIDDBQuery.prepare(QString("SELECT AccountTypeID FROM AccountType WHERE AccountType=:selectedAccountType"));
+
+        accountTypeIDDBQuery.bindValue(":selectedAccountType", selectedAccountType);
+
+        // Executing sql query and checking the status
+        if(!accountTypeIDDBQuery.exec()){
+            qDebug() << "SQL query execution error";
+            qDebug() << accountTypeIDDBQuery.lastError();
+            trms_dbConnection->closeDatebaseConnection();
+            return "Execution Unsuccessful: SQL query execution error";
+        }
+        else{
+            if(accountTypeIDDBQuery.next()){
+                accountTypeIDDB = accountTypeIDDBQuery.value(0).toString();
+            }
+            successfulQueryExecutions++;qDebug() << "4";
         }
 
 
@@ -260,16 +287,18 @@ QString AuthenticateLogic::registerNewUser(QString enteredFirstName, QString ent
         QSqlQuery accountQuery(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
 
         // Preparing sql query for execution
-        accountQuery.prepare(QString("INSERT INTO Account(FirstName, MiddleName, LastName, atAccountTypeID, dvDoNotDistrubBooleanValueID, lLoginID) VALUES "
-                                     "(:enteredFirstName, :enteredMiddleName, :enteredLastName, :createdDateTime, "
+        accountQuery.prepare(QString("INSERT INTO Account(FirstName, MiddleName, LastName, CreatedDateTime, npNamePrefixID, "
+                                     "atAccountTypeID, dvDoNotDistrubBooleanValueID, lLoginID) VALUES "
+                                     "(:enteredFirstName, :enteredMiddleName, :enteredLastName, :createdDateTime, :selectedNamePrefixID, "
                                      ":selectedAccountTypeID, 2, :generatedLoginID);"));
 
         accountQuery.bindValue(":enteredFirstName", enteredFirstName);
         accountQuery.bindValue(":enteredMiddleName", enteredMiddleName);
         accountQuery.bindValue(":enteredLastName", enteredLastName);
         accountQuery.bindValue(":createdDateTime", this->retrieveCurrentDateTime());
+        accountQuery.bindValue(":selectedNamePrefixID", namePrefixIDDB.toInt());
         accountQuery.bindValue(":selectedAccountTypeID", accountTypeIDDB.toInt());
-        accountQuery.bindValue(":generatedLoginID", loginIDDB);
+        accountQuery.bindValue(":generatedLoginID", loginIDDB.toInt());
 
         // Executing sql query and checking the status
         if(!accountQuery.exec()){
@@ -279,15 +308,84 @@ QString AuthenticateLogic::registerNewUser(QString enteredFirstName, QString ent
             return "Execution Unsuccessful: SQL query execution error";
         }
         else{
-            successfulQueryExecutions++;
+            successfulQueryExecutions++;qDebug() << "5";
         }
 
-        if(successfulQueryExecutions == 4){
+
+        /* Retrieving the AccountID of the newly registered user from the Acount relation (table) */
+        QString accountIDDB;
+        // Declaring new QSqlQuery object by passing the database name
+        QSqlQuery accountIDDBQuery(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
+
+        // Preparing sql query for execution
+        accountIDDBQuery.prepare(QString("SELECT a.AccountID FROM "
+                                         "Account a INNER JOIN Login l ON l.LoginID = a.lLoginID "
+                                         "WHERE l.EmailAddress = :emailAddress;"));
+
+        accountIDDBQuery.bindValue(":emailAddress", enteredEmailAddress);
+
+        // Executing sql query and checking the status
+        if(!accountIDDBQuery.exec()){
+            qDebug() << "SQL query execution error";
+            qDebug() << accountIDDBQuery.lastError();
+            trms_dbConnection->closeDatebaseConnection();
+            return "Execution Unsuccessful: SQL query execution error";
+        }
+        else{
+            if(accountIDDBQuery.next()){
+                accountIDDB = accountIDDBQuery.value(0).toString();
+            }
+            successfulQueryExecutions++;qDebug() << "6";
+        }
+
+
+        /* Each user has only four types of tasks */
+        /* These types contains details that can be edited by the user */
+        /* Creating four new category types by inserting fours new records into Category relation (table) */
+
+        int categoryNameNumber = 1;
+        int categoryTypeID = 1;
+
+        // Loop iterating four times to insert four records
+        for(int i = 0; i < 4; i++){
+
+            // Declaring new QSqlQuery object by passing the database name
+            QSqlQuery categoryQuery(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
+
+            // Preparing sql query for execution
+            categoryQuery.prepare(QString("INSERT INTO Category(CategoryName, ctCategoryTypeID, ccColourID, aAccountID) VALUES "
+                                          "(:categoryName, :categoryTypeID, 1, :accountID);"));
+
+            categoryQuery.bindValue(":categoryName", "Category " + QString::number(categoryNameNumber));
+            categoryQuery.bindValue(":categoryTypeID", categoryTypeID);
+            categoryQuery.bindValue(":accountID", accountIDDB.toInt());
+
+            // Executing sql query and checking the status
+            if(!categoryQuery.exec()){
+                qDebug() << "SQL query execution error";
+                qDebug() << categoryQuery.lastError();
+                trms_dbConnection->closeDatebaseConnection();
+                return "Execution Unsuccessful: SQL query execution error";
+            }
+            else{
+                successfulQueryExecutions++;qDebug() << "7";
+            }
+
+            // Incrementing categoryNameNumber and categoryTypeID by one in each iteration
+            categoryNameNumber++;
+            categoryTypeID++;
+
+        }
+
+
+        // Checking the number successful executions
+        if(successfulQueryExecutions == 10){
             trms_dbConnection->closeDatebaseConnection();
             return "New Account Successfully Created";
         }
         else{
             trms_dbConnection->closeDatebaseConnection();
+            qDebug() << "New Account Creation Error";
             return "New Account Creation Error";
         }
 

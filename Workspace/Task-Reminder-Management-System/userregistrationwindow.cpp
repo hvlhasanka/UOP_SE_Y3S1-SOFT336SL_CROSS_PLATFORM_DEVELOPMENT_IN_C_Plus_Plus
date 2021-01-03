@@ -38,15 +38,48 @@ UserRegistrationWindow::UserRegistrationWindow(QWidget *parent) :
         // Executing sql query and checking the status
         if(!accountTypesQuery.exec()){
             qDebug() << "SQL query execution error";
+            trms_dbConnection->closeDatebaseConnection();
             qDebug() << accountTypesQuery.lastError();
         }
         else{
-            QSqlQueryModel *modal = new QSqlQueryModel();
-            modal->setQuery(accountTypesQuery);
-            ui->accountType_comboBox->setModel(modal);
+            QSqlQueryModel *acountTypeModal = new QSqlQueryModel();
+            acountTypeModal->setQuery(accountTypesQuery);
+            ui->accountType_comboBox->setModel(acountTypeModal);
+            trms_dbConnection->closeDatebaseConnection();
         }
     }
-    trms_dbConnection->closeDatebaseConnection();
+    else if(connectionStatus == false){
+        trms_dbConnection->closeDatebaseConnection();
+        qDebug() << "Database Connection Error";
+    }
+
+
+    /* Retrieving name prefixes values from the database and assigning it to name prefix combobox */
+    bool databaseConnected = trms_dbConnection->openDatebaseConnection();
+    if(databaseConnected == true){
+        // Declaring new QSqlQuery object by passing the database name
+        QSqlQuery namePrefixesQuery(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
+
+        // Preparing sql query for execution
+        namePrefixesQuery.prepare(QString("SELECT NamePrefix FROM NamePrefix;"));
+
+        // Executing sql query and checking the status
+        if(!namePrefixesQuery.exec()){
+            qDebug() << "SQL query execution error";
+            trms_dbConnection->closeDatebaseConnection();
+            qDebug() << namePrefixesQuery.lastError();
+        }
+        else{
+            QSqlQueryModel *namePrefixesModal = new QSqlQueryModel();
+            namePrefixesModal->setQuery(namePrefixesQuery);
+            ui->namePrefix_comboBox->setModel(namePrefixesModal);
+            trms_dbConnection->closeDatebaseConnection();
+        }
+    }
+    else if(databaseConnected == false){
+        trms_dbConnection->closeDatebaseConnection();
+        qDebug() << "Database Connection Error";
+    }
 
 }
 
@@ -297,6 +330,7 @@ void UserRegistrationWindow::on_termsAndConditions_checkBox_stateChanged(int arg
 void UserRegistrationWindow::on_register_pushButton_clicked()
 {
 
+    QString selectedNamePrefix = ui->namePrefix_comboBox->currentText();
     QString enteredFirstName = ui->firstName_lineEdit->text();
     QString enteredMiddleName = ui->middleName_lineEdit->text();
     QString enteredLastName = ui->lastName_lineEdit->text();
@@ -327,7 +361,8 @@ void UserRegistrationWindow::on_register_pushButton_clicked()
                     // Generating hash value of entered confirm password value
                     QString generatedPasswordHash = QString::fromStdString(auth->generatePasswordHash(enteredConfirmPassword.toStdString()));
 
-                    QString userRegistrationStatus = auth->registerNewUser(enteredFirstName,
+                    QString userRegistrationStatus = auth->registerNewUser(selectedNamePrefix,
+                                                                           enteredFirstName,
                                                                            "",
                                                                            enteredLastName,
                                                                            enteredEmailAddress,
@@ -388,7 +423,8 @@ void UserRegistrationWindow::on_register_pushButton_clicked()
 
 
 
-                    QString userRegistrationStatus = auth->registerNewUser(enteredFirstName,
+                    QString userRegistrationStatus = auth->registerNewUser(selectedNamePrefix,
+                                                                           enteredFirstName,
                                                                            enteredMiddleName,
                                                                            enteredLastName,
                                                                            enteredEmailAddress,
@@ -396,7 +432,7 @@ void UserRegistrationWindow::on_register_pushButton_clicked()
                                                                            selectedAccountType);
 
                     if(userRegistrationStatus == "New Account Successfully Created"){
-                        QMessageBox::information(this, "NEW ACCOUNT REGISTERED", "Please entered your login credentials to login.");
+                        QMessageBox::information(this, "NEW ACCOUNT REGISTERED", "Successfully Registered. Please entered your login credentials to login.");
                         this->hide();
                     }
                     else if(userRegistrationStatus == "New Account Creation Error"){

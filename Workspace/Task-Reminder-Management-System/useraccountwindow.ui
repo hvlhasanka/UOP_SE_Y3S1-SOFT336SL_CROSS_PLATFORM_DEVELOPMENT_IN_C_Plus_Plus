@@ -14,7 +14,7 @@
    <string>TRMS - User Account</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="trms-logo">
+   <iconset theme="trms-logo" resource="assets.qrc">
     <normaloff>:/images/TRMS-Logo-Without-Text.ico</normaloff>:/images/TRMS-Logo-Without-Text.ico</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -667,7 +667,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string>Do Not Distrub</string>
       </property>
      </widget>
     </widget>
@@ -758,6 +758,8 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="assets.qrc"/>
+ </resources>
  <connections/>
 </ui>

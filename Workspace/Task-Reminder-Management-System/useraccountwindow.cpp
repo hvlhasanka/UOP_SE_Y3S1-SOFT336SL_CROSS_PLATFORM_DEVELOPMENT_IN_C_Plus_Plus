@@ -62,6 +62,9 @@ UserAccountWindow::UserAccountWindow(int loginID, QWidget *parent) :
         trms_dbConnection->closeDatebaseConnection();
     }
 
+   // account->setAccountActivityID(1);
+   // account->setAccountActivity("Online");
+
 }
 
 UserAccountWindow::~UserAccountWindow()
@@ -71,7 +74,7 @@ UserAccountWindow::~UserAccountWindow()
 
 void UserAccountWindow::on_addNewTask_pushButton_clicked()
 {
-    qDebug() << account->getAccountType();
+    // Openning the appropriate add new task window according to the account type
     if(account->getAccountType() == "Standard User Account"){
         addNewTaskStandardUserAccountWindowForm = new AddNewTaskStandardUserAccountWindow(this);
         addNewTaskStandardUserAccountWindowForm->show();
@@ -80,9 +83,6 @@ void UserAccountWindow::on_addNewTask_pushButton_clicked()
         addNewTaskPremiumUserAccountWindowForm = new AddNewTaskPremiumUserAccountWindow(this);
         addNewTaskPremiumUserAccountWindowForm->show();
     }
-
-
-
 }
 
 void UserAccountWindow::on_report_pushButton_clicked()
