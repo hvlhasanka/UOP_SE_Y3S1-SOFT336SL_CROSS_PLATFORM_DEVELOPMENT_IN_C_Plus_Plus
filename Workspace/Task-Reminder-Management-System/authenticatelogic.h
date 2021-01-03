@@ -26,15 +26,15 @@ public:
     // Default constructor
     AuthenticateLogic();
     // Setter Methods
-    void setLoginID(int loginIDValue);
-    void setEmailAddress(QString emailAddressValue);
-    void setPasswordHash(QString passwordHashValue);
-    void setAccountStatusID(int accountStatusIDValue);
-    void setAccountStatus(QString accountStatusValue);
-    void setAccountTypeID(int accountTypeIDValue);
-    void setAccountType(QString accountTypeValue);
-    void setAccountActivityID(int accountActivityIDValue);
-    void setAccountActivity(QString accountActivityValue);
+    void setLoginID(int loginID);
+    void setEmailAddress(QString emailAddress);
+    void setPasswordHash(QString passwordHash);
+    void setAccountStatusID(int accountStatusID);
+    void setAccountStatus(QString accountStatus);
+    void setAccountTypeID(int accountTypeID);
+    void setAccountType(QString accountType);
+    void setAccountActivityID(int accountActivityID);
+    void setAccountActivity(QString accountActivity);
     //Getter Methods
     int getLoginID();
     QString getEmailAddress();

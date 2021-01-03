@@ -10,44 +10,48 @@ AccountLogic::AccountLogic()
 
 // Setters
 
-void AccountLogic::setLoginID(int loginIDValue){
-    loginID = loginIDValue;
+void AccountLogic::setLoginID(int loginID){
+    this->loginID = loginID;
 }
 
-void AccountLogic::setAccountID(int accountIDValue){
-    accountID = accountIDValue;
+void AccountLogic::setAccountID(int accountID){
+    this->accountID = accountID;
 }
 
-void AccountLogic::setFirstName(QString firstNameValue){
-    firstName = firstNameValue;
+void AccountLogic::setNamePrefix(QString namePrefix){
+    this->namePrefix = namePrefix;
 }
 
-void AccountLogic::setMiddleName(QString middleNameValue){
-    middleName = middleNameValue;
+void AccountLogic::setFirstName(QString firstName){
+    this->firstName = firstName;
 }
 
-void AccountLogic::setLastName(QString lastNameValue){
-    lastName = lastNameValue;
+void AccountLogic::setMiddleName(QString middleName){
+    this->middleName = middleName;
 }
 
-void AccountLogic::setCreatedDateTime(QString createdDateTimeValue){
-    createdDateTime = createdDateTimeValue;
+void AccountLogic::setLastName(QString lastName){
+    this->lastName = lastName;
 }
 
-void AccountLogic::setAccountTypeID(int accountTypeIDValue){
-    accountTypeID = accountTypeIDValue;
+void AccountLogic::setCreatedDateTime(QString createdDateTime){
+    this->createdDateTime = createdDateTime;
 }
 
-void AccountLogic::setAccountType(QString accountTypeValue){
-    accountType = accountTypeValue;
+void AccountLogic::setAccountTypeID(int accountTypeID){
+    this->accountTypeID = accountTypeID;
 }
 
-void AccountLogic::setDoNotDistrubBooleanValueID(int doNotDistrubBooleanValueIDValue){
-    doNotDistrubBooleanValueID = doNotDistrubBooleanValueIDValue;
+void AccountLogic::setAccountType(QString accountType){
+    this->accountType = accountType;
 }
 
-void AccountLogic::setDoNotDistrubBooleanValue(bool doNotDistrubBooleanValueValue){
-    doNotDistrubBooleanValue = doNotDistrubBooleanValueValue;
+void AccountLogic::setDoNotDistrubBooleanValueID(int doNotDistrubBooleanValueID){
+    this->doNotDistrubBooleanValueID = doNotDistrubBooleanValueID;
+}
+
+void AccountLogic::setDoNotDistrubBooleanValue(bool doNotDistrubBooleanValue){
+    this->doNotDistrubBooleanValue = doNotDistrubBooleanValue;
 }
 
 // Getters
@@ -58,6 +62,10 @@ int AccountLogic::getLoginID(){
 
 int AccountLogic::getAccountID(){
     return accountID;
+}
+
+QString AccountLogic::getNamePrefix(){
+    return namePrefix;
 }
 
 QString AccountLogic::getFirstName(){

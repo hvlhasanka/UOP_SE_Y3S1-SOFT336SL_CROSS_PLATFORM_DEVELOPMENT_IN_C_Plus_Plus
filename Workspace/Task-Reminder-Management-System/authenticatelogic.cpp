@@ -17,40 +17,40 @@ AuthenticateLogic::AuthenticateLogic()
 
 /* Setter Methods */
 
-void AuthenticateLogic::setLoginID(int loginIDValue){
-    loginID = loginIDValue;
+void AuthenticateLogic::setLoginID(int loginID){
+    this->loginID = loginID;
 }
 
-void AuthenticateLogic::setEmailAddress(QString emailAddressValue){
-    emailAddress = emailAddressValue;
+void AuthenticateLogic::setEmailAddress(QString emailAddress){
+    this->emailAddress = emailAddress;
 }
 
-void AuthenticateLogic::setPasswordHash(QString passwordHashValue){
-    passwordHash = passwordHashValue;
+void AuthenticateLogic::setPasswordHash(QString passwordHash){
+    this->passwordHash = passwordHash;
 }
 
-void AuthenticateLogic::setAccountStatusID(int accountStatusIDValue){
-    accountStatusID = accountStatusIDValue;
+void AuthenticateLogic::setAccountStatusID(int accountStatusID){
+    this->accountStatusID = accountStatusID;
 }
 
-void AuthenticateLogic::setAccountStatus(QString accountStatusValue){
-    accountStatus = accountStatusValue;
+void AuthenticateLogic::setAccountStatus(QString accountStatus){
+    this->accountStatus = accountStatus;
 }
 
-void AuthenticateLogic::setAccountTypeID(int accountTypeIDValue){
-    accountTypeID = accountTypeIDValue;
+void AuthenticateLogic::setAccountTypeID(int accountTypeID){
+    this->accountTypeID = accountTypeID;
 }
 
-void AuthenticateLogic::setAccountType(QString accountTypeValue){
-    accountType = accountTypeValue;
+void AuthenticateLogic::setAccountType(QString accountType){
+    this->accountType = accountType;
 }
 
-void AuthenticateLogic::setAccountActivityID(int accountActivityIDValue){
-    accountActivityID = accountActivityIDValue;
+void AuthenticateLogic::setAccountActivityID(int accountActivityID){
+    this->accountActivityID = accountActivityID;
 }
 
-void AuthenticateLogic::setAccountActivity(QString accountActivityValue){
-    accountActivity = accountActivityValue;
+void AuthenticateLogic::setAccountActivity(QString accountActivity){
+    this->accountActivity = accountActivity;
 }
 
 

@@ -193,10 +193,8 @@ void LoginWindow::on_login_pushButton_clicked()
         /* Recording session start */
         auth->addSessionStartToDB();
 
-        qDebug() << auth->getAccountStatus();
-
         this->hide();
-        userAccountWindowForm = new UserAccountWindow(this);
+        userAccountWindowForm = new UserAccountWindow(auth->getLoginID(), this);
         userAccountWindowForm->show();
 
     }

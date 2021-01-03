@@ -12,21 +12,23 @@ public:
     // Public Default Constructor
     AccountLogic();
     // Setters
-    void setLoginID(int loginIDValue);
-    void setAccountID(int accountIDValue);
-    void setFirstName(QString firstNameValue);
-    void setMiddleName(QString middleNameValue);
-    void setLastName(QString lastNameValue);
-    void setCreatedDateTime(QString createdDateTimeValue);
-    void setAccountTypeID(int accountTypeIDValue);
-    void setAccountType(QString accountTypeValue);
-    void setDoNotDistrubBooleanValueID(int doNotDistrubBooleanValueIDValue);
-    void setDoNotDistrubBooleanValue(bool doNotDistrubBooleanValueValue);
-    void setAccountActivityID(int accountActivityIDValue);
-    void setAccountActivity(QString accountActivityValue);
+    void setLoginID(int loginID);
+    void setAccountID(int accountID);
+    void setNamePrefix(QString namePrefix);
+    void setFirstName(QString firstName);
+    void setMiddleName(QString middleName);
+    void setLastName(QString lastName);
+    void setCreatedDateTime(QString createdDateTime);
+    void setAccountTypeID(int accountTypeID);
+    void setAccountType(QString accountType);
+    void setDoNotDistrubBooleanValueID(int doNotDistrubBooleanValueID);
+    void setDoNotDistrubBooleanValue(bool doNotDistrubBooleanValue);
+    void setAccountActivityID(int accountActivityID);
+    void setAccountActivity(QString accountActivity);
     // Getters
     int getLoginID();
     int getAccountID();
+    QString getNamePrefix();
     QString getFirstName();
     QString getMiddleName();
     QString getLastName();
@@ -47,6 +49,7 @@ private:
     // Private variables
     int loginID;
     int accountID;
+    QString namePrefix;
     QString firstName;
     QString middleName;
     QString lastName;
