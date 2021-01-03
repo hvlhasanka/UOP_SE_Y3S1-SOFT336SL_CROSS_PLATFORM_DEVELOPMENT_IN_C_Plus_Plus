@@ -5,10 +5,10 @@
 #include "databaseconnection.h"
 #include "authenticatelogic.h"
 
-class standardUserAccountLogic
+class StandardUserAccountLogic: public AccountLogic
 {
 public:
-    standardUserAccountLogic();
+    StandardUserAccountLogic();
     QString addNewTask(QString enteredTaskTitle,
                        QString enteredTaskDescription,
                        QString selectedTaskCategoryName);

@@ -10,11 +10,14 @@ CONFIG += c++11
 
 SOURCES += \
     accountlogic.cpp \
+    addnewtaskpremiumuseraccountwindow.cpp \
+    addnewtaskstandarduseraccountwindow.cpp \
     adminaccountwindow.cpp \
     authenticatelogic.cpp \
     databaseconnection.cpp \
     main.cpp \
     loginwindow.cpp \
+    premiumuseraccountlogic.cpp \
     reportsubmissionwindow.cpp \
     standarduseraccountlogic.cpp \
     useraccountwindow.cpp \
@@ -22,10 +25,13 @@ SOURCES += \
 
 HEADERS += \
     accountlogic.h \
+    addnewtaskpremiumuseraccountwindow.h \
+    addnewtaskstandarduseraccountwindow.h \
     adminaccountwindow.h \
     authenticatelogic.h \
     databaseconnection.h \
     loginwindow.h \
+    premiumuseraccountlogic.h \
     reportsubmissionwindow.h \
     standarduseraccountlogic.h \
     useraccountwindow.h \
@@ -33,6 +39,8 @@ HEADERS += \
 
 FORMS += \
     adminaccountwindow.ui \
+    addnewtaskpremiumuseraccountwindow.ui \
+    addnewtaskstandarduseraccountwindow.ui \
     loginwindow.ui \
     reportsubmissionwindow.ui \
     useraccountwindow.ui \

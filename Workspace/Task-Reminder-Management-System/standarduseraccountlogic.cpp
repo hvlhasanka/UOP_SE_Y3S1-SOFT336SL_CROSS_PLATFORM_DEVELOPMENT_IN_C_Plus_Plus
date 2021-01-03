@@ -1,6 +1,6 @@
 #include "standarduseraccountlogic.h"
 
-standardUserAccountLogic::standardUserAccountLogic()
+StandardUserAccountLogic::StandardUserAccountLogic()
 {
     // Creating an object of DatabaseConnection class
     trms_dbConnection = new DatabaseConnection();
