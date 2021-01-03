@@ -632,9 +632,9 @@
     <widget class="QFrame" name="frame_2">
      <property name="geometry">
       <rect>
-       <x>830</x>
-       <y>0</y>
-       <width>201</width>
+       <x>800</x>
+       <y>10</y>
+       <width>171</width>
        <height>51</height>
       </rect>
      </property>
@@ -647,23 +647,31 @@
      <widget class="QCheckBox" name="checkBox">
       <property name="geometry">
        <rect>
-        <x>90</x>
+        <x>20</x>
         <y>20</y>
-        <width>91</width>
+        <width>121</width>
         <height>17</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>Microsoft YaHei</family>
+        <pointsize>10</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
       <property name="text">
-       <string>Do not Distrub</string>
+       <string>Do Not Distrub</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label">
+     <widget class="QLabel" name="doNotDisturbImage_label">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>10</y>
-        <width>47</width>
-        <height>31</height>
+        <x>140</x>
+        <y>20</y>
+        <width>21</width>
+        <height>21</height>
        </rect>
       </property>
       <property name="text">
@@ -674,9 +682,9 @@
     <widget class="QFrame" name="frame_3">
      <property name="geometry">
       <rect>
-       <x>1090</x>
+       <x>1120</x>
        <y>0</y>
-       <width>181</width>
+       <width>151</width>
        <height>51</height>
       </rect>
      </property>
@@ -686,13 +694,13 @@
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <widget class="QLabel" name="label_15">
+     <widget class="QLabel" name="logoutImage_label">
       <property name="geometry">
        <rect>
         <x>110</x>
-        <y>0</y>
-        <width>61</width>
-        <height>51</height>
+        <y>10</y>
+        <width>31</width>
+        <height>31</height>
        </rect>
       </property>
       <property name="text">

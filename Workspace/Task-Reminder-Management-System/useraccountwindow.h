@@ -26,6 +26,8 @@ private slots:
     void on_addNewTask_pushButton_clicked();
     void on_report_pushButton_clicked();
 
+    void on_addNewTask_pushButton_2_clicked();
+
 private:
     Ui::UserAccountWindow *ui;
     // Connecting the authenticatelogic.h

@@ -65,6 +65,26 @@ UserAccountWindow::UserAccountWindow(int loginID, QWidget *parent) :
    // account->setAccountActivityID(1);
    // account->setAccountActivity("Online");
 
+    /* Do Not Disturb Image Implementation Source Code */
+    // Getting the Do Not Disturb image
+    QPixmap doNotDisturbImagePix(":/images/Do-Not-Distrub.png");
+    // Getting the width of the doNotDisturbImage_label
+    int doNotDisturbLabelWidth = ui->doNotDisturbImage_label->width();
+    // Getting the height of the doNotDisturbImage_label
+    int doNotDisturbLabelHeight = ui->doNotDisturbImage_label->height();
+    // Setting the cover image of the doNotDisturbImage_label
+    ui->doNotDisturbImage_label->setPixmap(doNotDisturbImagePix.scaled(doNotDisturbLabelWidth, doNotDisturbLabelHeight, Qt::KeepAspectRatio));
+
+    /* Logout Image Implementation Source Code */
+    // Getting the Logout image
+    QPixmap logoutImagePix(":/images/Logout.png");
+    // Getting the width of the logoutImage_label
+    int logoutLabelWidth = ui->logoutImage_label->width();
+    // Getting the height of the logoutImage_label
+    int logoutLabelHeight = ui->logoutImage_label->height();
+    // Setting the cover image of the doNotDisturbImage_label
+    ui->logoutImage_label->setPixmap(logoutImagePix.scaled(logoutLabelWidth, logoutLabelHeight, Qt::KeepAspectRatio));
+
 }
 
 UserAccountWindow::~UserAccountWindow()
@@ -90,5 +110,14 @@ void UserAccountWindow::on_report_pushButton_clicked()
 
     reportSubmissionWindowForm = new ReportSubmissionWindow(this);
     reportSubmissionWindowForm->show();
+
+}
+
+void UserAccountWindow::on_addNewTask_pushButton_2_clicked()
+{
+
+    // End Session
+    // Close Window
+    // Open Login Window
 
 }
