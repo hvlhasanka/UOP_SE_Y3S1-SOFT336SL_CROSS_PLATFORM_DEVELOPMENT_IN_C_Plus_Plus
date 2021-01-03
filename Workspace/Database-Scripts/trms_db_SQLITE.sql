@@ -90,9 +90,9 @@ CREATE TABLE Account(
 );
 
 -- Inserting records INTO Table 6 - Account
-INSERT INTO Account(FirstName, MiddleName, LastName, CreatedDateTime, atAccountTypeID, dvDoNotDistrubBooleanValueID, lLoginID)
+INSERT INTO Account(FirstName, MiddleName, LastName, CreatedDateTime, npNamePrefixID, atAccountTypeID, dvDoNotDistrubBooleanValueID, lLoginID)
 VALUES
-("Eddie", "Mellicent", "Chatt", "2020-12-26 12:55:28", 1, 2, 1);
+("Eddie", "Mellicent", "Chatt", "2020-12-26 12:55:28", 1, 1, 2, 1);
 
 
 -- Creating Table 7 - AccountActivity
@@ -173,16 +173,15 @@ CREATE TABLE Category(
 	CategoryID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   CategoryName VARCHAR(50) NOT NULL,
   ctCategoryTypeID INTEGER NOT NULL,
-  ccColourID INTEGER NOT NULL
-  tPinnedTaskID INTEGER,
+  ccColourID INTEGER NOT NULL,
   aAccountID INTEGER NOT NULL,
   FOREIGN KEY (ctCategoryTypeID) REFERENCES CategoryType(CategoryTypeID),
-  FOREIGN KEY (ccColourID) REFERENCES Color(CategoryColour),
-  FOREIGN KEY (aAccountID) REFERENCES Account(AccountID),
+  FOREIGN KEY (ccColourID) REFERENCES CategoryColour(ColourID),
+  FOREIGN KEY (aAccountID) REFERENCES Account(AccountID)
 );
 
 -- Inserting records INTO Table 12 - Category
-INSERT INTO Category(CategoryName, cnCategoryNumberID, ccColourID, aAccountID)
+INSERT INTO Category(CategoryName, ctCategoryTypeID, ccColourID, aAccountID)
 VALUES
 ("Work", 1, 1, 1),
 ("School", 2, 1, 1),
