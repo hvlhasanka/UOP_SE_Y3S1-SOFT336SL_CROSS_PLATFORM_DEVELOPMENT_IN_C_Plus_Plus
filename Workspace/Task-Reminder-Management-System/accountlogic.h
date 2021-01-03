@@ -1,15 +1,10 @@
 #ifndef ACCOUNTLOGIC_H
 #define ACCOUNTLOGIC_H
 
-#include <iostream>
-
 #include <QString>
 
 #include <databaseconnection.h>
 #include <authenticatelogic.h>
-
-using namespace std;
-
 
 class AccountLogic
 {
@@ -20,8 +15,6 @@ public:
     QString submitReport(QString enteredReportSubject,
                          QString enteredReportFeedback,
                          QString enteredAuthorReachableEmailAddress);
-    QString addNewTask();
-
 
 private:
     // Connecting the databaseconnecion.h

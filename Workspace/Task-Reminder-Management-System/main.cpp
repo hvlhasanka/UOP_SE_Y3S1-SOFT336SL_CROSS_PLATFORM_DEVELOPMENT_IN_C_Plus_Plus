@@ -5,8 +5,6 @@
 ***********************************************/
 
 #include "loginwindow.h"
-#include "useraccountwindow.h"
-#include "adminaccountwindow.h"
 
 #include <QApplication>
 #include <QSplashScreen>
@@ -21,11 +19,9 @@ int main(int argc, char *argv[])
     QSplashScreen *splash = new QSplashScreen;
     splash->setPixmap(QPixmap(":/images/Splash-Screen.jpg"));
     splash->show();
+    // Setting timer of splash screen
 
-    //UserAccountWindow ff;
-    //ff.show();
-
-    // Declarationof an object of LoginWindow class
+    // Declaration of an object of LoginWindow class
     LoginWindow LoginScreen;
 
     // Setting timer for splash screen to close after 2 seconds

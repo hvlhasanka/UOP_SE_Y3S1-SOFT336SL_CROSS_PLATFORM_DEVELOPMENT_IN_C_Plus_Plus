@@ -1,15 +1,11 @@
 #ifndef USERREGISTRATIONWINDOW_H
 #define USERREGISTRATIONWINDOW_H
 
-#include <iostream>
-
 #include <QMainWindow>
 #include <QMessageBox>
 
 #include <databaseconnection.h>
 #include <authenticatelogic.h>
-
-using namespace std;
 
 namespace Ui {
 class UserRegistrationWindow;

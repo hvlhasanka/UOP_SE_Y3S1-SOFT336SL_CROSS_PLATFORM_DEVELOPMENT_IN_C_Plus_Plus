@@ -10,51 +10,36 @@ CONFIG += c++11
 
 SOURCES += \
     accountlogic.cpp \
-    addnewtaskpremiumuseraccountwindow.cpp \
-    addnewtaskstandarduseraccountwindow.cpp \
     adminaccountwindow.cpp \
     authenticatelogic.cpp \
     databaseconnection.cpp \
-    editcategorydetailswindow.cpp \
     main.cpp \
     loginwindow.cpp \
-    premiumuseraccountlogic.cpp \
     reportsubmissionwindow.cpp \
-    standarduseraccountlogic.cpp \
     useraccountwindow.cpp \
     userregistrationwindow.cpp
 
 HEADERS += \
     accountlogic.h \
-    addnewtaskpremiumuseraccountwindow.h \
-    addnewtaskstandarduseraccountwindow.h \
     adminaccountwindow.h \
     authenticatelogic.h \
     databaseconnection.h \
-    editcategorydetailswindow.h \
     loginwindow.h \
-    premiumuseraccountlogic.h \
     reportsubmissionwindow.h \
-    standarduseraccountlogic.h \
     useraccountwindow.h \
     userregistrationwindow.h
 
 FORMS += \
-    addnewtaskpremiumuseraccountwindow.ui \
-    addnewtaskstandarduseraccountwindow.ui \
     adminaccountwindow.ui \
-    editcategorydetailswindow.ui \
     loginwindow.ui \
     reportsubmissionwindow.ui \
     useraccountwindow.ui \
     userregistrationwindow.ui
-
-RESOURCES += \
-    assets.qrc
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-
+RESOURCES += \
+    assets.qrc

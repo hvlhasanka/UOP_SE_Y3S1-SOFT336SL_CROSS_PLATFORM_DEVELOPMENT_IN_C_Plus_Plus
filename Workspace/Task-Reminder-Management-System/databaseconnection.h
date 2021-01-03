@@ -1,8 +1,6 @@
 #ifndef DATABASECONNECTION_H
 #define DATABASECONNECTION_H
 
-#include <iostream>
-
 #include <QtSql>
 
 using namespace std;

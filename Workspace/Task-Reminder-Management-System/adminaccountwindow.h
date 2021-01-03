@@ -1,11 +1,7 @@
 #ifndef ADMINACCOUNTWINDOW_H
 #define ADMINACCOUNTWINDOW_H
 
-#include <iostream>
-
 #include <QMainWindow>
-
-using namespace std;
 
 namespace Ui {
 class AdminAccountWindow;

@@ -7,8 +7,6 @@
 #ifndef AUTHENTICATELOGIC_H
 #define AUTHENTICATELOGIC_H
 
-#include <iostream>
-
 #include <functional>
 #include <string>
 #include <regex>
