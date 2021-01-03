@@ -42,54 +42,73 @@ VALUES
 ("AdminAccount");
 
 
--- Creating Table 4 - BooleanValue
+-- Creating Table 4 - NamePrefix
+CREATE TABLE NamePrefix(
+	NamePrefixID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  NamePrefix VARCHAR(10) NOT NULL
+);
+
+-- Inserting records INTO Table 4 - NamePrefix
+INSERT INTO NamePrefix(NamePrefix)
+VALUES
+("Sir."),
+("Mr."),
+("Miss."),
+("Ms."),
+("Mrs."),
+("Dr.");
+
+
+-- Creating Table 5 - BooleanValue
 CREATE TABLE BooleanValue(
 	BooleanValueID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   BooleanValue BOOLEAN NOT NULL
 );
 
--- Inserting records INTO Table 4 - BooleanValue
+-- Inserting records INTO Table 5 - BooleanValue
 INSERT INTO BooleanValue(BooleanValue)
 VALUES
 (true),
 (false);
 
 
--- Creating Table 5 - Account
+-- Creating Table 6 - Account
 CREATE TABLE Account(
 	AccountID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   FirstName VARCHAR(40) NOT NULL,
   MiddleName VARCHAR(40),
   LastName VARCHAR(50) NOT NULL,
   CreatedDateTime DATETIME NOT NULL,
+  npNamePrefixID INTEGER NOT NULL,
   atAccountTypeID INTEGER NOT NULL,
   dvDoNotDistrubBooleanValueID INTEGER NOT NULL,
   lLoginID INTEGER NOT NULL,
+  FOREIGN KEY (npNamePrefixID) REFERENCES NamePrefix(NamePrefixID),
   FOREIGN KEY (atAccountTypeID) REFERENCES AccountType(AccountTypeID),
   FOREIGN KEY (dvDoNotDistrubBooleanValueID) REFERENCES BooleanValue(BooleanValueID),
   FOREIGN KEY (lLoginID) REFERENCES Login(LoginID)
 );
 
--- Inserting records INTO Table 5 - Account
+-- Inserting records INTO Table 6 - Account
 INSERT INTO Account(FirstName, MiddleName, LastName, CreatedDateTime, atAccountTypeID, dvDoNotDistrubBooleanValueID, lLoginID)
 VALUES
 ("Eddie", "Mellicent", "Chatt", "2020-12-26 12:55:28", 1, 2, 1);
 
 
--- Creating Table 6 - AccountActivity
+-- Creating Table 7 - AccountActivity
 CREATE TABLE AccountActivity(
   AccountActivityID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   AccountActivity VARCHAR(7) NOT NULL
 );
 
--- Inserting records INTO Table 6 - AccountActivity
+-- Inserting records INTO Table 7 - AccountActivity
 INSERT INTO AccountActivity(AccountActivity)
 VALUES
 ("Online"),
 ("Offline");
 
 
--- Creating Table 7 - LoginActivity
+-- Creating Table 8 - LoginActivity
 CREATE TABLE LoginActivity(
 	LoginActivityID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   LoginDateTime DATETIME NOT NULL,
@@ -100,13 +119,13 @@ CREATE TABLE LoginActivity(
   FOREIGN KEY (lLoginID) REFERENCES Login(LoginID)
 );
 
--- Inserting records INTO Table 7 - LoginActivity
+-- Inserting records INTO Table 8 - LoginActivity
 INSERT INTO LoginActivity(LoginDateTime, LogoutDateTime, OperatingSystemSpec, aaAccountActivityID, lLoginID)
 VALUES
 ("2020-12-28 12:55:28", "2020-12-28 13:55:28", "-", 2, 1);
 
 
--- Creating Table 8 - ForgotPassword
+-- Creating Table 9 - ForgotPassword
 CREATE TABLE ForgotPassword(
 	RecoveryID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   PinCode VARCHAR(6) NOT NULL,
@@ -116,48 +135,72 @@ CREATE TABLE ForgotPassword(
   FOREIGN KEY (lLoginID) REFERENCES Login(LoginID)
 );
 
--- Inserting records INTO Table 8 - ForgotPassword
+-- Inserting records INTO Table 9 - ForgotPassword
 INSERT INTO ForgotPassword(PinCode, NoOfTimesUsed, CreatedDateTime, lLoginID)
 VALUES
 ("526871", 1, "2020-12-28 19:55:28", 1);
 
 
--- Creating Table 9 - CategoryColour
+-- Creating Table 10 - CategoryColour
 CREATE TABLE CategoryColour(
 	ColourID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   HexColourCode VARCHAR(7) NOT NULL
 );
 
--- Inserting records INTO Table 9 - CategoryColour
+-- Inserting records INTO Table 10 - CategoryColour
 INSERT INTO CategoryColour(HexColourCode)
 VALUES
 ("#0C99E4");
 
 
--- Creating Table 10 - Category
+-- Creating Table 11 - CategoryType
+CREATE TABLE CategoryType(
+  CategoryTypeID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  CategoryType VARCHAR(10) NOT NULL
+);
+
+-- Inserting records INTO Table 11 - CategoryType
+INSERT INTO CategoryType(CategoryType)
+VALUES
+("Category 1"),
+("Category 2"),
+("Category 3"),
+("Category 4");
+
+
+-- Creating Table 12 - Category
 CREATE TABLE Category(
 	CategoryID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   CategoryName VARCHAR(50) NOT NULL,
+  ctCategoryTypeID INTEGER NOT NULL,
   ccColourID INTEGER NOT NULL
+  tPinnedTaskID INTEGER,
+  aAccountID INTEGER NOT NULL,
+  FOREIGN KEY (ctCategoryTypeID) REFERENCES CategoryType(CategoryTypeID),
+  FOREIGN KEY (ccColourID) REFERENCES Color(CategoryColour),
+  FOREIGN KEY (aAccountID) REFERENCES Account(AccountID),
 );
 
--- Inserting records INTO Table 10 - Category
-INSERT INTO Category(CategoryName, ccColourID)
+-- Inserting records INTO Table 12 - Category
+INSERT INTO Category(CategoryName, cnCategoryNumberID, ccColourID, aAccountID)
 VALUES
-("Work", 1);
+("Work", 1, 1, 1),
+("School", 2, 1, 1),
+("Home", 3, 1, 1),
+("Food", 4, 1, 1);
 
 
--- Creating Table 11 - Task
+-- Creating Table 13 - Task
 CREATE TABLE Task(
 	TaskID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   Title VARCHAR(50) NOT NULL,
   TaskDescription VARCHAR(100) NOT NULL,
-  StartDateTime DATETIME NOT NULL,
-  EndDateTime DATETIME NOT NULL,
+  StartDateTime DATETIME,
+  EndDateTime DATETIME,
   CreatedDateTime DATETIME NOT NULL,
   TerminationDateTime DATETIME,
   LastEditDateTime DATETIME NOT NULL,
-  bvImportantBooleanValueID INTEGER NOT NULL,
+  bvImportantBooleanValueID INTEGER,
   aAccountID INTEGER NOT NULL,
   cCategoryID INTEGER NOT NULL,
   FOREIGN KEY (bvImportantBooleanValueID) REFERENCES BooleanValue(BooleanValueID),
@@ -165,31 +208,33 @@ CREATE TABLE Task(
   FOREIGN KEY (cCategoryID) REFERENCES Category(CategoryID)
 );
 
--- Inserting records INTO Table 11 - Task
+-- Inserting records INTO Table 13 - Task
 INSERT INTO Task(Title, TaskDescription, StartDateTime, EndDateTime, CreatedDateTime, LastEditDateTime, bvImportantBooleanValueID, aAccountID, cCategoryID)
 VALUES
 ("Prepare Document", "Research on Big Analysis and prepare an analysis report", "2020-12-26 09:55:28", "2020-12-26 16:55:28", "2020-12-25 08:55:28", "2020-12-25 08:55:28",  1, 1, 1),
 ("Analyze Data", "Data analysis of collected data", "2020-12-28 10:55:28", "2020-12-28 12:55:28", "2020-12-27 08:55:28", "2020-12-27 08:55:28", 2, 1, 1);
 
 
--- MODIFICATION TO EXISTING TABLE: Altering Table 10 - Category to add new column named 'tPinnedTaskID' and assigning it as a foreign key
+
+-- MODIFICATION TO EXISTING TABLE: Altering Table 12 - Category to add new column named 'tPinnedTaskID' and assigning it as a foreign key
 ALTER TABLE Category
 ADD COLUMN tPinnedTaskID INTEGEREGER
 REFERENCES Task(TaskID);
 
--- MODIFICATION TO EXISTING TABLE: Updating the records after altering Table 10 - Category with a new foreign key
+-- MODIFICATION TO EXISTING TABLE: Updating the records after altering Table 12 - Category with a new foreign key
 UPDATE Category
 SET tPinnedTaskID = 1
 WHERE CategoryID = 1;
 
 
--- Creating Table 12 - SnoozeDuration
+
+-- Creating Table 14 - SnoozeDuration
 CREATE TABLE SnoozeDuration(
 	SnoozeDurationID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   SnoozeDuration VARCHAR(2) NOT NULL
 );
 
--- Inserting records INTO Table 12 - SnoozeDuration
+-- Inserting records INTO Table 14 - SnoozeDuration
 INSERT INTO SnoozeDuration(SnoozeDuration)
 VALUES
 ("1"),
@@ -200,13 +245,13 @@ VALUES
 ("30");
 
 
--- Create Table 13 - NoOfSnoozes
+-- Create Table 15 - NoOfSnoozes
 CREATE TABLE NoOfSnoozes(
 	NoOfSnoozesID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   NoOfSnoozes VARCHAR(2) NOT NULL
 );
 
--- Inserting records INTO Table 13 - NoOfSnoozes
+-- Inserting records INTO Table 15 - NoOfSnoozes
 INSERT INTO NoOfSnoozes(NoOfSnoozes)
 VALUES
 ("1"),
@@ -215,13 +260,13 @@ VALUES
 ("10");
 
 
--- Creating Table 14 - RepeatOccasion
+-- Creating Table 16 - RepeatOccasion
 CREATE TABLE RepeatOccasion(
 	RepeatOccasionID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   RepeatOccasion VARCHAR(15) NOT NULL
 );
 
--- Inserting records INTO Table 14 - RepeatOccasion
+-- Inserting records INTO Table 16 - RepeatOccasion
 INSERT INTO RepeatOccasion(RepeatOccasion)
 VALUES
 ("Does not repeat"),
@@ -231,7 +276,7 @@ VALUES
 ("Yearly");
 
 
--- Creating Table 15 - Reminder
+-- Creating Table 17 - Reminder
 CREATE TABLE Reminder(
 	ReminderID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   ReminderDateTime DATETIME NOT NULL,
@@ -245,7 +290,7 @@ CREATE TABLE Reminder(
   FOREIGN KEY (tTaskID) REFERENCES Task(TaskID)
 );
 
--- Inserting records INTO Table 15 - Reminder
+-- Inserting records INTO Table 17 - Reminder
 INSERT INTO Reminder(ReminderDateTime, tTaskID)
 VALUES
 ("2020-12-26 08:55:28", 1);
@@ -254,19 +299,19 @@ VALUES
 ("2020-12-28 09:55:28", 2, 2, 1, 2);
 
 
--- Creating Table 16 - ReviewStatus
+-- Creating Table 18 - ReviewStatus
 CREATE TABLE ReviewStatus(
   ReviewStatusID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   ReviewStatus VARCHAR(15) NOT NULL
 );
 
--- Inserting records INTO Table 16 - ReviewStatusID
+-- Inserting records INTO Table 18 - ReviewStatusID
 INSERT INTO ReviewStatus(ReviewStatus)
 VALUES
 ("Review Pending"),
 ("Review Complete");
 
--- Creating Table 17 - Report
+-- Creating Table 19 - Report
 CREATE TABLE Report(
 	ReportID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   ReportSubject VARCHAR(50) NOT NULL,
@@ -279,7 +324,7 @@ CREATE TABLE Report(
   FOREIGN KEY (rsReviewStatusID) REFERENCES ReviewStatus(ReviewStatusID)
 );
 
--- Inserting records INTO Table 17 - Report
+-- Inserting records INTO Table 19 - Report
 INSERT INTO Report(ReportSubject, Feedback, SubmittedDateTime, rsReviewStatusID, aAccountID)
 VALUES
 ("Application is Working Well", "This task reminder application is working incredibly well.", "2020-12-27 05:55:28", 1, 1),

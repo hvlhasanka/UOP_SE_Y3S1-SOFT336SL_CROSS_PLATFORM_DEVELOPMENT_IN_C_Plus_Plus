@@ -7,6 +7,8 @@
 #ifndef LOGINWINDOW_H
 #define LOGINWINDOW_H
 
+#include <iostream>
+
 #include <QMainWindow>
 #include <QLineEdit>
 #include <QMessageBox>
@@ -16,6 +18,8 @@
 #include <adminaccountwindow.h>
 #include <userregistrationwindow.h>
 #include <reportsubmissionwindow.h>
+
+using namespace std;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class LoginWindow; }

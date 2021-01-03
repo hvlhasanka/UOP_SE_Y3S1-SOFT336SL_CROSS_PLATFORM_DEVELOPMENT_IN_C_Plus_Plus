@@ -41,9 +41,9 @@ UserRegistrationWindow::UserRegistrationWindow(QWidget *parent) :
             qDebug() << accountTypesQuery.lastError();
         }
         else{
-            QSqlQueryModel *modal = new QSqlQueryModel();
-            modal->setQuery(accountTypesQuery);
-            ui->accountType_comboBox->setModel(modal);
+            QSqlQueryModel *accountTypesModal = new QSqlQueryModel();
+            accountTypesModal->setQuery(accountTypesQuery);
+            ui->accountType_comboBox->setModel(accountTypesModal);
         }
     }
     trms_dbConnection->closeDatebaseConnection();

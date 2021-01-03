@@ -183,7 +183,7 @@ void LoginWindow::on_login_pushButton_clicked()
 
     QString loginCredentialsVerification = auth->loginCredentialVerification(enteredEmailAddress, enteredPasswordHash);
 
-    if(loginCredentialsVerification == "Verification Successful: Account Type: AdminAccount"){
+    if(loginCredentialsVerification == "Verification Successful: Account Type: UserAccount"){
 
         this->hide();
         userAccountWindowForm = new UserAccountWindow(this);
@@ -197,7 +197,7 @@ void LoginWindow::on_login_pushButton_clicked()
         auth->addSessionStartToDB();
 
     }
-    else if(loginCredentialsVerification == "Verification Successful: Account Type: UserAccount"){
+    else if(loginCredentialsVerification == "Verification Successful: Account Type: AdminAccount"){
 
         this->hide();
         adminAccountWindowForm = new AdminAccountWindow(this);

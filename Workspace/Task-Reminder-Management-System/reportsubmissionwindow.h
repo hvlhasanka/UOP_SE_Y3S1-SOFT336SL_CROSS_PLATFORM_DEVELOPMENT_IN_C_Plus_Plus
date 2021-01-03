@@ -1,11 +1,15 @@
 #ifndef REPORTSUBMISSIONWINDOW_H
 #define REPORTSUBMISSIONWINDOW_H
 
+#include <iostream>
+
 #include <QMainWindow>
 #include <QRegularExpression>
 #include <QMessageBox>
 
 #include <accountlogic.h>
+
+using namespace std;
 
 namespace Ui {
 class ReportSubmissionWindow;
