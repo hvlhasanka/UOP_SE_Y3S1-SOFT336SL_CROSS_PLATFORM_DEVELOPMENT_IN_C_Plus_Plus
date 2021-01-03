@@ -46,6 +46,7 @@ LoginWindow::LoginWindow(QWidget *parent)
 
     // Creating an object of AuthenticateLogin class
     auth = new AuthenticateLogic();
+
 }
 
 LoginWindow::~LoginWindow()
@@ -185,30 +186,32 @@ void LoginWindow::on_login_pushButton_clicked()
 
     if(loginCredentialsVerification == "Verification Successful: Account Type: UserAccount"){
 
+        /* Setting accountAcitivity to online */
+        auth->setAccountActivityID(1);
+        auth->setAccountActivity("Online");
+
+        /* Recording session start */
+        auth->addSessionStartToDB();
+
+        qDebug() << auth->getAccountStatus();
+
         this->hide();
         userAccountWindowForm = new UserAccountWindow(this);
         userAccountWindowForm->show();
 
+    }
+    else if(loginCredentialsVerification == "Verification Successful: Account Type: AdminAccount"){
+
         /* Setting accountAcitivity to online */
         auth->setAccountActivityID(1);
         auth->setAccountActivity("Online");
 
         /* Recording session start */
         auth->addSessionStartToDB();
-
-    }
-    else if(loginCredentialsVerification == "Verification Successful: Account Type: AdminAccount"){
 
         this->hide();
         adminAccountWindowForm = new AdminAccountWindow(this);
         adminAccountWindowForm->show();
-
-        /* Setting accountAcitivity to online */
-        auth->setAccountActivityID(1);
-        auth->setAccountActivity("Online");
-
-        /* Recording session start */
-        auth->addSessionStartToDB();
 
     }
     else if(loginCredentialsVerification == "Verification Unsuccessful: Account Disabled"){

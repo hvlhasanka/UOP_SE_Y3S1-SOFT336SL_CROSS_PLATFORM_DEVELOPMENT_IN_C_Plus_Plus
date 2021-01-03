@@ -34,6 +34,7 @@ private:
     // Retireving the accountlogic.h class path to a pointer
     AccountLogic *accountLogic;
 
+
 };
 
 #endif // REPORTSUBMISSIONWINDOW_H

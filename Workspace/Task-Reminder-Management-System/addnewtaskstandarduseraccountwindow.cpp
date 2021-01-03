@@ -20,8 +20,8 @@ AddNewTaskStandardUserAccountWindow::AddNewTaskStandardUserAccountWindow(QWidget
     // Creating an object of DatabaseConnection class
     trms_dbConnection = new DatabaseConnection();
 
-    // Creating an object of Authenticate class
-    auth = new AuthenticateLogic();
+    // Creating an object of AccountLogic class
+    account = new AccountLogic();
 
     // Creating an object of StandardUserAccountLogic class
     standardUserAccountLogic = new StandardUserAccountLogic();
@@ -35,7 +35,7 @@ AddNewTaskStandardUserAccountWindow::AddNewTaskStandardUserAccountWindow(QWidget
         // Preparing sql query for execution
         categoryQuery.prepare(QString("SELECT CategoryName FROM Category WHERE aAccountID == :accountID;"));
 
-        categoryQuery.bindValue("accountID", auth->getAccountID());
+        categoryQuery.bindValue("accountID", account->getAccountID());
 
         // Executing sql query and checking the status
         if(!categoryQuery.exec()){

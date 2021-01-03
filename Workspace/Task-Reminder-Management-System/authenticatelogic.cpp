@@ -9,8 +9,10 @@
 // Public default constructor
 AuthenticateLogic::AuthenticateLogic()
 {
+
     // Creating an object of DatabaseConnection class
     trms_dbConnection = new DatabaseConnection();
+
 }
 
 /* Setter Methods */
@@ -19,32 +21,12 @@ void AuthenticateLogic::setLoginID(int loginIDValue){
     loginID = loginIDValue;
 }
 
-void AuthenticateLogic::setAccountID(int accountIDValue){
-    accountID = accountIDValue;
-}
-
 void AuthenticateLogic::setEmailAddress(QString emailAddressValue){
     emailAddress = emailAddressValue;
 }
 
 void AuthenticateLogic::setPasswordHash(QString passwordHashValue){
     passwordHash = passwordHashValue;
-}
-
-void AuthenticateLogic::setFirstName(QString firstNameValue){
-    firstName = firstNameValue;
-}
-
-void AuthenticateLogic::setMiddleName(QString middleNameValue){
-    middleName = middleNameValue;
-}
-
-void AuthenticateLogic::setLastName(QString lastNameValue){
-    lastName = lastNameValue;
-}
-
-void AuthenticateLogic::setCreatedDateTime(QString createdDateTimeValue){
-    createdDateTime = createdDateTimeValue;
 }
 
 void AuthenticateLogic::setAccountStatusID(int accountStatusIDValue){
@@ -63,14 +45,6 @@ void AuthenticateLogic::setAccountType(QString accountTypeValue){
     accountType = accountTypeValue;
 }
 
-void AuthenticateLogic::setDoNotDistrubBooleanValueID(int doNotDistrubBooleanValueIDValue){
-    doNotDistrubBooleanValueID = doNotDistrubBooleanValueIDValue;
-}
-
-void AuthenticateLogic::setDoNotDistrubBooleanValue(bool doNotDistrubBooleanValueValue){
-    doNotDistrubBooleanValue = doNotDistrubBooleanValueValue;
-}
-
 void AuthenticateLogic::setAccountActivityID(int accountActivityIDValue){
     accountActivityID = accountActivityIDValue;
 }
@@ -85,32 +59,12 @@ int AuthenticateLogic::getLoginID(){
     return loginID;
 }
 
-int AuthenticateLogic::getAccountID(){
-    return accountID;
-}
-
 QString AuthenticateLogic::getEmailAddress(){
     return emailAddress;
 }
 
 QString AuthenticateLogic::getPasswordHash(){
     return passwordHash;
-}
-
-QString AuthenticateLogic::getFirstName(){
-    return firstName;
-}
-
-QString AuthenticateLogic::getMiddleName(){
-    return middleName;
-}
-
-QString AuthenticateLogic::getLastName(){
-    return lastName;
-}
-
-QString AuthenticateLogic::getCreatedDateTime(){
-    return createdDateTime;
 }
 
 int AuthenticateLogic::getAccountStatusID(){
@@ -127,14 +81,6 @@ int AuthenticateLogic::getAccountTypeID(){
 
 QString AuthenticateLogic::getAccountType(){
     return accountType;
-}
-
-int AuthenticateLogic::getDoNotDistrubBooleanValueID(){
-    return doNotDistrubBooleanValueID;
-}
-
-bool AuthenticateLogic::getDoNotDistrubBooleanValue(){
-    return doNotDistrubBooleanValue;
 }
 
 int AuthenticateLogic::getAccountActivityID(){
@@ -369,12 +315,10 @@ QString AuthenticateLogic::loginCredentialVerification(QString enteredEmailAddre
 
         // Preparing sql query for execution
         vertificationQuery.prepare(QString("SELECT l.loginID, l.PasswordHash, acts.AccountStatusID, acts.AccountStatus, "
-                              "a.AccountID, a.FirstName, a.MiddleName, a.LastName, a.CreatedDateTime, at.AccountTypeID, "
-                              "at.AccountType, bv.BooleanValueID, bv.BooleanValue FROM "
+                              "at.AccountTypeID, at.AccountType FROM "
                               "Login l INNER JOIN Account a ON l.LoginID = a.lLoginID "
                               "INNER JOIN AccountStatus acts ON acts.AccountStatusID = l.asAccountStatusID "
                               "INNER JOIN AccountType at ON at.AccountTypeID = a.atAccountTypeID "
-                              "INNER JOIN BooleanValue bv ON bv.BooleanValueID = a.dvDoNotDistrubBooleanValueID "
                               "WHERE EmailAddress=:enteredEmailAddress;"));
 
         vertificationQuery.bindValue(":enteredEmailAddress", enteredEmailAddress);
@@ -392,15 +336,8 @@ QString AuthenticateLogic::loginCredentialVerification(QString enteredEmailAddre
                 this->setPasswordHash(vertificationQuery.value(1).toString());
                 this->setAccountStatusID(vertificationQuery.value(2).toInt());
                 this->setAccountStatus(vertificationQuery.value(3).toString());
-                this->setAccountID(vertificationQuery.value(4).toInt());
-                this->setFirstName(vertificationQuery.value(5).toString());
-                this->setMiddleName(vertificationQuery.value(6).toString());
-                this->setLastName(vertificationQuery.value(7).toString());
-                this->setCreatedDateTime(vertificationQuery.value(8).toString());
-                this->setAccountTypeID(vertificationQuery.value(9).toInt());
-                this->setAccountType(vertificationQuery.value(10).toString());
-                this->setDoNotDistrubBooleanValueID(vertificationQuery.value(11).toInt());
-                this->setDoNotDistrubBooleanValue(vertificationQuery.value(12).toBool());
+                this->setAccountTypeID(vertificationQuery.value(4).toInt());
+                this->setAccountType(vertificationQuery.value(5).toString());
             }
             else{
                 trms_dbConnection->closeDatebaseConnection();
@@ -449,6 +386,9 @@ QString AuthenticateLogic::loginCredentialVerification(QString enteredEmailAddre
 
 void AuthenticateLogic::addSessionStartToDB(){
 
+    this->setAccountActivityID(1);
+    this->setAccountActivity("Online");
+
     bool databaseConnected = trms_dbConnection->openDatebaseConnection();
     if(databaseConnected == true){
 
@@ -460,7 +400,7 @@ void AuthenticateLogic::addSessionStartToDB(){
                                           "(:loginDateTime, '-', '-', :accountActivityID, :loginID);"));
 
         sessionStartQuery.bindValue(":loginDateTime", this->retrieveCurrentDateTime());
-        sessionStartQuery.bindValue(":accountActivityID", this->getAccountTypeID());
+        sessionStartQuery.bindValue(":accountActivityID", this->getAccountActivityID());
         sessionStartQuery.bindValue(":loginID", this->getLoginID());
 
         // Executing sql query and checking the status

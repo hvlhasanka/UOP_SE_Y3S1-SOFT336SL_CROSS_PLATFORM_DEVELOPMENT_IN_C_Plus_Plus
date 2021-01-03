@@ -7,11 +7,30 @@ UserAccountWindow::UserAccountWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    // Creating an object of Authenticate class
-    auth = new AuthenticateLogic();
+    // Creating an object of AccountLogic class
+    account = new AccountLogic();
+
 }
 
 UserAccountWindow::~UserAccountWindow()
 {
     delete ui;
+}
+
+void UserAccountWindow::on_addNewTask_pushButton_clicked()
+{
+   // auth->setAccountType("fff");
+   // qWarning() << auth->getAccountType();
+
+    addNewTaskStandardUserAccountWindowForm = new AddNewTaskStandardUserAccountWindow(this);
+    addNewTaskStandardUserAccountWindowForm->show();
+
+}
+
+void UserAccountWindow::on_report_pushButton_clicked()
+{
+
+    reportSubmissionWindowForm = new ReportSubmissionWindow(this);
+    reportSubmissionWindowForm->show();
+
 }

@@ -7,6 +7,10 @@ StandardUserAccountLogic::StandardUserAccountLogic()
 
     // Creating an object of Authenticate class
     auth = new AuthenticateLogic();
+
+    // Creating an object of AccountLogic class
+    account = new AccountLogic();
+
 }
 
 QString StandardUserAccountLogic::addNewTask(QString enteredTaskTitle, QString enteredTaskDescription, QString selectedTaskCategoryName){
@@ -23,7 +27,7 @@ QString StandardUserAccountLogic::addNewTask(QString enteredTaskTitle, QString e
         categoryIDQuery.prepare(QString("SELECT CategoryID FROM Category WHERE CategoryName = :selectedCategoryName AND aAccountID = :loggedInAccountID;"));
 
         categoryIDQuery.bindValue(":selectedCategoryName", selectedTaskCategoryName);
-        categoryIDQuery.bindValue(":loggedInAccountID", auth->getAccountID());
+        categoryIDQuery.bindValue(":loggedInAccountID", account->getAccountID());
 
         // Executing sql query and checking the status
         if(!categoryIDQuery.exec()){
@@ -53,7 +57,7 @@ QString StandardUserAccountLogic::addNewTask(QString enteredTaskTitle, QString e
         taskQuery.bindValue(":enteredTaskTitle", enteredTaskTitle);
         taskQuery.bindValue(":enteredTaskDescription", enteredTaskDescription);
         taskQuery.bindValue(":currentDateTime", auth->retrieveCurrentDateTime());
-        taskQuery.bindValue(":loggedInAccountID", auth->getAccountID());
+        taskQuery.bindValue(":loggedInAccountID", account->getAccountID());
         taskQuery.bindValue(":selectedCategoryID", selectedCategoryIDDB);
 
         // Executing sql query and checking the status

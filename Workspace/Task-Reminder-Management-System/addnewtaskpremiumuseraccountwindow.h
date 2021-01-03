@@ -4,9 +4,9 @@
 #include <QMainWindow>
 #include <QMessageBox>
 
-#include <databaseconnection.h>
-#include <authenticatelogic.h>
-#include <premiumuseraccountlogic.h>
+#include "databaseconnection.h"
+#include "accountlogic.h"
+#include "premiumuseraccountlogic.h"
 
 namespace Ui {
 class AddNewTaskPremiumUserAccountWindow;
@@ -25,9 +25,9 @@ private:
     // Connecting the databaseconnecion.h
     // Retireving the databaseconnecion.h class path to a pointer
     DatabaseConnection *trms_dbConnection;
-    // Connecting the authenticate.h
-    // Retireving the authenticate.h class path to a pointer
-    AuthenticateLogic *auth;
+    // Connecting the accountlogic.h
+    // Retireving the accountlogic.h class path to a pointer
+    AccountLogic *account;
     // Connecting the premiumuseraccountlogic.h
     // Retireving the premiumuseraccountlogic.h class path to a pointer
     PremiumUserAccountLogic *premiumUserAccountLogic;

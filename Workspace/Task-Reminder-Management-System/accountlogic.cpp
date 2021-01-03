@@ -6,11 +6,91 @@ AccountLogic::AccountLogic()
     // Creating an object of DatabaseConnection class
     trms_dbConnection = new DatabaseConnection();
 
-    // Creating an object of Authenticate class
-    auth = new AuthenticateLogic();
-
 }
 
+// Setters
+
+void AccountLogic::setLoginID(int loginIDValue){
+    loginID = loginIDValue;
+}
+
+void AccountLogic::setAccountID(int accountIDValue){
+    accountID = accountIDValue;
+}
+
+void AccountLogic::setFirstName(QString firstNameValue){
+    firstName = firstNameValue;
+}
+
+void AccountLogic::setMiddleName(QString middleNameValue){
+    middleName = middleNameValue;
+}
+
+void AccountLogic::setLastName(QString lastNameValue){
+    lastName = lastNameValue;
+}
+
+void AccountLogic::setCreatedDateTime(QString createdDateTimeValue){
+    createdDateTime = createdDateTimeValue;
+}
+
+void AccountLogic::setAccountTypeID(int accountTypeIDValue){
+    accountTypeID = accountTypeIDValue;
+}
+
+void AccountLogic::setAccountType(QString accountTypeValue){
+    accountType = accountTypeValue;
+}
+
+void AccountLogic::setDoNotDistrubBooleanValueID(int doNotDistrubBooleanValueIDValue){
+    doNotDistrubBooleanValueID = doNotDistrubBooleanValueIDValue;
+}
+
+void AccountLogic::setDoNotDistrubBooleanValue(bool doNotDistrubBooleanValueValue){
+    doNotDistrubBooleanValue = doNotDistrubBooleanValueValue;
+}
+
+// Getters
+
+int AccountLogic::getLoginID(){
+    return loginID;
+}
+
+int AccountLogic::getAccountID(){
+    return accountID;
+}
+
+QString AccountLogic::getFirstName(){
+    return firstName;
+}
+
+QString AccountLogic::getMiddleName(){
+    return middleName;
+}
+
+QString AccountLogic::getLastName(){
+    return lastName;
+}
+
+QString AccountLogic::getCreatedDateTime(){
+    return createdDateTime;
+}
+
+int AccountLogic::getAccountTypeID(){
+    return accountTypeID;
+}
+
+QString AccountLogic::getAccountType(){
+    return accountType;
+}
+
+int AccountLogic::getDoNotDistrubBooleanValueID(){
+    return doNotDistrubBooleanValueID;
+}
+
+bool AccountLogic::getDoNotDistrubBooleanValue(){
+    return doNotDistrubBooleanValue;
+}
 
 /* Function Methods */
 QString AccountLogic::submitReport(QString enteredReportSubject, QString enteredReportFeedback, QString enteredAuthorReachableEmailAddress){

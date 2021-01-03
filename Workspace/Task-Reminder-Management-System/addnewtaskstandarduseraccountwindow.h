@@ -5,7 +5,7 @@
 #include <QMessageBox>
 
 #include <databaseconnection.h>
-#include <authenticatelogic.h>
+#include <accountlogic.h>
 #include <standarduseraccountlogic.h>
 
 namespace Ui {
@@ -28,9 +28,9 @@ private:
     // Connecting the databaseconnecion.h
     // Retireving the databaseconnecion.h class path to a pointer
     DatabaseConnection *trms_dbConnection;
-    // Connecting the authenticate.h
-    // Retireving the authenticate.h class path to a pointer
-    AuthenticateLogic *auth;
+    // Connecting the accountlogic.h
+    // Retireving the accountlogic.h class path to a pointer
+    AccountLogic *account;
     // Connecting the standarduseraccountlogic.h
     // Retireving the standarduseraccountlogic.h class path to a pointer
     StandardUserAccountLogic *standardUserAccountLogic;
