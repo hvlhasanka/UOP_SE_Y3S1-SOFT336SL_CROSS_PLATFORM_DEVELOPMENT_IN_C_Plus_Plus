@@ -25,7 +25,7 @@ CREATE TABLE Login(
 
 -- Inserting records INTO Table 2 - Login
 INSERT INTO Login(EmailAddress, PasswordHash, asAccountStatusID)
-Values ("mchatte@toplist.cz", "8944854914295023676", 1); -- Password: ChattEddie3$
+Values ("mchatte@gmail.com", "8944854914295023676", 1); -- Password: ChattEddie3$
 
 
 -- Creating Table 3 - AccountType

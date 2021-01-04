@@ -33,8 +33,8 @@ UserAccountWindow::UserAccountWindow(int loginID, QWidget *parent) :
 
         // Executing sql query and checking the status
         if(!userDetailsQuery.exec()){
-            qDebug() << "SQL query execution error";
-            qDebug() << userDetailsQuery.lastError();
+            qWarning() << "SQL query execution error";
+            qWarning() << userDetailsQuery.lastError();
             trms_dbConnection->closeDatebaseConnection();
         }
         else{
@@ -53,12 +53,12 @@ UserAccountWindow::UserAccountWindow(int loginID, QWidget *parent) :
             }
             else{
                 trms_dbConnection->closeDatebaseConnection();
-                qDebug() << "User Account Details Successfully retrieved from Database";
+                qWarning() << "User Account Details Successfully retrieved from Database";
             }
         }
     }
     else{
-        qDebug() << "Database Connection Error";
+        qWarning() << "Database Connection Error";
         trms_dbConnection->closeDatebaseConnection();
     }
 
@@ -84,6 +84,89 @@ UserAccountWindow::UserAccountWindow(int loginID, QWidget *parent) :
     int logoutLabelHeight = ui->logoutImage_label->height();
     // Setting the cover image of the doNotDisturbImage_label
     ui->logoutImage_label->setPixmap(logoutImagePix.scaled(logoutLabelWidth, logoutLabelHeight, Qt::KeepAspectRatio));
+
+
+    /* Changin the 'Welcome' message in the Dasbboard tab to show the relevant message for new users and existing users */
+    QString recordCount;
+    bool databaseConnected = trms_dbConnection->openDatebaseConnection();
+    if(databaseConnected == true){
+
+        // Checking whether there are existing records of the user logged in before in the 'LoginActivity' relation (table)
+        // Declaring new QSqlQuery object by passing the database name
+        QSqlQuery messageQuery(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
+
+        // Preparing sql query for execution
+        messageQuery.prepare(QString("SELECT COUNT(LoginDateTime) as 'RecordCount' FROM LoginActivity WHERE lLoginID = :loginID;"));
+
+        messageQuery.bindValue("loginID", account->getLoginID());
+
+        // Executing sql query and checking the status
+        if(!messageQuery.exec()){
+            qWarning() << "SQL query execution error";
+            trms_dbConnection->closeDatebaseConnection();
+            qWarning() << messageQuery.lastError();
+        }
+        else{
+            if(messageQuery.next()){
+                recordCount = messageQuery.value(0).toString();
+            }
+        }
+
+        if(recordCount.toInt() == 1){
+            ui->welcomeMessage_label->text().clear();
+            ui->welcomeMessage_label->text() = "Welcome to TRMS!,";
+        }
+        else if(recordCount.toInt() > 1){
+            ui->welcomeMessage_label->text().clear();
+            ui->welcomeMessage_label->text() = "Welcome Back,";
+        }
+    }
+    else if(databaseConnected == false){
+        trms_dbConnection->closeDatebaseConnection();
+        qWarning() << "Database Connection Error";
+    }
+
+
+
+    /* Retrieving task details from the database and populating the relevant table views according the to category type */
+
+    // Category 1
+    bool databaseConnectedCategory = trms_dbConnection->openDatebaseConnection();
+    if(databaseConnected == true){
+        // Declaring new QSqlQuery object by passing the database name
+        QSqlQuery category1Query(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
+
+        // Preparing sql query for execution
+        category1Query.prepare(QString("SELECT t.Title as 'Task Title', t.TaskDescription as 'Task Description', c.CategoryName as 'Category Name' FROM "
+                                                 "Task t INNER JOIN Category c ON c.CategoryID = t.cCategoryID "
+                                                 "INNER JOIN CategoryType ct ON ct.CategoryTypeID = c.ctCategoryTypeID "
+                                                 "WHERE t.aAccountID == 1 AND ct.CategoryType = 'Category 1';"));
+
+        category1Query.bindValue("accountID", account->getAccountID());
+
+        // Executing sql query and checking the status
+        if(!category1Query.exec()){
+            qWarning() << "SQL query execution error";
+            trms_dbConnection->closeDatebaseConnection();
+            qWarning() << category1Query.lastError();
+        }
+        else{
+            QSqlQueryModel *category1Modal = new QSqlQueryModel();
+            category1Modal->setQuery(category1Query);
+
+            ui->category1_tableView->setModel(category1Modal);
+            ui->category1_tableView->resizeColumnsToContents();
+
+            trms_dbConnection->closeDatebaseConnection();
+        }
+    }
+    else if(databaseConnectedCategory == false){
+        trms_dbConnection->closeDatebaseConnection();
+        qWarning() << "Database Connection Error";
+    }
+
+
+
 
 }
 

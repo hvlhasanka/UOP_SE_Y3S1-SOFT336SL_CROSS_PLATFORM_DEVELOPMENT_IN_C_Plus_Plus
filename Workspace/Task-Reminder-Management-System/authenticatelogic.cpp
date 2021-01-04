@@ -149,8 +149,8 @@ QString AuthenticateLogic::checkEmailAddressAvailability(QString enteredEmailAdd
 
         // Executing sql query and checking the status
         if(!emailAddressAvailabilityQuery.exec()){
-            qDebug() << "SQL query execution error";
-            qDebug() << emailAddressAvailabilityQuery.lastError();
+            qWarning() << "SQL query execution error";
+            qWarning() << emailAddressAvailabilityQuery.lastError();
             trms_dbConnection->closeDatebaseConnection();
             return "Execution Unsuccessful: SQL query execution error";
         }
@@ -167,7 +167,7 @@ QString AuthenticateLogic::checkEmailAddressAvailability(QString enteredEmailAdd
 
     }
     else if(databaseConnection == false){
-        qDebug() << "Database Connection Error";
+        qWarning() << "Database Connection Error";
         trms_dbConnection->closeDatebaseConnection();
         return "Execution Unsuccessful: Database Connection Error";
     }
@@ -198,13 +198,13 @@ QString AuthenticateLogic::registerNewUser(QString selectedNamePrefix, QString e
 
         // Executing sql query and checking the status
         if(!loginQuery.exec()){
-            qDebug() << "SQL query execution error";
-            qDebug() << loginQuery.lastError();
+            qWarning() << "SQL query execution error";
+            qWarning() << loginQuery.lastError();
             trms_dbConnection->closeDatebaseConnection();
             return "Execution Unsuccessful: SQL query execution error";
         }
         else{
-            successfulQueryExecutions++;qDebug() << "1";
+            successfulQueryExecutions++;qWarning() << "1";
         }
 
         /* Retrieving the 'LoginID' from the 'Login' relation (table) of the newly added record */
@@ -219,8 +219,8 @@ QString AuthenticateLogic::registerNewUser(QString selectedNamePrefix, QString e
 
         // Executing sql query and checking the status
         if(!loginIDQuery.exec()){
-            qDebug() << "SQL query execution error";
-            qDebug() << loginIDQuery.lastError();
+            qWarning() << "SQL query execution error";
+            qWarning() << loginIDQuery.lastError();
             trms_dbConnection->closeDatebaseConnection();
             return "Execution Unsuccessful: SQL query execution error";
         }
@@ -228,7 +228,7 @@ QString AuthenticateLogic::registerNewUser(QString selectedNamePrefix, QString e
             if(loginIDQuery.next()){
                 loginIDDB = loginIDQuery.value(0).toString();
             }
-            successfulQueryExecutions++;qDebug() << "2";
+            successfulQueryExecutions++;qWarning() << "2";
         }
 
 
@@ -244,8 +244,8 @@ QString AuthenticateLogic::registerNewUser(QString selectedNamePrefix, QString e
 
         // Executing sql query and checking the status
         if(!namePrefixIDDBQuery.exec()){
-            qDebug() << "SQL query execution error";
-            qDebug() << namePrefixIDDBQuery.lastError();
+            qWarning() << "SQL query execution error";
+            qWarning() << namePrefixIDDBQuery.lastError();
             trms_dbConnection->closeDatebaseConnection();
             return "Execution Unsuccessful: SQL query execution error";
         }
@@ -253,7 +253,7 @@ QString AuthenticateLogic::registerNewUser(QString selectedNamePrefix, QString e
             if(namePrefixIDDBQuery.next()){
                 namePrefixIDDB = namePrefixIDDBQuery.value(0).toString();
             }
-            successfulQueryExecutions++;qDebug() << "3";
+            successfulQueryExecutions++;qWarning() << "3";
         }
 
 
@@ -269,8 +269,8 @@ QString AuthenticateLogic::registerNewUser(QString selectedNamePrefix, QString e
 
         // Executing sql query and checking the status
         if(!accountTypeIDDBQuery.exec()){
-            qDebug() << "SQL query execution error";
-            qDebug() << accountTypeIDDBQuery.lastError();
+            qWarning() << "SQL query execution error";
+            qWarning() << accountTypeIDDBQuery.lastError();
             trms_dbConnection->closeDatebaseConnection();
             return "Execution Unsuccessful: SQL query execution error";
         }
@@ -278,7 +278,7 @@ QString AuthenticateLogic::registerNewUser(QString selectedNamePrefix, QString e
             if(accountTypeIDDBQuery.next()){
                 accountTypeIDDB = accountTypeIDDBQuery.value(0).toString();
             }
-            successfulQueryExecutions++;qDebug() << "4";
+            successfulQueryExecutions++;qWarning() << "4";
         }
 
 
@@ -302,13 +302,13 @@ QString AuthenticateLogic::registerNewUser(QString selectedNamePrefix, QString e
 
         // Executing sql query and checking the status
         if(!accountQuery.exec()){
-            qDebug() << "SQL query execution error";
-            qDebug() << accountQuery.lastError();
+            qWarning() << "SQL query execution error";
+            qWarning() << accountQuery.lastError();
             trms_dbConnection->closeDatebaseConnection();
             return "Execution Unsuccessful: SQL query execution error";
         }
         else{
-            successfulQueryExecutions++;qDebug() << "5";
+            successfulQueryExecutions++;qWarning() << "5";
         }
 
 
@@ -326,8 +326,8 @@ QString AuthenticateLogic::registerNewUser(QString selectedNamePrefix, QString e
 
         // Executing sql query and checking the status
         if(!accountIDDBQuery.exec()){
-            qDebug() << "SQL query execution error";
-            qDebug() << accountIDDBQuery.lastError();
+            qWarning() << "SQL query execution error";
+            qWarning() << accountIDDBQuery.lastError();
             trms_dbConnection->closeDatebaseConnection();
             return "Execution Unsuccessful: SQL query execution error";
         }
@@ -335,7 +335,7 @@ QString AuthenticateLogic::registerNewUser(QString selectedNamePrefix, QString e
             if(accountIDDBQuery.next()){
                 accountIDDB = accountIDDBQuery.value(0).toString();
             }
-            successfulQueryExecutions++;qDebug() << "6";
+            successfulQueryExecutions++;qWarning() << "6";
         }
 
 
@@ -362,13 +362,13 @@ QString AuthenticateLogic::registerNewUser(QString selectedNamePrefix, QString e
 
             // Executing sql query and checking the status
             if(!categoryQuery.exec()){
-                qDebug() << "SQL query execution error";
-                qDebug() << categoryQuery.lastError();
+                qWarning() << "SQL query execution error";
+                qWarning() << categoryQuery.lastError();
                 trms_dbConnection->closeDatebaseConnection();
                 return "Execution Unsuccessful: SQL query execution error";
             }
             else{
-                successfulQueryExecutions++;qDebug() << "7";
+                successfulQueryExecutions++;qWarning() << "7";
             }
 
             // Incrementing categoryNameNumber and categoryTypeID by one in each iteration
@@ -385,13 +385,13 @@ QString AuthenticateLogic::registerNewUser(QString selectedNamePrefix, QString e
         }
         else{
             trms_dbConnection->closeDatebaseConnection();
-            qDebug() << "New Account Creation Error";
+            qWarning() << "New Account Creation Error";
             return "New Account Creation Error";
         }
 
     }
     else if(databaseConnection == false){
-        qDebug() << "Database Connection Error";
+        qWarning() << "Database Connection Error";
         trms_dbConnection->closeDatebaseConnection();
         return "Execution Unsuccessful: Database Connection Error";
     }
@@ -423,8 +423,8 @@ QString AuthenticateLogic::loginCredentialVerification(QString enteredEmailAddre
 
         // Executing sql query and checking the status
         if(!vertificationQuery.exec()){
-            qDebug() << "SQL query execution error";
-            qDebug() << vertificationQuery.lastError();
+            qWarning() << "SQL query execution error";
+            qWarning() << vertificationQuery.lastError();
             trms_dbConnection->closeDatebaseConnection();
             return "Verification Unsuccessful: SQL query execution error";
         }
@@ -444,7 +444,7 @@ QString AuthenticateLogic::loginCredentialVerification(QString enteredEmailAddre
         }
     }
     else{
-        qDebug() << "Database Connection Error";
+        qWarning() << "Database Connection Error";
         trms_dbConnection->closeDatebaseConnection();
         return "Verification Unsuccessful: Database Connection Error";
     }
@@ -503,18 +503,18 @@ void AuthenticateLogic::addSessionStartToDB(){
 
         // Executing sql query and checking the status
         if(!sessionStartQuery.exec()){
-            qDebug() << "SQL query execution error";
-            qDebug() << sessionStartQuery.lastError();
+            qWarning() << "SQL query execution error";
+            qWarning() << sessionStartQuery.lastError();
             trms_dbConnection->closeDatebaseConnection();
         }
         else{
-            qDebug() << "Session Start Recorded";
+            qWarning() << "Session Start Recorded";
             trms_dbConnection->closeDatebaseConnection();
         }
 
     }
     else{
-        qDebug() << "Database Connection Error";
+        qWarning() << "Database Connection Error";
         trms_dbConnection->closeDatebaseConnection();
     }
 

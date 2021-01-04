@@ -36,12 +36,12 @@ bool DatabaseConnection::openDatebaseConnection(){
 
     // Establishing database connection and checking connection status
     if (!databaseConnection.open()){
-        qDebug() << "Database Connection Error";
-        qDebug() << databaseConnection.lastError();
+        qWarning() << "Database Connection Error";
+        qWarning() << databaseConnection.lastError();
         return false;
     }
     else{
-        qDebug() << "Database Connection Open";
+        qWarning() << "Database Connection Open";
         return true;
     }
 
@@ -53,6 +53,6 @@ void DatabaseConnection::closeDatebaseConnection(){
     // Closing established database connection
     databaseConnection.close();
     databaseConnection.removeDatabase(QSqlDatabase::defaultConnection);
-    qDebug() << "Database Connection Closed";
+    qWarning() << "Database Connection Closed";
 
 }

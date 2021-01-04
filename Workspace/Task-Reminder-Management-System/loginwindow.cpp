@@ -10,7 +10,6 @@
 #include <QPixmap>
 #include <QMessageBox>
 #include <QInputDialog>
-#include <QDebug>
 #include <QRegularExpression>
 #include <QCryptographicHash>
 #include <QString>
@@ -80,7 +79,7 @@ void LoginWindow::on_forgotPassword_pushButton_clicked()
                                                                        "Unfortunately you are unable to recover the existing password, \n"
                                                                        "you are required to update the password.\n\n"
                                                                        "Please enter your email address and a pin code will be emailed.\n");
-    qDebug() << forgotPasswordResponseEmailAddress;
+    qWarning() << forgotPasswordResponseEmailAddress;
    /*
     QMessageBox::question(this, "Password Recovery",
                           "Unfortunately you are unable to recover the existing password, "

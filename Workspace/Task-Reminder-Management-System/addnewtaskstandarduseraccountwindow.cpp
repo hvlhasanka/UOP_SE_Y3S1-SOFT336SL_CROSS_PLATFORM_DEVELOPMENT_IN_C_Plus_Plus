@@ -39,13 +39,15 @@ AddNewTaskStandardUserAccountWindow::AddNewTaskStandardUserAccountWindow(QWidget
 
         // Executing sql query and checking the status
         if(!categoryQuery.exec()){
-            qDebug() << "SQL query execution error";
-            qDebug() << categoryQuery.lastError();
+            qWarning() << "SQL query execution error";
+            qWarning() << categoryQuery.lastError();
+            trms_dbConnection->closeDatebaseConnection();
         }
         else{
             QSqlQueryModel *categoryModal = new QSqlQueryModel();
             categoryModal->setQuery(categoryQuery);
             ui->category_comboBox->setModel(categoryModal);
+            trms_dbConnection->closeDatebaseConnection();
         }
     }
 }

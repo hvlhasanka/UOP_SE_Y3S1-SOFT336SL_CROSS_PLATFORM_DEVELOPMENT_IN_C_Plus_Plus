@@ -37,9 +37,9 @@ UserRegistrationWindow::UserRegistrationWindow(QWidget *parent) :
 
         // Executing sql query and checking the status
         if(!accountTypesQuery.exec()){
-            qDebug() << "SQL query execution error";
+            qWarning() << "SQL query execution error";
             trms_dbConnection->closeDatebaseConnection();
-            qDebug() << accountTypesQuery.lastError();
+            qWarning() << accountTypesQuery.lastError();
         }
         else{
             QSqlQueryModel *acountTypeModal = new QSqlQueryModel();
@@ -50,7 +50,7 @@ UserRegistrationWindow::UserRegistrationWindow(QWidget *parent) :
     }
     else if(connectionStatus == false){
         trms_dbConnection->closeDatebaseConnection();
-        qDebug() << "Database Connection Error";
+        qWarning() << "Database Connection Error";
     }
 
 
@@ -65,9 +65,9 @@ UserRegistrationWindow::UserRegistrationWindow(QWidget *parent) :
 
         // Executing sql query and checking the status
         if(!namePrefixesQuery.exec()){
-            qDebug() << "SQL query execution error";
+            qWarning() << "SQL query execution error";
             trms_dbConnection->closeDatebaseConnection();
-            qDebug() << namePrefixesQuery.lastError();
+            qWarning() << namePrefixesQuery.lastError();
         }
         else{
             QSqlQueryModel *namePrefixesModal = new QSqlQueryModel();
@@ -78,7 +78,7 @@ UserRegistrationWindow::UserRegistrationWindow(QWidget *parent) :
     }
     else if(databaseConnected == false){
         trms_dbConnection->closeDatebaseConnection();
-        qDebug() << "Database Connection Error";
+        qWarning() << "Database Connection Error";
     }
 
 }
@@ -398,7 +398,7 @@ void UserRegistrationWindow::on_register_pushButton_clicked()
             }
         }
         else{
-            qDebug() << "Relavant fields does not contain acceptable values";
+            qWarning() << "Relavant fields does not contain acceptable values";
         }
     }
     else{
@@ -460,7 +460,7 @@ void UserRegistrationWindow::on_register_pushButton_clicked()
             }
         }
         else{
-            qDebug() << "Relavant fields does not contain acceptable values";
+            qWarning() << "Relavant fields does not contain acceptable values";
         }
 
     }

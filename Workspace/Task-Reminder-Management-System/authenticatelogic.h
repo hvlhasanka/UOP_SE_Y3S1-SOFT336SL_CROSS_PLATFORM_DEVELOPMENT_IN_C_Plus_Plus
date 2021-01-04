@@ -11,7 +11,6 @@
 #include <string>
 #include <regex>
 #include <QString>
-#include <QDebug>
 #include <QRegularExpression>
 #include <QRegularExpressionMatch>
 #include <QtSql>

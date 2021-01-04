@@ -121,8 +121,8 @@ QString AccountLogic::submitReport(QString enteredReportSubject, QString entered
 
         // Executing sql query and checking the status
         if(!reportQuery.exec()){
-            qDebug() << "SQL query execution error";
-            qDebug() << reportQuery.lastError();
+            qWarning() << "SQL query execution error";
+            qWarning() << reportQuery.lastError();
             trms_dbConnection->closeDatebaseConnection();
             return "Execution Unsuccessful: SQL query execution error";
         }

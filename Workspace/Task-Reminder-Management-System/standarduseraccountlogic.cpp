@@ -31,8 +31,8 @@ QString StandardUserAccountLogic::addNewTask(QString enteredTaskTitle, QString e
 
         // Executing sql query and checking the status
         if(!categoryIDQuery.exec()){
-            qDebug() << "SQL query execution error";
-            qDebug() << categoryIDQuery.lastError();
+            qWarning() << "SQL query execution error";
+            qWarning() << categoryIDQuery.lastError();
             trms_dbConnection->closeDatebaseConnection();
             return "Execution Unsuccessful: SQL query execution error";
         }
@@ -62,8 +62,8 @@ QString StandardUserAccountLogic::addNewTask(QString enteredTaskTitle, QString e
 
         // Executing sql query and checking the status
         if(!taskQuery.exec()){
-            qDebug() << "SQL query execution error";
-            qDebug() << taskQuery.lastError();
+            qWarning() << "SQL query execution error";
+            qWarning() << taskQuery.lastError();
             trms_dbConnection->closeDatebaseConnection();
             return "Execution Unsuccessful: (SQL Query Error) Failed to Insert Task Record";
         }
@@ -74,7 +74,7 @@ QString StandardUserAccountLogic::addNewTask(QString enteredTaskTitle, QString e
 
     }
     else if(databaseConnected == false){
-        qDebug() << "Database Connection Error";
+        qWarning() << "Database Connection Error";
         trms_dbConnection->closeDatebaseConnection();
         return "Execution Unsuccessful: Database Connection Error";
     }

@@ -286,6 +286,15 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <tabstops>
+  <tabstop>emailAddress_lineEdit</tabstop>
+  <tabstop>password_lineEdit</tabstop>
+  <tabstop>showPassword_checkBox</tabstop>
+  <tabstop>login_pushButton</tabstop>
+  <tabstop>register_pushButton</tabstop>
+  <tabstop>forgotPassword_pushButton</tabstop>
+  <tabstop>report_pushButton</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

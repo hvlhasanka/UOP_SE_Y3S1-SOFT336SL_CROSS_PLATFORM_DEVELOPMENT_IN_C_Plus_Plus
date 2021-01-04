@@ -113,8 +113,16 @@
        <height>571</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Myriad Arabic</family>
+       <pointsize>14</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="dashboard_tab">
       <property name="whatsThis">
@@ -139,20 +147,28 @@
         <string>ff</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_4">
+      <widget class="QLabel" name="welcomeMessage_label">
        <property name="geometry">
         <rect>
-         <x>440</x>
+         <x>400</x>
          <y>20</y>
          <width>161</width>
          <height>51</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <family>Source Sans Pro</family>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="text">
-        <string>WELCOME BACK</string>
+        <string>WELCOME BACK,</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_5">
+      <widget class="QLabel" name="name_label">
        <property name="geometry">
         <rect>
          <x>580</x>
@@ -161,8 +177,37 @@
          <height>51</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <family>Microsoft YaHei UI</family>
+         <pointsize>16</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
        <property name="text">
         <string>Name</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label">
+       <property name="geometry">
+        <rect>
+         <x>440</x>
+         <y>70</y>
+         <width>361</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Perpetua</family>
+         <pointsize>12</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>We remember your tasks and remind them to you</string>
        </property>
       </widget>
      </widget>
@@ -208,7 +253,7 @@
         <property name="frameShadow">
          <enum>QFrame::Raised</enum>
         </property>
-        <widget class="QTableView" name="tableView_4">
+        <widget class="QTableView" name="category4_tableView">
          <property name="geometry">
           <rect>
            <x>10</x>
@@ -299,7 +344,7 @@
         <property name="frameShadow">
          <enum>QFrame::Raised</enum>
         </property>
-        <widget class="QTableView" name="tableView_2">
+        <widget class="QTableView" name="category2_tableView">
          <property name="geometry">
           <rect>
            <x>10</x>
@@ -364,7 +409,7 @@
           <string>Category 1</string>
          </property>
         </widget>
-        <widget class="QTableView" name="tableView">
+        <widget class="QTableView" name="category1_tableView">
          <property name="geometry">
           <rect>
            <x>10</x>
@@ -424,7 +469,7 @@
           <string>Category 3</string>
          </property>
         </widget>
-        <widget class="QTableView" name="tableView_3">
+        <widget class="QTableView" name="category3_tableView">
          <property name="geometry">
           <rect>
            <x>10</x>
@@ -632,8 +677,8 @@
     <widget class="QFrame" name="frame_2">
      <property name="geometry">
       <rect>
-       <x>800</x>
-       <y>10</y>
+       <x>910</x>
+       <y>0</y>
        <width>171</width>
        <height>51</height>
       </rect>
@@ -713,7 +758,7 @@
         <x>10</x>
         <y>10</y>
         <width>91</width>
-        <height>41</height>
+        <height>31</height>
        </rect>
       </property>
       <property name="font">

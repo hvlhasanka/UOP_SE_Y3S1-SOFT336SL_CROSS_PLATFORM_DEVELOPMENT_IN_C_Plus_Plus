@@ -21,7 +21,8 @@ SOURCES += \
     reportsubmissionwindow.cpp \
     standarduseraccountlogic.cpp \
     useraccountwindow.cpp \
-    userregistrationwindow.cpp
+    userregistrationwindow.cpp \
+    viewtaskstandarduseraccountdialog.cpp
 
 HEADERS += \
     accountlogic.h \
@@ -35,7 +36,8 @@ HEADERS += \
     reportsubmissionwindow.h \
     standarduseraccountlogic.h \
     useraccountwindow.h \
-    userregistrationwindow.h
+    userregistrationwindow.h \
+    viewtaskstandarduseraccountdialog.h
 
 FORMS += \
     adminaccountwindow.ui \
@@ -44,7 +46,8 @@ FORMS += \
     loginwindow.ui \
     reportsubmissionwindow.ui \
     useraccountwindow.ui \
-    userregistrationwindow.ui
+    userregistrationwindow.ui \
+    viewtaskstandarduseraccountdialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

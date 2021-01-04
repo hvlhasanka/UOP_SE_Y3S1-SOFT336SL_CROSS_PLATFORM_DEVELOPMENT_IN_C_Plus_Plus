@@ -36,8 +36,8 @@ AddNewTaskPremiumUserAccountWindow::AddNewTaskPremiumUserAccountWindow(QWidget *
 
         // Executing sql query and checking the status
         if(!categoryQuery.exec()){
-            qDebug() << "SQL query execution error";
-            qDebug() << categoryQuery.lastError();
+            qWarning() << "SQL query execution error";
+            qWarning() << categoryQuery.lastError();
         }
         else{
             QSqlQueryModel *categoryModal = new QSqlQueryModel();
