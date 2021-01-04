@@ -150,9 +150,9 @@
       <widget class="QLabel" name="welcomeMessage_label">
        <property name="geometry">
         <rect>
-         <x>400</x>
+         <x>430</x>
          <y>20</y>
-         <width>161</width>
+         <width>211</width>
          <height>51</height>
         </rect>
        </property>
@@ -171,7 +171,7 @@
       <widget class="QLabel" name="name_label">
        <property name="geometry">
         <rect>
-         <x>580</x>
+         <x>650</x>
          <y>20</y>
          <width>161</width>
          <height>51</height>
@@ -263,7 +263,7 @@
           </rect>
          </property>
         </widget>
-        <widget class="QLabel" name="label_10">
+        <widget class="QLabel" name="category4_label">
          <property name="geometry">
           <rect>
            <x>10</x>
@@ -279,6 +279,27 @@
          </property>
          <property name="text">
           <string>Category 4</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="category4NoAvailableTasks_label">
+         <property name="geometry">
+          <rect>
+           <x>230</x>
+           <y>100</y>
+           <width>151</width>
+           <height>51</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Microsoft YaHei UI</family>
+           <pointsize>11</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>No Available Tasks</string>
          </property>
         </widget>
        </widget>
@@ -354,7 +375,7 @@
           </rect>
          </property>
         </widget>
-        <widget class="QLabel" name="label_8">
+        <widget class="QLabel" name="category2_label">
          <property name="geometry">
           <rect>
            <x>10</x>
@@ -370,6 +391,30 @@
          </property>
          <property name="text">
           <string>Category 2</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="category2NoAvailableTasks_label">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="geometry">
+          <rect>
+           <x>230</x>
+           <y>90</y>
+           <width>151</width>
+           <height>51</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Microsoft YaHei UI</family>
+           <pointsize>11</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>No Available Tasks</string>
          </property>
         </widget>
        </widget>
@@ -391,7 +436,7 @@
         <property name="frameShadow">
          <enum>QFrame::Raised</enum>
         </property>
-        <widget class="QLabel" name="label_7">
+        <widget class="QLabel" name="category1_label">
          <property name="geometry">
           <rect>
            <x>10</x>
@@ -432,6 +477,27 @@
           <string>...</string>
          </property>
         </widget>
+        <widget class="QLabel" name="category1NoAvailableTasks_label">
+         <property name="geometry">
+          <rect>
+           <x>230</x>
+           <y>90</y>
+           <width>151</width>
+           <height>51</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Microsoft YaHei UI</family>
+           <pointsize>11</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>No Available Tasks</string>
+         </property>
+        </widget>
        </widget>
        <widget class="QFrame" name="frame_7">
         <property name="geometry">
@@ -451,7 +517,7 @@
         <property name="frameShadow">
          <enum>QFrame::Raised</enum>
         </property>
-        <widget class="QLabel" name="label_9">
+        <widget class="QLabel" name="category3_label">
          <property name="geometry">
           <rect>
            <x>10</x>
@@ -477,6 +543,27 @@
            <width>591</width>
            <height>181</height>
           </rect>
+         </property>
+        </widget>
+        <widget class="QLabel" name="category3NoAvailableTasks_label">
+         <property name="geometry">
+          <rect>
+           <x>230</x>
+           <y>90</y>
+           <width>151</width>
+           <height>51</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Microsoft YaHei UI</family>
+           <pointsize>11</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>No Available Tasks</string>
          </property>
         </widget>
        </widget>
