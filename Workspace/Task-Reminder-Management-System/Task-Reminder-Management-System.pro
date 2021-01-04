@@ -19,6 +19,7 @@ SOURCES += \
     loginwindow.cpp \
     premiumuseraccountlogic.cpp \
     reportsubmissionwindow.cpp \
+    setnewreminderstandarduseraccountdialog.cpp \
     standarduseraccountlogic.cpp \
     useraccountwindow.cpp \
     userregistrationwindow.cpp \
@@ -34,6 +35,7 @@ HEADERS += \
     loginwindow.h \
     premiumuseraccountlogic.h \
     reportsubmissionwindow.h \
+    setnewreminderstandarduseraccountdialog.h \
     standarduseraccountlogic.h \
     useraccountwindow.h \
     userregistrationwindow.h \
@@ -45,6 +47,7 @@ FORMS += \
     addnewtaskstandarduseraccountwindow.ui \
     loginwindow.ui \
     reportsubmissionwindow.ui \
+    setnewreminderstandarduseraccountdialog.ui \
     useraccountwindow.ui \
     userregistrationwindow.ui \
     viewtaskstandarduseraccountdialog.ui

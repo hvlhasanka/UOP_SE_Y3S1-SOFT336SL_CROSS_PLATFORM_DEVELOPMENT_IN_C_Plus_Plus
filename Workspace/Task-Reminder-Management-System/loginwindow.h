@@ -21,6 +21,8 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class LoginWindow; }
 QT_END_NAMESPACE
 
+class QSystemTrayIcon;
+
 class LoginWindow : public QMainWindow
 {
     Q_OBJECT
@@ -59,6 +61,7 @@ private:
     // Connecting the reportsubmissionwindow.h
     // Retireving the reportsubmissionwindow.h class path to a pointer
     ReportSubmissionWindow *reportSubmissionWindowFrom;
+
 
 };
 #endif // LOGINWINDOW_H

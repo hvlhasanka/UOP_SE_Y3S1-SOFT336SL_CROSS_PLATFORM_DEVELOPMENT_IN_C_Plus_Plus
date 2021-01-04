@@ -1,4 +1,4 @@
-/***********************************************
+﻿/***********************************************
 **
 **  Source Code Developed By: H.V.L.Hasanka
 **
@@ -53,6 +53,10 @@ void AuthenticateLogic::setAccountActivity(QString accountActivity){
     this->accountActivity = accountActivity;
 }
 
+void AuthenticateLogic::setLoginActivityID(int loginActivityID){
+    this->loginActivityID = loginActivityID;
+}
+
 
 /* Getter Methods */
 int AuthenticateLogic::getLoginID(){
@@ -89,6 +93,10 @@ int AuthenticateLogic::getAccountActivityID(){
 
 QString AuthenticateLogic::getAccountActivity(){
     return accountActivity;
+}
+
+int AuthenticateLogic::getLoginActivityID(){
+    return loginActivityID;
 }
 
 
@@ -482,7 +490,7 @@ QString AuthenticateLogic::loginCredentialVerification(QString enteredEmailAddre
     return "default";
 }
 
-void AuthenticateLogic::addSessionStartToDB(){
+QString AuthenticateLogic::addSessionStartToDB(){
 
     this->setAccountActivityID(1);
     this->setAccountActivity("Online");
@@ -490,6 +498,7 @@ void AuthenticateLogic::addSessionStartToDB(){
     bool databaseConnected = trms_dbConnection->openDatebaseConnection();
     if(databaseConnected == true){
 
+        /* Inserting new record into 'LoginActivity' relation (table) */
         // Declaring new QSqlQuery object by passing the database name
         QSqlQuery sessionStartQuery(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
 
@@ -506,18 +515,85 @@ void AuthenticateLogic::addSessionStartToDB(){
             qWarning() << "SQL query execution error";
             qWarning() << sessionStartQuery.lastError();
             trms_dbConnection->closeDatebaseConnection();
+            return "SQL Execution Failed";
         }
         else{
-            qWarning() << "Session Start Recorded";
-            trms_dbConnection->closeDatebaseConnection();
+
+            /* Retrieving 'LoginActivityID' for the newly inserted record */
+            // Declaring new QSqlQuery object by passing the database name
+            QSqlQuery loginActivityIDQuery(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
+
+            // Preparing sql query for execution
+            loginActivityIDQuery.prepare(QString("SELECT LoginActivityID FROM LoginActivity WHERE lLoginID = :loginID "
+                                                 "ORDER BY LoginDateTime DESC LIMIT 1;"));
+
+            loginActivityIDQuery.bindValue(":loginID", this->getLoginID());
+
+            // Executing sql query and checking the status
+            if(!loginActivityIDQuery.exec()){
+                qWarning() << "SQL query execution error";
+                qWarning() << loginActivityIDQuery.lastError();
+                trms_dbConnection->closeDatebaseConnection();
+                return "SQL Execution Failed";
+            }
+            else{
+                this->setLoginActivityID(loginActivityIDQuery.value(0).toInt());
+                trms_dbConnection->closeDatebaseConnection();
+                qWarning() << "Session Start Recorded";
+                return "Session Start Recorded";
+            }
         }
 
     }
     else{
         qWarning() << "Database Connection Error";
         trms_dbConnection->closeDatebaseConnection();
+        return "Database Connectivity Failed";
     }
 
     trms_dbConnection->closeDatebaseConnection();
 
+}
+
+QString AuthenticateLogic::addSessionEndToDB(){
+
+    this->setAccountActivityID(2);
+    this->setAccountActivity("Offline");
+qDebug() << "1";
+    bool databaseConnected = trms_dbConnection->openDatebaseConnection();
+    if(databaseConnected == true){
+
+        // Declaring new QSqlQuery object by passing the database name
+        QSqlQuery sessionEndQuery(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
+
+        // Preparing sql query for execution
+        bool f = sessionEndQuery.prepare(QString("UPDATE LoginActivity SET LogoutDateTime = :logoutDateTime, aaAccountActivityID = :accountActivityID "
+                                        "WHERE LoginActivityID = :loginActivityID;"));
+        qDebug() << f;
+        sessionEndQuery.bindValue(":logoutDateTime", this->retrieveCurrentDateTime());
+        sessionEndQuery.bindValue(":accountActivityID", this->getAccountActivityID());
+        sessionEndQuery.bindValue(":loginActivityID", this->getLoginActivityID());
+
+        // Executing sql query and checking the status
+        if(!sessionEndQuery.exec()){
+            qWarning() << "SQL query execution error";
+            qWarning() << sessionEndQuery.lastError();
+            trms_dbConnection->closeDatebaseConnection();
+            return "SQL Execution Failed";
+        }
+        else{
+            qWarning() << "Session End Recorded";
+            trms_dbConnection->closeDatebaseConnection();
+            return "Session End Recorded";
+        }
+qDebug() << "3";
+    }
+    else if(databaseConnected == false){
+        qWarning() << "Database Connection Error";
+        trms_dbConnection->closeDatebaseConnection();
+        return "Database Connectivity Failed";qDebug() << "22";
+    }
+
+    trms_dbConnection->closeDatebaseConnection();
+    return "default";
 }

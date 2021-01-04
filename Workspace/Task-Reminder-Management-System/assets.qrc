@@ -9,5 +9,11 @@
         <file>images/TRMS-Logo-Without-Text.ico</file>
         <file>images/Do-Not-Distrub.png</file>
         <file>images/Logout.png</file>
+        <file>images/refresh.png</file>
+        <file>images/Dashboard.png</file>
+        <file>images/Profile.png</file>
+        <file>images/Reminders.png</file>
+        <file>images/Settings.png</file>
+        <file>images/Tasks.png</file>
     </qresource>
 </RCC>

@@ -17,7 +17,7 @@ class AddNewTaskStandardUserAccountWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit AddNewTaskStandardUserAccountWindow(QWidget *parent = nullptr);
+    explicit AddNewTaskStandardUserAccountWindow(int accountID, QWidget *parent = nullptr);
     ~AddNewTaskStandardUserAccountWindow();
 
 private slots:

@@ -1,7 +1,7 @@
 #include "addnewtaskstandarduseraccountwindow.h"
 #include "ui_addnewtaskstandarduseraccountwindow.h"
 
-AddNewTaskStandardUserAccountWindow::AddNewTaskStandardUserAccountWindow(QWidget *parent) :
+AddNewTaskStandardUserAccountWindow::AddNewTaskStandardUserAccountWindow(int accountID, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::AddNewTaskStandardUserAccountWindow)
 {
@@ -24,7 +24,7 @@ AddNewTaskStandardUserAccountWindow::AddNewTaskStandardUserAccountWindow(QWidget
     account = new AccountLogic();
 
     // Creating an object of StandardUserAccountLogic class
-    standardUserAccountLogic = new StandardUserAccountLogic();
+    standardUserAccountLogic = new StandardUserAccountLogic(accountID);
 
     /* Retrieving category values from the database and assigning it to category combobox */
     bool connectionStatus = trms_dbConnection->openDatebaseConnection();
@@ -35,7 +35,7 @@ AddNewTaskStandardUserAccountWindow::AddNewTaskStandardUserAccountWindow(QWidget
         // Preparing sql query for execution
         categoryQuery.prepare(QString("SELECT CategoryName FROM Category WHERE aAccountID == :accountID;"));
 
-        categoryQuery.bindValue("accountID", account->getAccountID());
+        categoryQuery.bindValue(":accountID", accountID);
 
         // Executing sql query and checking the status
         if(!categoryQuery.exec()){

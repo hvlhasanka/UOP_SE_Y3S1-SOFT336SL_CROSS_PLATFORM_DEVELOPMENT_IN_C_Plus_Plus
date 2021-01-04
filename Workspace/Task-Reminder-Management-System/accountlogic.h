@@ -44,6 +44,8 @@ public:
                          QString enteredReportFeedback,
                          QString enteredAuthorReachableEmailAddress);
     QString addNewTask();
+    QString setNewReminder();
+    QString removeReminder(int reminderID);
 
 private:
     // Private variables
@@ -67,6 +69,7 @@ private:
     // Connecting the authenticatelogic.h
     // Retireving the authenticatelogic.h class path to a pointer
     AuthenticateLogic *auth;
+
 };
 
 #endif // ACCOUNTLOGIC_H

@@ -1,7 +1,7 @@
 #include "addnewtaskpremiumuseraccountwindow.h"
 #include "ui_addnewtaskpremiumuseraccountwindow.h"
 
-AddNewTaskPremiumUserAccountWindow::AddNewTaskPremiumUserAccountWindow(QWidget *parent) :
+AddNewTaskPremiumUserAccountWindow::AddNewTaskPremiumUserAccountWindow(int accountID, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::AddNewTaskPremiumUserAccountWindow)
 {
@@ -32,7 +32,7 @@ AddNewTaskPremiumUserAccountWindow::AddNewTaskPremiumUserAccountWindow(QWidget *
         // Preparing sql query for execution
         categoryQuery.prepare(QString("SELECT CategoryName FROM Category WHERE aAccountID == :accountID;"));
 
-        categoryQuery.bindValue("accountID", account->getAccountID());
+        categoryQuery.bindValue(":accountID", accountID);
 
         // Executing sql query and checking the status
         if(!categoryQuery.exec()){
@@ -44,7 +44,8 @@ AddNewTaskPremiumUserAccountWindow::AddNewTaskPremiumUserAccountWindow(QWidget *
             categoryModal->setQuery(categoryQuery);
             ui->category_comboBox->setModel(categoryModal);
         }
-    }
+    } 
+
 }
 
 AddNewTaskPremiumUserAccountWindow::~AddNewTaskPremiumUserAccountWindow()

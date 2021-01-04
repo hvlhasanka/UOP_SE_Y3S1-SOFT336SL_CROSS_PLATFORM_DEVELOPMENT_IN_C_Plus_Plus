@@ -17,7 +17,7 @@ class AddNewTaskPremiumUserAccountWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit AddNewTaskPremiumUserAccountWindow(QWidget *parent = nullptr);
+    explicit AddNewTaskPremiumUserAccountWindow(int accountID, QWidget *parent = nullptr);
     ~AddNewTaskPremiumUserAccountWindow();
 
 private:

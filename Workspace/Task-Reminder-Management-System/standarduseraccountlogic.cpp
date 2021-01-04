@@ -2,6 +2,13 @@
 
 StandardUserAccountLogic::StandardUserAccountLogic()
 {
+
+}
+
+StandardUserAccountLogic::StandardUserAccountLogic(int accountID)
+{
+    passedAccountID = accountID;
+
     // Creating an object of DatabaseConnection class
     trms_dbConnection = new DatabaseConnection();
 
@@ -25,9 +32,9 @@ QString StandardUserAccountLogic::addNewTask(QString enteredTaskTitle, QString e
 
         // Preparing sql query for execution
         categoryIDQuery.prepare(QString("SELECT CategoryID FROM Category WHERE CategoryName = :selectedCategoryName AND aAccountID = :loggedInAccountID;"));
-
+        qDebug() << account->getAccountID();
         categoryIDQuery.bindValue(":selectedCategoryName", selectedTaskCategoryName);
-        categoryIDQuery.bindValue(":loggedInAccountID", account->getAccountID());
+        categoryIDQuery.bindValue(":loggedInAccountID", passedAccountID);
 
         // Executing sql query and checking the status
         if(!categoryIDQuery.exec()){
@@ -57,7 +64,7 @@ QString StandardUserAccountLogic::addNewTask(QString enteredTaskTitle, QString e
         taskQuery.bindValue(":enteredTaskTitle", enteredTaskTitle);
         taskQuery.bindValue(":enteredTaskDescription", enteredTaskDescription);
         taskQuery.bindValue(":currentDateTime", auth->retrieveCurrentDateTime());
-        taskQuery.bindValue(":loggedInAccountID", account->getAccountID());
+        taskQuery.bindValue(":loggedInAccountID", passedAccountID);
         taskQuery.bindValue(":selectedCategoryID", selectedCategoryIDDB);
 
         // Executing sql query and checking the status
@@ -81,4 +88,48 @@ QString StandardUserAccountLogic::addNewTask(QString enteredTaskTitle, QString e
 
     trms_dbConnection->closeDatebaseConnection();
     return "default";
+}
+
+
+QString StandardUserAccountLogic::setNewReminder(int taskID, QString reminderDateTime){
+
+    /* Adding reminder record into 'Reminder' relation (table) */
+    // Assigning database configuration
+    databaseConnection = QSqlDatabase::addDatabase("QSQLITE", "trms_db");
+    databaseConnection.setDatabaseName("C:/Users/Lucas.L.H.H/Documents/GitHub/UOP_SE_Y3S1-SOFT336SL_CROSS_PLATFORM_DEVELOPMENT_IN_C_Plus_Plus/Workspace/Task-Reminder-Management-System/database/trms_db.db");
+
+    // Establishing database connection and checking connection status
+    if (!databaseConnection.open()){
+        qWarning() << "Database Connection Error";
+        qWarning() << databaseConnection.lastError();
+        return "Execution Unsuccessful: Database Connection Error";
+    }
+    else{
+        // Declaring new QSqlQuery object by passing the database name
+        QSqlQuery reminderQuery(QSqlDatabase::database("trms_db"));
+
+        // Preparing sql query for execution
+        reminderQuery.prepare(QString("INSERT INTO Reminder(ReminderDateTime, tTaskID) VALUES "
+                                      "(:reminderDateTime, :taskID);"));
+
+        reminderQuery.bindValue(":reminderDateTime", reminderDateTime);
+        reminderQuery.bindValue(":taskID", taskID);
+
+        // Executing sql query and checking the status
+        if(!reminderQuery.exec()){
+            qWarning() << "SQL query execution error";
+            qWarning() << reminderQuery.lastError();
+            return "Execution Unsuccessful: (SQL Query Error)";
+        }
+        else{
+            return "Execution Successful: Reminder successfully added";
+        }
+    }
+
+
+    // Closing established database connection
+    databaseConnection.close();
+    databaseConnection.removeDatabase(QSqlDatabase::defaultConnection);
+    qWarning() << "Database Connection Closed";
+    return 0;
 }

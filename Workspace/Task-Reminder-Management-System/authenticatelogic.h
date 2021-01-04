@@ -34,6 +34,7 @@ public:
     void setAccountType(QString accountType);
     void setAccountActivityID(int accountActivityID);
     void setAccountActivity(QString accountActivity);
+    void setLoginActivityID(int loginActivityID);
     //Getter Methods
     int getLoginID();
     QString getEmailAddress();
@@ -44,6 +45,7 @@ public:
     QString getAccountType();
     int getAccountActivityID();
     QString getAccountActivity();
+    int getLoginActivityID();
     // Function Methods
     QString retrieveCurrentDateTime();
     bool validateEnteredEmailAddress(QString enteredEmailAddress);
@@ -55,7 +57,8 @@ public:
                             QString enteredMiddleName, QString enteredLastName,
                             QString enteredEmailAddress, QString generatedConfirmPasswordHash,
                             QString selectedAccountType);
-    void addSessionStartToDB();
+    QString addSessionStartToDB();
+    QString addSessionEndToDB();
 
 private:
     // Private variables
@@ -68,6 +71,7 @@ private:
     QString accountType;
     int accountActivityID;
     QString accountActivity;
+    int loginActivityID;
     // Private methods
     // Connecting the databaseconnecion.h
     // Retireving the databaseconnecion.h class path to a pointer

@@ -10,11 +10,25 @@ UserAccountWindow::UserAccountWindow(int loginID, QWidget *parent) :
     // Creating an object of AccountLogic class
     account = new AccountLogic();
 
+    // Creating an object of AuthenticateLogic class
+    auth = new AuthenticateLogic();
+
     // Creating an object of DatabaseConnection class
     trms_dbConnection = new DatabaseConnection();
 
     /* Retrieving the relevant user details from the database */
     bool databaseConnection = trms_dbConnection->openDatebaseConnection();
+
+    timer = new QTimer(this);
+
+    connect(timer, SIGNAL(timeout()), this, SLOT(executeReminderStandardUserAccount()));
+
+    // 1 s
+    timer->start(1000);
+
+    reminderAlert = new QSystemTrayIcon(this);
+    reminderAlert->setIcon(QIcon(":/images/TRMS-Logo-Without-Text.ico"));
+    reminderAlert->setVisible(true);
 
     if(databaseConnection == true){
         // Declaring new QSqlQuery object by passing the database name
@@ -52,9 +66,9 @@ UserAccountWindow::UserAccountWindow(int loginID, QWidget *parent) :
                 account->setDoNotDistrubBooleanValue(userDetailsQuery.value(10).toBool());
             }
             else{
-                trms_dbConnection->closeDatebaseConnection();
                 qWarning() << "User Account Details Successfully retrieved from Database";
             }
+            trms_dbConnection->closeDatebaseConnection();
         }
     }
     else{
@@ -65,26 +79,28 @@ UserAccountWindow::UserAccountWindow(int loginID, QWidget *parent) :
    // account->setAccountActivityID(1);
    // account->setAccountActivity("Online");
 
-    /* Do Not Disturb Image Implementation Source Code */
-    // Getting the Do Not Disturb image
-    QPixmap doNotDisturbImagePix(":/images/Do-Not-Distrub.png");
-    // Getting the width of the doNotDisturbImage_label
-    int doNotDisturbLabelWidth = ui->doNotDisturbImage_label->width();
-    // Getting the height of the doNotDisturbImage_label
-    int doNotDisturbLabelHeight = ui->doNotDisturbImage_label->height();
-    // Setting the cover image of the doNotDisturbImage_label
-    ui->doNotDisturbImage_label->setPixmap(doNotDisturbImagePix.scaled(doNotDisturbLabelWidth, doNotDisturbLabelHeight, Qt::KeepAspectRatio));
+    ui->showTaskDetails_pushButton->setEnabled(false);
 
-    /* Logout Image Implementation Source Code */
-    // Getting the Logout image
-    QPixmap logoutImagePix(":/images/Logout.png");
-    // Getting the width of the logoutImage_label
-    int logoutLabelWidth = ui->logoutImage_label->width();
-    // Getting the height of the logoutImage_label
-    int logoutLabelHeight = ui->logoutImage_label->height();
-    // Setting the cover image of the doNotDisturbImage_label
-    ui->logoutImage_label->setPixmap(logoutImagePix.scaled(logoutLabelWidth, logoutLabelHeight, Qt::KeepAspectRatio));
+    /* Checking account type to show 'Do Not Disturb' check box */
+    ui->doNotDistrub_checkBox->setVisible(false);
+    if(account->getAccountType() == "Premium User Account"){
+        ui->doNotDistrub_checkBox->setVisible(true);
+    }
 
+    /* Logo Image Implementation Source Code */
+    // Getting the logo image
+    QPixmap logoImagePix(":/images/TRMS-Logo-Without-Text.jpg");
+    // Getting the width of the logo_label
+    int logoLabelWidth = ui->logo_label->width();
+    // Getting the height of the logo_label
+    int logoLabelHeight = ui->logo_label->height();
+    // Setting the cover image of the logo_label
+    ui->logo_label->setPixmap(logoImagePix.scaled(logoLabelWidth, logoLabelHeight, Qt::KeepAspectRatio));
+
+
+    // Setting welcome messages to hide (false)
+    ui->welcomeToTRMSMessage_label->setVisible(false);
+    ui->welcomeBackMessage_label->setVisible(false);
 
     /* Changin the 'Welcome' message in the Dasbboard tab to show the relevant message for new users and existing users */
     QString recordCount;
@@ -113,16 +129,20 @@ UserAccountWindow::UserAccountWindow(int loginID, QWidget *parent) :
         }
 
         if(recordCount.toInt() == 1){
-            ui->welcomeMessage_label->setText("Welcome to TRMS!,");
+            ui->welcomeToTRMSMessage_label->setVisible(true);
         }
         else if(recordCount.toInt() > 1){
-            ui->welcomeMessage_label->setText("Welcome Back,");
+            ui->welcomeBackMessage_label->setVisible(true);
         }
     }
     else if(databaseConnected == false){
         trms_dbConnection->closeDatebaseConnection();
         qWarning() << "Database Connection Error";
     }
+
+
+    /* Assigning the user's name in the 'Dashboard' tab */
+    ui->name_label->setText(account->getNamePrefix() + " " + account->getFirstName() + "  " + account->getLastName());
 
 
     /* Retrieving the category names from the database and assigning them in the user interface */
@@ -251,10 +271,10 @@ UserAccountWindow::UserAccountWindow(int loginID, QWidget *parent) :
         QSqlQuery category1Query(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
 
         // Preparing sql query for execution
-        category1Query.prepare(QString("SELECT t.Title as 'Task Title', t.TaskDescription as 'Task Description', c.CategoryName as 'Category Name' FROM "
+        category1Query.prepare(QString("SELECT t.TaskID as 'Task ID', 't.Title' as 'Task Title', t.TaskDescription as 'Task Description', c.CategoryName as 'Category Name' FROM "
                                      "Task t INNER JOIN Category c ON c.CategoryID = t.cCategoryID "
                                      "INNER JOIN CategoryType ct ON ct.CategoryTypeID = c.ctCategoryTypeID "
-                                     "WHERE t.aAccountID == 1 AND ct.CategoryType = 'Category 1';"));
+                                     "WHERE t.aAccountID == :accountID AND ct.CategoryType = 'Category 1';"));
 
         category1Query.bindValue(":accountID", account->getAccountID());
 
@@ -284,10 +304,10 @@ UserAccountWindow::UserAccountWindow(int loginID, QWidget *parent) :
         QSqlQuery category2Query(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
 
         // Preparing sql query for execution
-        category2Query.prepare(QString("SELECT t.Title as 'Task Title', t.TaskDescription as 'Task Description', c.CategoryName as 'Category Name' FROM "
+        category2Query.prepare(QString("SELECT t.TaskID as 'Task ID', t.Title as 'Task Title', t.TaskDescription as 'Task Description', c.CategoryName as 'Category Name' FROM "
                                      "Task t INNER JOIN Category c ON c.CategoryID = t.cCategoryID "
                                      "INNER JOIN CategoryType ct ON ct.CategoryTypeID = c.ctCategoryTypeID "
-                                     "WHERE t.aAccountID == 1 AND ct.CategoryType = 'Category 2';"));
+                                     "WHERE t.aAccountID == :accountID AND ct.CategoryType = 'Category 2';"));
 
         category2Query.bindValue(":accountID", account->getAccountID());
 
@@ -317,10 +337,10 @@ UserAccountWindow::UserAccountWindow(int loginID, QWidget *parent) :
         QSqlQuery category3Query(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
 
         // Preparing sql query for execution
-        category3Query.prepare(QString("SELECT t.Title as 'Task Title', t.TaskDescription as 'Task Description', c.CategoryName as 'Category Name' FROM "
+        category3Query.prepare(QString("SELECT t.TaskID as 'Task ID', t.Title as 'Task Title', t.TaskDescription as 'Task Description', c.CategoryName as 'Category Name' FROM "
                                      "Task t INNER JOIN Category c ON c.CategoryID = t.cCategoryID "
                                      "INNER JOIN CategoryType ct ON ct.CategoryTypeID = c.ctCategoryTypeID "
-                                     "WHERE t.aAccountID == 1 AND ct.CategoryType = 'Category 3';"));
+                                     "WHERE t.aAccountID == :accountID AND ct.CategoryType = 'Category 3';"));
 
         category3Query.bindValue(":accountID", account->getAccountID());
 
@@ -350,10 +370,10 @@ UserAccountWindow::UserAccountWindow(int loginID, QWidget *parent) :
         QSqlQuery category4Query(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
 
         // Preparing sql query for execution
-        category4Query.prepare(QString("SELECT t.Title as 'Task Title', t.TaskDescription as 'Task Description', c.CategoryName as 'Category Name' FROM "
+        category4Query.prepare(QString("SELECT t.TaskID as 'Task ID', t.Title as 'Task Title', t.TaskDescription as 'Task Description', c.CategoryName as 'Category Name' FROM "
                                      "Task t INNER JOIN Category c ON c.CategoryID = t.cCategoryID "
                                      "INNER JOIN CategoryType ct ON ct.CategoryTypeID = c.ctCategoryTypeID "
-                                     "WHERE t.aAccountID == 1 AND ct.CategoryType = 'Category 4';"));
+                                     "WHERE t.aAccountID == :accountID AND ct.CategoryType = 'Category 4';"));
 
         category4Query.bindValue(":accountID", account->getAccountID());
 
@@ -385,8 +405,6 @@ UserAccountWindow::UserAccountWindow(int loginID, QWidget *parent) :
     }
 
 
-
-
 }
 
 UserAccountWindow::~UserAccountWindow()
@@ -394,15 +412,68 @@ UserAccountWindow::~UserAccountWindow()
     delete ui;
 }
 
+// Function used to identify the time to run the reminder and will execute the reminder functionality
+void UserAccountWindow::executeReminderStandardUserAccount()
+{
+
+    // Getting current datetime
+    QString currentDateTime = auth->retrieveCurrentDateTime();
+    qDebug() << account->getAccountID();
+    qDebug() << account->getAccountType();
+    /* Retrieving all available reminders from the 'Reminders' relation (table) */
+    bool databaseConnected = trms_dbConnection->openDatebaseConnection();
+    if(databaseConnected == true){
+
+        QSqlQuery remindersQuery(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
+
+        // Preparing sql query for execution
+        remindersQuery.prepare(QString("SELECT r.ReminderID, r.ReminderDateTime, t.Title, t.TaskDescription FROM "
+                                       "Reminder r INNER JOIN Task t ON t.TaskID = r.tTaskID "
+                                       "WHERE t.aAccountID = :accountID;"));
+
+        remindersQuery.bindValue(":accountID", account->getAccountID());
+
+        // Executing sql query and checking the status
+        if(!remindersQuery.exec()){
+            qWarning() << "SQL query execution error";
+            qWarning() << remindersQuery.lastError();
+        }
+        else{
+            while(remindersQuery.next()){
+                if(currentDateTime == remindersQuery.value(1).toString()){
+                    reminderAlert->showMessage(remindersQuery.value(2).toString(), remindersQuery.value(2).toString());
+                    QString removeExecutedReminderStatus = account->removeReminder(remindersQuery.value(0).toInt());
+                    if(removeExecutedReminderStatus == "Execution Unsuccessful: (SQL Query Error)"){
+                        qWarning() << "ERROR: SQL Query execution error";
+                    }
+                    else if(removeExecutedReminderStatus == "Execution Unsuccessful: Database Connection Error"){
+                        qWarning() << "ERROR: Database Connectivity Error";
+                    }
+                }
+            }
+        }
+    }
+    else if(databaseConnected == false){
+        qWarning() << "Database Connectivity ERROR";
+    }
+    trms_dbConnection->closeDatebaseConnection();
+
+}
+
+void UserAccountWindow::executeReminderPremiumUserAccount()
+{
+
+}
+
 void UserAccountWindow::on_addNewTask_pushButton_clicked()
 {
     // Openning the appropriate add new task window according to the account type
     if(account->getAccountType() == "Standard User Account"){
-        addNewTaskStandardUserAccountWindowForm = new AddNewTaskStandardUserAccountWindow(this);
+        addNewTaskStandardUserAccountWindowForm = new AddNewTaskStandardUserAccountWindow(account->getAccountID(), this);
         addNewTaskStandardUserAccountWindowForm->show();
     }
     else if(account->getAccountType() == "Premium User Account"){
-        addNewTaskPremiumUserAccountWindowForm = new AddNewTaskPremiumUserAccountWindow(this);
+        addNewTaskPremiumUserAccountWindowForm = new AddNewTaskPremiumUserAccountWindow(account->getAccountID(), this);
         addNewTaskPremiumUserAccountWindowForm->show();
     }
 }
@@ -415,11 +486,217 @@ void UserAccountWindow::on_report_pushButton_clicked()
 
 }
 
-void UserAccountWindow::on_addNewTask_pushButton_2_clicked()
+void UserAccountWindow::on_logout_pushButton_clicked()
 {
 
-    // End Session
-    // Close Window
-    // Open Login Window
+    // Showing message box to the user to get the confirmation to logout
+    int userLogoutResponse = QMessageBox::question(this, "LOGOUT CONFIRMATION",
+                          "This action will logout you out, do you want to continue?"
+                          , "Cancel", "Continue");
+
+    if(userLogoutResponse == 1){
+        /* Recording session end */
+        QString sessionEndStatus = auth->addSessionEndToDB();
+
+        if(sessionEndStatus == "Session End Recorded"){
+            this->hide();
+        }
+        else if(sessionEndStatus == "SQL Execution Failed"){
+            QMessageBox::critical(this, "LOGIN - SESSION END ERROR", "SQL query execution was unsuccessful, please submit a report including your email address.");
+        }
+        else if(sessionEndStatus == "Database Connectivity Failed"){
+            QMessageBox::critical(this, "LOGIN - SESSION END ERROR", "Database Connection has lost, please submit a report.");
+        }
+
+    }
+
+}
+
+
+void UserAccountWindow::on_refresh_pushButton_clicked()
+{
+
+    // Setting 'No Tasks Available' messages to hide (false)
+    ui->category1NoAvailableTasks_label->setVisible(false);
+    ui->category2NoAvailableTasks_label->setVisible(false);
+    ui->category3NoAvailableTasks_label->setVisible(false);
+    ui->category4NoAvailableTasks_label->setVisible(false);
+
+
+    /* Retrieving task details from the database and populating the relevant table views according the to category type */
+    bool databaseConnectedCategory = trms_dbConnection->openDatebaseConnection();
+    if(databaseConnectedCategory == true){
+
+        // Category 1 Tasks
+        // Declaring new QSqlQuery object by passing the database name
+        QSqlQuery category1Query(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
+
+        // Preparing sql query for execution
+        category1Query.prepare(QString("SELECT t.TaskID as 'Task ID', t.Title as 'Task Title', t.TaskDescription as 'Task Description', c.CategoryName as 'Category Name' FROM "
+                                     "Task t INNER JOIN Category c ON c.CategoryID = t.cCategoryID "
+                                     "INNER JOIN CategoryType ct ON ct.CategoryTypeID = c.ctCategoryTypeID "
+                                     "WHERE t.aAccountID == :accountID AND ct.CategoryType = 'Category 1';"));
+
+        category1Query.bindValue(":accountID", account->getAccountID());
+
+        // Executing sql query and checking the status
+        if(!category1Query.exec()){
+            qWarning() << "SQL query execution error";
+            trms_dbConnection->closeDatebaseConnection();
+            qWarning() << category1Query.lastError();
+        }
+        else{
+            if(category1Query.next()){
+                QSqlQueryModel *category1Modal = new QSqlQueryModel();
+                category1Modal->setQuery(category1Query);
+
+                ui->category1_tableView->setModel(category1Modal);
+                ui->category1_tableView->resizeColumnsToContents();
+            }
+            else{
+                ui->category1NoAvailableTasks_label->setVisible(true);
+            }
+
+            trms_dbConnection->closeDatebaseConnection();
+        }
+
+        // Category 2 Tasks
+        // Declaring new QSqlQuery object by passing the database name
+        QSqlQuery category2Query(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
+
+        // Preparing sql query for execution
+        category2Query.prepare(QString("SELECT t.TaskID as 'Task ID', t.Title as 'Task Title', t.TaskDescription as 'Task Description', c.CategoryName as 'Category Name' FROM "
+                                     "Task t INNER JOIN Category c ON c.CategoryID = t.cCategoryID "
+                                     "INNER JOIN CategoryType ct ON ct.CategoryTypeID = c.ctCategoryTypeID "
+                                     "WHERE t.aAccountID == :accountID AND ct.CategoryType = 'Category 2';"));
+
+        category2Query.bindValue(":accountID", account->getAccountID());
+
+        // Executing sql query and checking the status
+        if(!category2Query.exec()){
+            qWarning() << "SQL query execution error";
+            trms_dbConnection->closeDatebaseConnection();
+            qWarning() << category2Query.lastError();
+        }
+        else{
+            if(category2Query.next()){
+                QSqlQueryModel *category2Model = new QSqlQueryModel();
+                category2Model->setQuery(category2Query);
+
+                ui->category2_tableView->setModel(category2Model);
+                ui->category2_tableView->resizeColumnsToContents();
+            }
+            else{
+                ui->category2NoAvailableTasks_label->setVisible(true);
+            }
+
+            trms_dbConnection->closeDatebaseConnection();
+        }
+
+        // Category 3 Tasks
+        // Declaring new QSqlQuery object by passing the database name
+        QSqlQuery category3Query(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
+
+        // Preparing sql query for execution
+        category3Query.prepare(QString("SELECT t.TaskID as 'Task ID', t.Title as 'Task Title', t.TaskDescription as 'Task Description', c.CategoryName as 'Category Name' FROM "
+                                     "Task t INNER JOIN Category c ON c.CategoryID = t.cCategoryID "
+                                     "INNER JOIN CategoryType ct ON ct.CategoryTypeID = c.ctCategoryTypeID "
+                                     "WHERE t.aAccountID == :accountID AND ct.CategoryType = 'Category 3';"));
+
+        category3Query.bindValue(":accountID", account->getAccountID());
+
+        // Executing sql query and checking the status
+        if(!category3Query.exec()){
+            qWarning() << "SQL query execution error";
+            trms_dbConnection->closeDatebaseConnection();
+            qWarning() << category3Query.lastError();
+        }
+        else{
+            if(category3Query.next()){
+                QSqlQueryModel *category3Modal = new QSqlQueryModel();
+                category3Modal->setQuery(category3Query);
+
+                ui->category3_tableView->setModel(category3Modal);
+                ui->category3_tableView->resizeColumnsToContents();
+            }
+            else{
+                ui->category3NoAvailableTasks_label->setVisible(true);
+            }
+
+            trms_dbConnection->closeDatebaseConnection();
+        }
+
+        // Category 4 Tasks
+        // Declaring new QSqlQuery object by passing the database name
+        QSqlQuery category4Query(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
+
+        // Preparing sql query for execution
+        category4Query.prepare(QString("SELECT t.TaskID as 'Task ID', t.Title as 'Task Title', t.TaskDescription as 'Task Description', c.CategoryName as 'Category Name' FROM "
+                                     "Task t INNER JOIN Category c ON c.CategoryID = t.cCategoryID "
+                                     "INNER JOIN CategoryType ct ON ct.CategoryTypeID = c.ctCategoryTypeID "
+                                     "WHERE t.aAccountID == :accountID AND ct.CategoryType = 'Category 4';"));
+
+        category4Query.bindValue(":accountID", account->getAccountID());
+
+        // Executing sql query and checking the status
+        if(!category4Query.exec()){
+            qWarning() << "SQL query execution error";
+            trms_dbConnection->closeDatebaseConnection();
+            qWarning() << category4Query.lastError();
+        }
+        else{
+            if(category4Query.next()){
+                QSqlQueryModel *category4Model = new QSqlQueryModel();
+                category4Model->setQuery(category4Query);
+
+                ui->category4_tableView->setModel(category4Model);
+                ui->category4_tableView->resizeColumnsToContents();
+            }
+            else{
+                ui->category4NoAvailableTasks_label->setVisible(true);
+            }
+
+            trms_dbConnection->closeDatebaseConnection();
+        }
+
+    }
+    else if(databaseConnectedCategory == false){
+        trms_dbConnection->closeDatebaseConnection();
+        qWarning() << "Database Connection Error";
+    }
+
+
+}
+
+
+
+void UserAccountWindow::on_showTaskDetails_lineEdit_textChanged(const QString &arg1)
+{
+    // Checking whether the user entered task IS value is in the correct regular expression
+    // arg1 = ui->showTaskDetails_lineEdit->text();
+    QString enteredTaskID = arg1;
+    QRegularExpression re("[0-9]+");
+    QRegularExpressionMatch validationCheck = re.match(enteredTaskID);
+    bool validationResponse = validationCheck.hasMatch();
+    if(validationResponse == true){
+        // Changing lineEdit border styles
+        ui->showTaskDetails_lineEdit->setStyleSheet("border: 2px solid green;"
+                                                 "background-color: rgb(255, 255, 255);");
+        ui->showTaskDetails_pushButton->setEnabled(true);
+    }
+    else if (validationResponse == false){
+        // Changing lineEdit border styles
+        ui->showTaskDetails_lineEdit->setStyleSheet("border: 2px solid red;"
+                                                 "background-color: rgb(255, 255, 255);");
+        ui->showTaskDetails_pushButton->setEnabled(false);
+    }
+
+}
+
+void UserAccountWindow::on_showTaskDetails_pushButton_clicked()
+{
+
+    viewTaskStandardUserAccountDialogForm = new ViewTaskStandardUserAccountDialog(ui->showTaskDetails_lineEdit->text().toInt(), this);
+    viewTaskStandardUserAccountDialogForm->show();
 
 }

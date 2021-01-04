@@ -5,7 +5,7 @@
 #include <QRegularExpression>
 #include <QMessageBox>
 
-#include <accountlogic.h>
+#include "accountlogic.h"
 
 namespace Ui {
 class ReportSubmissionWindow;

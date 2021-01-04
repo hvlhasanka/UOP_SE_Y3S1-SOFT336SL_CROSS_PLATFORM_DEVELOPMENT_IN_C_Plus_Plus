@@ -185,30 +185,42 @@ void LoginWindow::on_login_pushButton_clicked()
 
     if(loginCredentialsVerification == "Verification Successful: Account Type: UserAccount"){
 
-        /* Setting accountAcitivity to online */
-        auth->setAccountActivityID(1);
-        auth->setAccountActivity("Online");
-
         /* Recording session start */
-        auth->addSessionStartToDB();
+        QString sessionStartStatus = auth->addSessionStartToDB();
 
-        this->hide();
-        userAccountWindowForm = new UserAccountWindow(auth->getLoginID(), this);
-        userAccountWindowForm->show();
+        if(sessionStartStatus == "Session Start Recorded"){
+
+            this->hide();
+            userAccountWindowForm = new UserAccountWindow(auth->getLoginID(), this);
+            userAccountWindowForm->show();
+
+        }
+        else if(sessionStartStatus == "SQL Execution Failed"){
+            QMessageBox::critical(this, "LOGIN - SESSION START ERROR", "SQL query execution was unsuccessful, please submit a report including your email address.");
+        }
+        else if(sessionStartStatus == "Database Connectivity Failed"){
+            QMessageBox::critical(this, "LOGIN - SESSION START ERROR", "Database Connection has lost, please submit a report.");
+        }
 
     }
     else if(loginCredentialsVerification == "Verification Successful: Account Type: AdminAccount"){
 
-        /* Setting accountAcitivity to online */
-        auth->setAccountActivityID(1);
-        auth->setAccountActivity("Online");
-
         /* Recording session start */
-        auth->addSessionStartToDB();
+        QString sessionStartStatus = auth->addSessionStartToDB();
 
-        this->hide();
-        adminAccountWindowForm = new AdminAccountWindow(this);
-        adminAccountWindowForm->show();
+        if(sessionStartStatus == "Session Start Recorded"){
+
+            this->hide();
+            adminAccountWindowForm = new AdminAccountWindow(this);
+            adminAccountWindowForm->show();
+
+        }
+        else if(sessionStartStatus == "SQL Execution Failed"){
+            QMessageBox::critical(this, "LOGIN - SESSION START ERROR", "SQL query execution was unsuccessful, please submit a report including your email address.");
+        }
+        else if(sessionStartStatus == "Database Connectivity Failed"){
+            QMessageBox::critical(this, "LOGIN - SESSION START ERROR", "Database Connection has lost, please submit a report.");
+        }
 
     }
     else if(loginCredentialsVerification == "Verification Unsuccessful: Account Disabled"){

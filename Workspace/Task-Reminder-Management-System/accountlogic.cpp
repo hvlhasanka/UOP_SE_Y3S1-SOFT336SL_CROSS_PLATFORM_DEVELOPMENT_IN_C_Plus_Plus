@@ -1,5 +1,7 @@
 #include "accountlogic.h"
 
+#include <QSystemTrayIcon>
+
 AccountLogic::AccountLogic()
 {
 
@@ -140,3 +142,41 @@ QString AccountLogic::submitReport(QString enteredReportSubject, QString entered
     return "default";
 
 }
+
+QString AccountLogic::removeReminder(int reminderID)
+{
+
+    bool databaseConnected = trms_dbConnection->openDatebaseConnection();
+    if(databaseConnected == true){
+
+        /* Removing record from 'Reminder' relation (table)  */
+        // Declaring new QSqlQuery object by passing the database name
+        QSqlQuery reminderQuery(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
+
+        // Preparing sql query for execution
+        reminderQuery.prepare(QString("DELETE FROM Reminder WHERE ReminderID = :reminderID;"));
+
+        reminderQuery.bindValue(":reminderID", reminderID);
+
+        // Executing sql query and checking the status
+        if(!reminderQuery.exec()){
+            qWarning() << "SQL query execution error";
+            qWarning() << reminderQuery.lastError();
+            trms_dbConnection->closeDatebaseConnection();
+            return "Execution Unsuccessful: SQL query execution error";
+        }
+        else{
+            trms_dbConnection->closeDatebaseConnection();
+            return "Reminder Removal Successful";
+        }
+
+    }
+    else if(databaseConnected == false){
+        trms_dbConnection->closeDatebaseConnection();
+        return "Execution Unsuccessful: Database Connection Error";
+    }
+    trms_dbConnection->closeDatebaseConnection();
+    return "default";
+
+}
+

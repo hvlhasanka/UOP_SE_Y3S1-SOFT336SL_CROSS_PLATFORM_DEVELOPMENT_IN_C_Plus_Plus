@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>470</width>
-    <height>451</height>
+    <height>491</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <x>0</x>
      <y>0</y>
      <width>471</width>
-     <height>451</height>
+     <height>491</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -56,7 +56,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>70</y>
+      <y>60</y>
       <width>341</width>
       <height>211</height>
      </rect>
@@ -77,13 +77,13 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>290</y>
+      <y>280</y>
       <width>41</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>Color</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="categoryName_label">
@@ -91,14 +91,14 @@
      <rect>
       <x>80</x>
       <y>290</y>
-      <width>111</width>
+      <width>191</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Myriad Hebrew</family>
-      <pointsize>11</pointsize>
+      <pointsize>16</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
@@ -147,7 +147,7 @@
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>410</y>
+      <y>430</y>
       <width>181</width>
       <height>31</height>
      </rect>
@@ -159,7 +159,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(182, 192, 196);</string>
+     <string notr="true">background-color: rgb(249, 249, 249);</string>
     </property>
     <property name="text">
      <string>EDIT TASK DETAILS</string>
@@ -169,7 +169,7 @@
     <property name="geometry">
      <rect>
       <x>240</x>
-      <y>410</y>
+      <y>430</y>
       <width>181</width>
       <height>31</height>
      </rect>
@@ -181,27 +181,78 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(182, 192, 196);</string>
+     <string notr="true">background-color: rgb(249, 249, 249);</string>
     </property>
     <property name="text">
      <string>REMOVE TASK</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="close_pushButton">
+   <widget class="QPushButton" name="setReminder_pushButton">
     <property name="geometry">
      <rect>
-      <x>420</x>
-      <y>10</y>
-      <width>41</width>
-      <height>31</height>
+      <x>280</x>
+      <y>290</y>
+      <width>141</width>
+      <height>41</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI Semilight</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(249, 249, 249);</string>
+    </property>
     <property name="text">
-     <string>Close</string>
+     <string>SET REMINDER</string>
+    </property>
+    <property name="icon">
+     <iconset resource="assets.qrc">
+      <normaloff>:/images/Reminders.png</normaloff>:/images/Reminders.png</iconset>
+    </property>
+   </widget>
+   <widget class="QLabel" name="taskCreatedDateTime_label">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>340</y>
+      <width>251</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>datetime</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="taskLastEditedDateTime_label">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>370</y>
+      <width>241</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>datetime</string>
     </property>
    </widget>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="assets.qrc"/>
+ </resources>
  <connections/>
 </ui>

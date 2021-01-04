@@ -25,7 +25,10 @@ CREATE TABLE Login(
 
 -- Inserting records INTO Table 2 - Login
 INSERT INTO Login(EmailAddress, PasswordHash, asAccountStatusID)
-Values ("mchatte@gmail.com", "8944854914295023676", 1); -- Password: ChattEddie3$
+VALUES
+("mchatte@gmail.com", "8944854914295023676", 1), -- Password: ChattEddie3$
+("lukieklaus@outlook.com", "12919050737726948275", 1), -- Passoword: KlausWest5#
+("harlowbillie@gmail.com", "4821787964794285019", 1); -- Password: HarlowHart$2
 
 
 -- Creating Table 3 - AccountType
@@ -92,7 +95,9 @@ CREATE TABLE Account(
 -- Inserting records INTO Table 6 - Account
 INSERT INTO Account(FirstName, MiddleName, LastName, CreatedDateTime, npNamePrefixID, atAccountTypeID, dvDoNotDistrubBooleanValueID, lLoginID)
 VALUES
-("Eddie", "Mellicent", "Chatt", "2020-12-26 12:55:28", 1, 1, 2, 1);
+("Eddie", "Mellicent", "Chatt", "2020-12-26 07:23:28", 2, 1, 2, 1),
+("Westley", "Klaus", "Mclukie", "2020-12-27 10:15:28", 2, 2, 2, 2),
+("Billie", "Hartwell", "Harlow", "2020-12-28 13:32:28", 2, 3, 2, 3);
 
 
 -- Creating Table 7 - AccountActivity
@@ -186,7 +191,11 @@ VALUES
 ("Work", 1, 1, 1),
 ("School", 2, 1, 1),
 ("Home", 3, 1, 1),
-("Food", 4, 1, 1);
+("Category 4", 4, 1, 1),
+("School", 1, 1, 2),
+("Home", 2, 1, 2),
+("Category 3", 3, 1, 2),
+("Category 4", 4, 1, 2);
 
 
 -- Creating Table 13 - Task
