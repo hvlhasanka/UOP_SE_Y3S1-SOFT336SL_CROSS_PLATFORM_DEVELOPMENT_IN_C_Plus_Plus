@@ -20,5 +20,6 @@
         <file>images/About.png</file>
         <file>images/AboutImage.png</file>
         <file>images/Exit.png</file>
+        <file>images/Report.png</file>
     </qresource>
 </RCC>

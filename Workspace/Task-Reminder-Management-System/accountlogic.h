@@ -48,6 +48,15 @@ public:
     QString removeReminder(int reminderID);
 
 private:
+    // Private methods
+    // Connecting the databaseconnecion.h
+    // Retireving the databaseconnecion.h class path to a pointer
+    DatabaseConnection *trms_dbConnection;
+    // Connecting the authenticatelogic.h
+    // Retireving the authenticatelogic.h class path to a pointer
+    AuthenticateLogic *auth;
+
+protected:
     // Private variables
     int loginID;
     int accountID;
@@ -62,13 +71,6 @@ private:
     bool doNotDistrubBooleanValue;
     int accountActivityID;
     QString accountActivity;
-    // Private methods
-    // Connecting the databaseconnecion.h
-    // Retireving the databaseconnecion.h class path to a pointer
-    DatabaseConnection *trms_dbConnection;
-    // Connecting the authenticatelogic.h
-    // Retireving the authenticatelogic.h class path to a pointer
-    AuthenticateLogic *auth;
 
 };
 

@@ -17,6 +17,9 @@ UserAccountWindow::UserAccountWindow(int loginID, QWidget *parent) :
     // Setting the cover image of the logo_label
     ui->logo_label->setPixmap(logoImagePix.scaled(logoLabelWidth, logoLabelHeight, Qt::KeepAspectRatio));
 
+    // Setting 'Dashboard' tab as the initial tab
+    ui->userAccount_tabWidget->setCurrentIndex(0);
+
     // Creating an object of AccountLogic class
     account = new AccountLogic();
 
@@ -662,6 +665,9 @@ void UserAccountWindow::changeUIForSelectedDate(QDate selectedDate)
     // Setting 'No Reminder Assigned' message to hide (false)
     ui->noRemindersAssigned_label->setVisible(false);
 
+    // Setting 'taskReminders_tableView' to hide
+    ui->taskReminders_tableView->setVisible(false);
+
     // Reformatting QDate that was sent as a parameter
     QString selectedDateReformat = selectedDate.toString("dddd, d MMMM yyyy");
 
@@ -696,8 +702,9 @@ void UserAccountWindow::changeUIForSelectedDate(QDate selectedDate)
                 QSqlQueryModel *reminderModal = new QSqlQueryModel();
                 reminderModal->setQuery(reminderQuery);
 
+                ui->taskReminders_tableView->setVisible(true);
                 ui->taskReminders_tableView->setModel(reminderModal);
-              //  ui->category1_tableView->resizeColumnsToContents();
+                ui->taskReminders_tableView->resizeColumnsToContents();
             }
             else{
                 ui->noRemindersAssigned_label->setVisible(true);
@@ -1008,6 +1015,16 @@ void UserAccountWindow::on_tabWidget_currentChanged(int index)
             qWarning() << "Database Connection Error";
         }
     }
+    else if(index == 2){
+
+        // REMINDERS TAB
+        /* Retrieving the current data, reminders on the current date and applying it to the user interface */
+        QDate currentDate = QDate::currentDate();
+        this->changeUIForSelectedDate(currentDate);
+
+    }
+
+
 }
 
 void UserAccountWindow::on_standardAccount_radioButton_toggled(bool checked)

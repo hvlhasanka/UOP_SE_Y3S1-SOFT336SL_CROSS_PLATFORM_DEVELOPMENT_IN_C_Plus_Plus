@@ -46,9 +46,7 @@ private slots:
     void on_premiumAccount_radioButton_toggled(bool checked);
     void on_editReminder_pushButton_clicked();
     void on_actionAbout_triggered();
-
     void on_actionLogout_triggered();
-
     void on_actionExit_triggered();
 
 private:
