@@ -47,6 +47,10 @@ private slots:
     void on_editReminder_pushButton_clicked();
     void on_actionAbout_triggered();
 
+    void on_actionLogout_triggered();
+
+    void on_actionExit_triggered();
+
 private:
     Ui::UserAccountWindow *ui;
     // Connecting the authenticatelogic.h

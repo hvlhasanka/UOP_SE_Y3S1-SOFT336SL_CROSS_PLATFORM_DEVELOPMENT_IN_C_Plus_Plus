@@ -1092,3 +1092,55 @@ void UserAccountWindow::on_actionAbout_triggered()
     aboutDialogForm->show();
 
 }
+
+void UserAccountWindow::on_actionLogout_triggered()
+{
+
+    // Showing message box to the user to get the confirmation to logout
+    int userLogoutResponse = QMessageBox::question(this, "LOGOUT CONFIRMATION",
+                          "This action will logout you out, do you want to continue?"
+                          , "Cancel", "Continue");
+
+    if(userLogoutResponse == 1){
+        /* Recording session end */
+        QString sessionEndStatus = auth->addSessionEndToDB(account->getLoginID());
+
+        if(sessionEndStatus == "Session End Recorded"){
+            this->hide();
+        }
+        else if(sessionEndStatus == "SQL Execution Failed"){
+            QMessageBox::critical(this, "LOGIN - SESSION END ERROR", "SQL query execution was unsuccessful, please submit a report including your email address.");
+        }
+        else if(sessionEndStatus == "Database Connectivity Failed"){
+            QMessageBox::critical(this, "LOGIN - SESSION END ERROR", "Database Connection has lost, please submit a report.");
+        }
+
+    }
+
+}
+
+void UserAccountWindow::on_actionExit_triggered()
+{
+
+    // Showing message box to the user to get the confirmation to logout
+    int userLogoutResponse = QMessageBox::question(this, "LOGOUT CONFIRMATION",
+                          "This action will logout you out, do you want to continue?"
+                          , "Cancel", "Continue");
+
+    if(userLogoutResponse == 1){
+        /* Recording session end */
+        QString sessionEndStatus = auth->addSessionEndToDB(account->getLoginID());
+
+        if(sessionEndStatus == "Session End Recorded"){
+            this->hide();
+        }
+        else if(sessionEndStatus == "SQL Execution Failed"){
+            QMessageBox::critical(this, "LOGIN - SESSION END ERROR", "SQL query execution was unsuccessful, please submit a report including your email address.");
+        }
+        else if(sessionEndStatus == "Database Connectivity Failed"){
+            QMessageBox::critical(this, "LOGIN - SESSION END ERROR", "Database Connection has lost, please submit a report.");
+        }
+
+    }
+
+}
