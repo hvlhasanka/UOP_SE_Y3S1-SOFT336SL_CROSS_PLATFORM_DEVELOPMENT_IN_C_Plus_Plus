@@ -28,7 +28,7 @@ INSERT INTO Login(EmailAddress, PasswordHash, asAccountStatusID)
 VALUES
 ("mchatte@gmail.com", "8944854914295023676", 1), -- Password: ChattEddie3$
 ("lukieklaus@outlook.com", "12919050737726948275", 1), -- Passoword: KlausWest5#
-("harlowbillie@gmail.com", "4821787964794285019", 1); -- Password: HarlowHart$2
+("trms.developer@gmail.com", "4821787964794285019", 1); -- Password: HarlowHart$2
 
 
 -- Creating Table 3 - AccountType
@@ -97,7 +97,7 @@ INSERT INTO Account(FirstName, MiddleName, LastName, CreatedDateTime, npNamePref
 VALUES
 ("Eddie", "Mellicent", "Chatt", "2020-12-26 07:23:28", 2, 1, 2, 1),
 ("Westley", "Klaus", "Mclukie", "2020-12-27 10:15:28", 2, 2, 2, 2),
-("Billie", "Hartwell", "Harlow", "2020-12-28 13:32:28", 2, 3, 2, 3);
+("TRMS", "Developer", "Admin", "2020-12-28 13:32:28", 1, 3, 2, 3);
 
 
 -- Creating Table 7 - AccountActivity

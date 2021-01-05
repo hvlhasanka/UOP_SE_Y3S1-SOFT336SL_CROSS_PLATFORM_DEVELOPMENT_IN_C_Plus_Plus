@@ -9,12 +9,14 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    aboutdialog.cpp \
     accountlogic.cpp \
     addnewtaskpremiumuseraccountwindow.cpp \
     addnewtaskstandarduseraccountwindow.cpp \
     adminaccountwindow.cpp \
     authenticatelogic.cpp \
     databaseconnection.cpp \
+    editreminderdetailsstandarduseraccount.cpp \
     main.cpp \
     loginwindow.cpp \
     premiumuseraccountlogic.cpp \
@@ -26,12 +28,14 @@ SOURCES += \
     viewtaskstandarduseraccountdialog.cpp
 
 HEADERS += \
+    aboutdialog.h \
     accountlogic.h \
     addnewtaskpremiumuseraccountwindow.h \
     addnewtaskstandarduseraccountwindow.h \
     adminaccountwindow.h \
     authenticatelogic.h \
     databaseconnection.h \
+    editreminderdetailsstandarduseraccount.h \
     loginwindow.h \
     premiumuseraccountlogic.h \
     reportsubmissionwindow.h \
@@ -42,9 +46,11 @@ HEADERS += \
     viewtaskstandarduseraccountdialog.h
 
 FORMS += \
+    aboutdialog.ui \
     adminaccountwindow.ui \
     addnewtaskpremiumuseraccountwindow.ui \
     addnewtaskstandarduseraccountwindow.ui \
+    editreminderdetailsstandarduseraccount.ui \
     loginwindow.ui \
     reportsubmissionwindow.ui \
     setnewreminderstandarduseraccountdialog.ui \

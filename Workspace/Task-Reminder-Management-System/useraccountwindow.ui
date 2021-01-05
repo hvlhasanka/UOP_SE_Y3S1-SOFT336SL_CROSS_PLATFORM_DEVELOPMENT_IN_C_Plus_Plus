@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>TRMS - User Account</string>
+   <string>TRMS</string>
   </property>
   <property name="windowIcon">
    <iconset theme="trms-logo" resource="assets.qrc">
@@ -125,7 +125,7 @@
       <enum>QTabWidget::Triangular</enum>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>4</number>
      </property>
      <widget class="QWidget" name="dashboard_tab">
       <property name="whatsThis">
@@ -144,21 +144,144 @@
       <widget class="QGroupBox" name="groupBox">
        <property name="geometry">
         <rect>
-         <x>10</x>
-         <y>90</y>
-         <width>1251</width>
-         <height>221</height>
+         <x>60</x>
+         <y>160</y>
+         <width>1151</width>
+         <height>211</height>
         </rect>
        </property>
-       <property name="title">
-        <string>ff</string>
+       <property name="font">
+        <font>
+         <family>Segoe MDL2 Assets</family>
+         <pointsize>11</pointsize>
+        </font>
        </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(21, 129, 131);</string>
+       </property>
+       <property name="title">
+        <string>STATS</string>
+       </property>
+       <widget class="QFrame" name="frame_2">
+        <property name="geometry">
+         <rect>
+          <x>290</x>
+          <y>40</y>
+          <width>251</width>
+          <height>131</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(34, 214, 217);</string>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <widget class="QLabel" name="label_5">
+         <property name="geometry">
+          <rect>
+           <x>30</x>
+           <y>20</y>
+           <width>211</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Microsoft JhengHei UI Light</family>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>No Of Upcoming Reminders</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="noOfReminders_label">
+         <property name="geometry">
+          <rect>
+           <x>120</x>
+           <y>70</y>
+           <width>171</width>
+           <height>51</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Kozuka Gothic Pro M</family>
+           <pointsize>18</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>No Of Reminders</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QFrame" name="frame_8">
+        <property name="geometry">
+         <rect>
+          <x>610</x>
+          <y>40</y>
+          <width>271</width>
+          <height>131</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(34, 214, 217);</string>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <widget class="QLabel" name="label_6">
+         <property name="geometry">
+          <rect>
+           <x>60</x>
+           <y>20</y>
+           <width>171</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Microsoft JhengHei UI Light</family>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>No Of Assigned Tasks</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="noOfTasks_label">
+         <property name="geometry">
+          <rect>
+           <x>120</x>
+           <y>70</y>
+           <width>171</width>
+           <height>51</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Kozuka Gothic Pro M</family>
+           <pointsize>18</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>No Of Tasks</string>
+         </property>
+        </widget>
+       </widget>
       </widget>
       <widget class="QLabel" name="name_label">
        <property name="geometry">
         <rect>
          <x>630</x>
-         <y>20</y>
+         <y>30</y>
          <width>621</width>
          <height>51</height>
         </rect>
@@ -179,7 +302,7 @@
        <property name="geometry">
         <rect>
          <x>440</x>
-         <y>70</y>
+         <y>80</y>
          <width>341</width>
          <height>16</height>
         </rect>
@@ -200,7 +323,7 @@
        <property name="geometry">
         <rect>
          <x>430</x>
-         <y>20</y>
+         <y>30</y>
          <width>191</width>
          <height>51</height>
         </rect>
@@ -221,7 +344,7 @@
        <property name="geometry">
         <rect>
          <x>470</x>
-         <y>20</y>
+         <y>30</y>
          <width>151</width>
          <height>51</height>
         </rect>
@@ -674,10 +797,10 @@
       <widget class="QGroupBox" name="groupBox_2">
        <property name="geometry">
         <rect>
-         <x>200</x>
+         <x>20</x>
          <y>10</y>
-         <width>901</width>
-         <height>521</height>
+         <width>1241</width>
+         <height>511</height>
         </rect>
        </property>
        <property name="font">
@@ -691,35 +814,138 @@
        <property name="title">
         <string>ASSIGNED TASK REMINDERS</string>
        </property>
-       <widget class="QLabel" name="label_6">
+       <widget class="QCalendarWidget" name="taskReminders_calendarWidget">
         <property name="geometry">
          <rect>
-          <x>770</x>
+          <x>690</x>
           <y>30</y>
-          <width>121</width>
-          <height>16</height>
+          <width>541</width>
+          <height>461</height>
          </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>14</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>Current Date</string>
         </property>
        </widget>
        <widget class="Line" name="line_2">
         <property name="geometry">
          <rect>
-          <x>10</x>
-          <y>50</y>
-          <width>881</width>
-          <height>20</height>
+          <x>660</x>
+          <y>30</y>
+          <width>20</width>
+          <height>461</height>
          </rect>
         </property>
         <property name="orientation">
-         <enum>Qt::Horizontal</enum>
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+       <widget class="QLabel" name="selectedDate_label">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>50</y>
+          <width>631</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Microsoft YaHei Light</family>
+          <pointsize>14</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Selected Date</string>
+        </property>
+       </widget>
+       <widget class="QTableView" name="taskReminders_tableView">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>90</y>
+          <width>631</width>
+          <height>371</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="noRemindersAssigned_label">
+        <property name="geometry">
+         <rect>
+          <x>240</x>
+          <y>270</y>
+          <width>191</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Microsoft YaHei UI</family>
+          <pointsize>11</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>No Reminders Assigned</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_7">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>470</y>
+          <width>151</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Microsoft JhengHei Light</family>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Enter Reminder ID:</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="editReminder_lineEdit">
+        <property name="geometry">
+         <rect>
+          <x>260</x>
+          <y>470</y>
+          <width>161</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(35, 215, 218);</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="editReminder_pushButton">
+        <property name="geometry">
+         <rect>
+          <x>440</x>
+          <y>470</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Leelawadee UI Semilight</family>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(236, 236, 236);</string>
+        </property>
+        <property name="text">
+         <string>EDIT REMINDER</string>
         </property>
        </widget>
       </widget>
@@ -755,8 +981,8 @@
        <widget class="QLabel" name="label_11">
         <property name="geometry">
          <rect>
-          <x>280</x>
-          <y>80</y>
+          <x>290</x>
+          <y>90</y>
           <width>61</width>
           <height>21</height>
          </rect>
@@ -773,8 +999,8 @@
        <widget class="QLabel" name="label_12">
         <property name="geometry">
          <rect>
-          <x>280</x>
-          <y>120</y>
+          <x>290</x>
+          <y>130</y>
           <width>121</width>
           <height>21</height>
          </rect>
@@ -791,8 +1017,8 @@
        <widget class="QLabel" name="label_13">
         <property name="geometry">
          <rect>
-          <x>280</x>
-          <y>200</y>
+          <x>290</x>
+          <y>210</y>
           <width>191</width>
           <height>21</height>
          </rect>
@@ -809,8 +1035,8 @@
        <widget class="QLabel" name="label_14">
         <property name="geometry">
          <rect>
-          <x>280</x>
-          <y>160</y>
+          <x>290</x>
+          <y>170</y>
           <width>191</width>
           <height>21</height>
          </rect>
@@ -822,6 +1048,96 @@
         </property>
         <property name="text">
          <string>Account Type</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="profileImage_label">
+        <property name="geometry">
+         <rect>
+          <x>450</x>
+          <y>20</y>
+          <width>81</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Profile Image</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="nameText_label">
+        <property name="geometry">
+         <rect>
+          <x>540</x>
+          <y>90</y>
+          <width>391</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Name</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="accountCreatedDateTimeText_label">
+        <property name="geometry">
+         <rect>
+          <x>540</x>
+          <y>210</y>
+          <width>391</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Account Created Date Time</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="accountTypeText_label">
+        <property name="geometry">
+         <rect>
+          <x>540</x>
+          <y>170</y>
+          <width>391</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Account Type</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="emailAddressText_label">
+        <property name="geometry">
+         <rect>
+          <x>540</x>
+          <y>130</y>
+          <width>391</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Email Address</string>
         </property>
        </widget>
       </widget>
@@ -845,12 +1161,12 @@
        <property name="title">
         <string>ACCOUNT ACTIVITY</string>
        </property>
-       <widget class="QTableView" name="tableView_5">
+       <widget class="QTableView" name="accountActivity_tableView">
         <property name="geometry">
          <rect>
-          <x>130</x>
-          <y>40</y>
-          <width>721</width>
+          <x>230</x>
+          <y>30</y>
+          <width>521</width>
           <height>211</height>
          </rect>
         </property>
@@ -865,13 +1181,308 @@
       <attribute name="title">
        <string>SETTINGS</string>
       </attribute>
+      <widget class="QGroupBox" name="groupBox_6">
+       <property name="geometry">
+        <rect>
+         <x>260</x>
+         <y>20</y>
+         <width>311</width>
+         <height>271</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Kozuka Gothic Pr6N B</family>
+         <pointsize>12</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="title">
+        <string>ACCOUNT MEMBERSHIP</string>
+       </property>
+       <widget class="QRadioButton" name="standardAccount_radioButton">
+        <property name="geometry">
+         <rect>
+          <x>80</x>
+          <y>80</y>
+          <width>171</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Segoe UI Historic</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Standard Account</string>
+        </property>
+       </widget>
+       <widget class="QRadioButton" name="premiumAccount_radioButton">
+        <property name="geometry">
+         <rect>
+          <x>80</x>
+          <y>130</y>
+          <width>171</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Segoe UI Historic</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Premium Account</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="change_Membership_pushButton">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>210</y>
+          <width>201</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Myriad Hebrew</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(34, 211, 214);</string>
+        </property>
+        <property name="text">
+         <string>CHANGE MEMBERSHIP</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_7">
+       <property name="geometry">
+        <rect>
+         <x>580</x>
+         <y>20</y>
+         <width>331</width>
+         <height>271</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Kozuka Gothic Pr6N B</family>
+         <pointsize>12</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="title">
+        <string>UPDATE ACCOUNT DETAILS</string>
+       </property>
+       <widget class="QLabel" name="label_8">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>30</y>
+          <width>201</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Myriad Pro Light</family>
+          <pointsize>11</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Enter Login Credentials</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_9">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>70</y>
+          <width>131</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Myriad Pro Light</family>
+          <pointsize>11</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Email Address</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_10">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>130</y>
+          <width>141</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Myriad Pro</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Password</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_2">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>90</y>
+          <width>211</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_3">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>150</y>
+          <width>211</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_2">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>220</y>
+          <width>201</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Myriad Hebrew</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(34, 211, 214);</string>
+        </property>
+        <property name="text">
+         <string>VERIFY</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="checkBox">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>180</y>
+          <width>111</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Nirmala UI</family>
+         </font>
+        </property>
+        <property name="text">
+         <string>Show Password</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_8">
+       <property name="geometry">
+        <rect>
+         <x>260</x>
+         <y>300</y>
+         <width>651</width>
+         <height>221</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Kozuka Gothic Pr6N B</family>
+         <pointsize>12</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="title">
+        <string>ABOUT</string>
+       </property>
+       <widget class="QLabel" name="aboutImage_label">
+        <property name="geometry">
+         <rect>
+          <x>280</x>
+          <y>20</y>
+          <width>81</width>
+          <height>71</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
+       <widget class="QTextEdit" name="textEdit">
+        <property name="geometry">
+         <rect>
+          <x>150</x>
+          <y>100</y>
+          <width>351</width>
+          <height>111</height>
+         </rect>
+        </property>
+        <property name="html">
+         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;TRMS - Task Reminder Management System&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Application developed for coursework submission of&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;  SOFT336SL: Cross-platform application in C++.&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;TRMS was developed by H.V.L.Hasanka.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </widget>
      </widget>
     </widget>
-    <widget class="QFrame" name="frame_2">
+    <widget class="QFrame" name="doNotDisturb_frame">
      <property name="geometry">
       <rect>
        <x>910</x>
-       <y>0</y>
+       <y>10</y>
        <width>171</width>
        <height>51</height>
       </rect>
@@ -1009,8 +1620,45 @@
      <height>21</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionAbout"/>
+    <addaction name="separator"/>
+    <addaction name="actionLogout"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <addaction name="menuFile"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionAbout">
+   <property name="icon">
+    <iconset resource="assets.qrc">
+     <normaloff>:/images/About.png</normaloff>:/images/About.png</iconset>
+   </property>
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionLogout">
+   <property name="icon">
+    <iconset resource="assets.qrc">
+     <normaloff>:/images/Logout.png</normaloff>:/images/Logout.png</iconset>
+   </property>
+   <property name="text">
+    <string>Logout</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="icon">
+    <iconset resource="assets.qrc">
+     <normaloff>:/images/Exit.png</normaloff>:/images/Exit.png</iconset>
+   </property>
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="assets.qrc"/>

@@ -20,9 +20,8 @@
    <string>TRMS - User Registration</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="trms-logo">
-    <normalon>:/images/TRMS-Logo-Without-Text.ico</normalon>
-   </iconset>
+   <iconset resource="assets.qrc">
+    <normaloff>:/images/TRMS-Logo-Without-Text.ico</normaloff>:/images/TRMS-Logo-Without-Text.ico</iconset>
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>
@@ -73,9 +72,9 @@
     <widget class="QPushButton" name="viewPasswordGuidelines_pushButton">
      <property name="geometry">
       <rect>
-       <x>330</x>
+       <x>250</x>
        <y>440</y>
-       <width>161</width>
+       <width>221</width>
        <height>21</height>
       </rect>
      </property>
@@ -816,6 +815,8 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="assets.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -11,7 +11,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>TRMS - Create New Task</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="assets.qrc">
+    <normaloff>:/images/TRMS-Logo-Without-Text.ico</normaloff>:/images/TRMS-Logo-Without-Text.ico</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QFrame" name="frame">
@@ -431,6 +435,8 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="assets.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -14,6 +14,7 @@
 #include <QRegularExpression>
 #include <QRegularExpressionMatch>
 #include <QtSql>
+#include <QSqlDatabase>
 
 #include "databaseconnection.h"
 
@@ -58,7 +59,7 @@ public:
                             QString enteredEmailAddress, QString generatedConfirmPasswordHash,
                             QString selectedAccountType);
     QString addSessionStartToDB();
-    QString addSessionEndToDB();
+    QString addSessionEndToDB(int loginID);
 
 private:
     // Private variables
@@ -76,6 +77,7 @@ private:
     // Connecting the databaseconnecion.h
     // Retireving the databaseconnecion.h class path to a pointer
     DatabaseConnection *trms_dbConnection;
+    QSqlDatabase databaseConnection;
 
 };
 

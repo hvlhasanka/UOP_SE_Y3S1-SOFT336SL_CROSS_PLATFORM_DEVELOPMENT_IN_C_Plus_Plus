@@ -555,45 +555,84 @@ QString AuthenticateLogic::addSessionStartToDB(){
 
 }
 
-QString AuthenticateLogic::addSessionEndToDB(){
+QString AuthenticateLogic::addSessionEndToDB(int loginID){
 
     this->setAccountActivityID(2);
     this->setAccountActivity("Offline");
-qDebug() << "1";
-    bool databaseConnected = trms_dbConnection->openDatebaseConnection();
-    if(databaseConnected == true){
+
+    // Assigning database configuration
+    databaseConnection = QSqlDatabase::addDatabase("QSQLITE", "trms_db");
+    databaseConnection.setDatabaseName("C:/Users/Lucas.L.H.H/Documents/GitHub/UOP_SE_Y3S1-SOFT336SL_CROSS_PLATFORM_DEVELOPMENT_IN_C_Plus_Plus/Workspace/Task-Reminder-Management-System/database/trms_db.db");
+
+    // Establishing database connection and checking connection status
+    if (!databaseConnection.open()){
+        qWarning() << "Database Connection Error";
+        // Closing established database connection
+        databaseConnection.close();
+        databaseConnection.removeDatabase(QSqlDatabase::defaultConnection);
+        qWarning() << "Database Connection Closed";
+        return "Database Connectivity Failed";
+    }
+    else{
+        int loginActivityID = 0;
+
+        // Declaring new QSqlQuery object by passing the database name
+        QSqlQuery LoginActivityIDQuery(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
+
+        // Preparing sql query for execution
+        LoginActivityIDQuery.prepare(QString("SELECT LoginActivityID FROM LoginActivity WHERE lLoginID = :loginID ORDER BY LoginDateTime DESC LIMIT 1;"));
+
+        LoginActivityIDQuery.bindValue(":loginID", loginID);
+
+        // Executing sql query and checking the status
+        if(!LoginActivityIDQuery.exec()){
+            qWarning() << "SQL query execution error";
+            qWarning() << LoginActivityIDQuery.lastError();
+            // Closing established database connection
+            databaseConnection.close();
+            databaseConnection.removeDatabase(QSqlDatabase::defaultConnection);
+            qWarning() << "Database Connection Closed";
+        }
+        else{
+            if(LoginActivityIDQuery.next()){
+                loginActivityID = LoginActivityIDQuery.value(0).toInt();
+            }
+        }
 
         // Declaring new QSqlQuery object by passing the database name
         QSqlQuery sessionEndQuery(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
 
         // Preparing sql query for execution
-        bool f = sessionEndQuery.prepare(QString("UPDATE LoginActivity SET LogoutDateTime = :logoutDateTime, aaAccountActivityID = :accountActivityID "
+        sessionEndQuery.prepare(QString("UPDATE LoginActivity SET LogoutDateTime = :logoutDateTime, aaAccountActivityID = :accountActivityID "
                                         "WHERE LoginActivityID = :loginActivityID;"));
-        qDebug() << f;
+
         sessionEndQuery.bindValue(":logoutDateTime", this->retrieveCurrentDateTime());
         sessionEndQuery.bindValue(":accountActivityID", this->getAccountActivityID());
-        sessionEndQuery.bindValue(":loginActivityID", this->getLoginActivityID());
+        sessionEndQuery.bindValue(":loginActivityID", loginActivityID);
 
         // Executing sql query and checking the status
         if(!sessionEndQuery.exec()){
             qWarning() << "SQL query execution error";
             qWarning() << sessionEndQuery.lastError();
-            trms_dbConnection->closeDatebaseConnection();
+            // Closing established database connection
+            databaseConnection.close();
+            databaseConnection.removeDatabase(QSqlDatabase::defaultConnection);
+            qWarning() << "Database Connection Closed";
             return "SQL Execution Failed";
         }
         else{
             qWarning() << "Session End Recorded";
-            trms_dbConnection->closeDatebaseConnection();
+            // Closing established database connection
+            databaseConnection.close();
+            databaseConnection.removeDatabase(QSqlDatabase::defaultConnection);
+            qWarning() << "Database Connection Closed";
             return "Session End Recorded";
         }
-qDebug() << "3";
-    }
-    else if(databaseConnected == false){
-        qWarning() << "Database Connection Error";
-        trms_dbConnection->closeDatebaseConnection();
-        return "Database Connectivity Failed";qDebug() << "22";
     }
 
-    trms_dbConnection->closeDatebaseConnection();
+    // Closing established database connection
+    databaseConnection.close();
+    databaseConnection.removeDatabase(QSqlDatabase::defaultConnection);
+    qWarning() << "Database Connection Closed";
     return "default";
 }

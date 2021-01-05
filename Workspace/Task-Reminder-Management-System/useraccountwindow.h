@@ -13,6 +13,8 @@
 #include "accountlogic.h"
 #include "databaseconnection.h"
 #include "viewtaskstandarduseraccountdialog.h"
+#include "editreminderdetailsstandarduseraccount.h"
+#include "aboutdialog.h";
 
 namespace Ui {
 class UserAccountWindow;
@@ -29,6 +31,7 @@ public:
 public slots:
     void executeReminderStandardUserAccount();
     void executeReminderPremiumUserAccount();
+    void changeUIForSelectedDate(QDate selectedDate);
 
 private slots:
     void on_addNewTask_pushButton_clicked();
@@ -37,6 +40,12 @@ private slots:
     void on_refresh_pushButton_clicked();
     void on_showTaskDetails_lineEdit_textChanged(const QString &arg1);
     void on_showTaskDetails_pushButton_clicked();
+    void on_tabWidget_currentChanged(int index);
+    void on_change_Membership_pushButton_clicked();
+    void on_standardAccount_radioButton_toggled(bool checked);
+    void on_premiumAccount_radioButton_toggled(bool checked);
+    void on_editReminder_pushButton_clicked();
+    void on_actionAbout_triggered();
 
 private:
     Ui::UserAccountWindow *ui;
@@ -61,6 +70,12 @@ private:
     // Connecting the viewtaskstandarduseraccountdialog.h
     // Retireving the viewtaskstandarduseraccountdialog.h class path to a pointer
     ViewTaskStandardUserAccountDialog *viewTaskStandardUserAccountDialogForm;
+    // Connecting the editreminderdetailsstandarduseraccount.h
+    // Retireving the editreminderdetailsstandarduseraccount.h class path to a pointer
+    EditReminderDetailsStandardUserAccount *editReminderDetailsStandardUserAccountForm;
+    // Connecting the aboutdialog.h
+    // Retireving the aboutdialog.h class path to a pointer
+    AboutDialog *aboutDialogForm;
     QSystemTrayIcon *reminderAlert;
     QTimer *timer;
 };

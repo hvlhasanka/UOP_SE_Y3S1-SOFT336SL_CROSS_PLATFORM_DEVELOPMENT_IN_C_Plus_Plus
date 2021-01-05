@@ -11,10 +11,10 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>TRMS - Admin Account</string>
+   <string>TRMS - ADMIN ACCOUNT</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="trms-logo" resource="assets.qrc">
+   <iconset resource="assets.qrc">
     <normaloff>:/images/TRMS-Logo-Without-Text.ico</normaloff>:/images/TRMS-Logo-Without-Text.ico</iconset>
   </property>
   <widget class="QWidget" name="centralwidget"/>

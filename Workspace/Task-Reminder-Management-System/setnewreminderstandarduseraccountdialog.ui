@@ -7,11 +7,15 @@
     <x>0</x>
     <y>0</y>
     <width>512</width>
-    <height>339</height>
+    <height>341</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>TRMS - New Reminder</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="assets.qrc">
+    <normaloff>:/images/TRMS-Logo-Without-Text.ico</normaloff>:/images/TRMS-Logo-Without-Text.ico</iconset>
   </property>
   <widget class="QFrame" name="frame">
    <property name="geometry">
@@ -148,6 +152,8 @@
    </widget>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="assets.qrc"/>
+ </resources>
  <connections/>
 </ui>

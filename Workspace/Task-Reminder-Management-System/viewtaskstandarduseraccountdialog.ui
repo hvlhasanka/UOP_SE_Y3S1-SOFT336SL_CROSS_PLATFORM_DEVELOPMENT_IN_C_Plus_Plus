@@ -11,7 +11,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>TRMS - Task Details</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="assets.qrc">
+    <normaloff>:/images/TRMS-Logo-Without-Text.ico</normaloff>:/images/TRMS-Logo-Without-Text.ico</iconset>
   </property>
   <widget class="QFrame" name="frame">
    <property name="geometry">

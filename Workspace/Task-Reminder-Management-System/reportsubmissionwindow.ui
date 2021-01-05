@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>TRMS - Feedback Report Submit</string>
   </property>
   <property name="windowIcon">
    <iconset theme="trms-logo" resource="assets.qrc">

@@ -15,5 +15,10 @@
         <file>images/Reminders.png</file>
         <file>images/Settings.png</file>
         <file>images/Tasks.png</file>
+        <file>images/DashboardAdmin.png</file>
+        <file>images/ProfileImage.png</file>
+        <file>images/About.png</file>
+        <file>images/AboutImage.png</file>
+        <file>images/Exit.png</file>
     </qresource>
 </RCC>

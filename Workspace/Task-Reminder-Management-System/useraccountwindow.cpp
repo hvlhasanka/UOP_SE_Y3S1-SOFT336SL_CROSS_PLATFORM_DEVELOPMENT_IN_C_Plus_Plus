@@ -7,6 +7,16 @@ UserAccountWindow::UserAccountWindow(int loginID, QWidget *parent) :
 {
     ui->setupUi(this);
 
+    /* Logo Image Implementation Source Code */
+    // Getting the logo image
+    QPixmap logoImagePix(":/images/TRMS-Logo-Without-Text.jpg");
+    // Getting the width of the logo_label
+    int logoLabelWidth = ui->logo_label->width();
+    // Getting the height of the logo_label
+    int logoLabelHeight = ui->logo_label->height();
+    // Setting the cover image of the logo_label
+    ui->logo_label->setPixmap(logoImagePix.scaled(logoLabelWidth, logoLabelHeight, Qt::KeepAspectRatio));
+
     // Creating an object of AccountLogic class
     account = new AccountLogic();
 
@@ -19,16 +29,30 @@ UserAccountWindow::UserAccountWindow(int loginID, QWidget *parent) :
     /* Retrieving the relevant user details from the database */
     bool databaseConnection = trms_dbConnection->openDatebaseConnection();
 
+
+    /* Setting timer and sending signals to function every second */
+    // Declaring a new object of the 'QObject' class
     timer = new QTimer(this);
-
+    // SIGNAL AND SLOT - Signal used to call the executeReminderStandardUserAccount() function when timer is timeout()
     connect(timer, SIGNAL(timeout()), this, SLOT(executeReminderStandardUserAccount()));
-
-    // 1 s
+    // Assgining number of milliseconds during each time gap
+    // 1 seconds - 1000 milliseconds
     timer->start(1000);
 
+
+    /* Setting reminder alert implementation */
+    // Creating a new object of 'QSystemTrayIcon' object
     reminderAlert = new QSystemTrayIcon(this);
+    // Setting icon path
     reminderAlert->setIcon(QIcon(":/images/TRMS-Logo-Without-Text.ico"));
+    // Setting reminderAlert to be visible
     reminderAlert->setVisible(true);
+
+
+    // SIGNAL AND SLOT - Used to call changeUIForSelectedDate(QDate) when ui->taskReminders_calendarWidget is clicked(QDate)
+    // User interfae will change accordingly to the selected date
+    connect(ui->taskReminders_calendarWidget, SIGNAL(clicked(QDate)), this, SLOT(changeUIForSelectedDate(QDate)));
+
 
     if(databaseConnection == true){
         // Declaring new QSqlQuery object by passing the database name
@@ -79,25 +103,11 @@ UserAccountWindow::UserAccountWindow(int loginID, QWidget *parent) :
    // account->setAccountActivityID(1);
    // account->setAccountActivity("Online");
 
-    ui->showTaskDetails_pushButton->setEnabled(false);
-
-    /* Checking account type to show 'Do Not Disturb' check box */
-    ui->doNotDistrub_checkBox->setVisible(false);
-    if(account->getAccountType() == "Premium User Account"){
-        ui->doNotDistrub_checkBox->setVisible(true);
-    }
-
-    /* Logo Image Implementation Source Code */
-    // Getting the logo image
-    QPixmap logoImagePix(":/images/TRMS-Logo-Without-Text.jpg");
-    // Getting the width of the logo_label
-    int logoLabelWidth = ui->logo_label->width();
-    // Getting the height of the logo_label
-    int logoLabelHeight = ui->logo_label->height();
-    // Setting the cover image of the logo_label
-    ui->logo_label->setPixmap(logoImagePix.scaled(logoLabelWidth, logoLabelHeight, Qt::KeepAspectRatio));
 
 
+
+
+    /* DASHBOARD TAB */
     // Setting welcome messages to hide (false)
     ui->welcomeToTRMSMessage_label->setVisible(false);
     ui->welcomeBackMessage_label->setVisible(false);
@@ -140,6 +150,73 @@ UserAccountWindow::UserAccountWindow(int loginID, QWidget *parent) :
         qWarning() << "Database Connection Error";
     }
 
+
+    /* Retrieving data from database to show statictcs in the dashboard tab */
+    bool databaseConnectedStat = trms_dbConnection->openDatebaseConnection();
+    if(databaseConnectedStat == true){
+
+        /* Geting the number to upcoming reminders */
+        // Declaring new QSqlQuery object by passing the database name
+        QSqlQuery noOfRemindersQuery(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
+
+        // Preparing sql query for execution
+        noOfRemindersQuery.prepare(QString("SELECT COUNT(r.ReminderID) FROM Reminder r INNER JOIN Task t ON t.TaskID = r.tTaskID "
+                                           "WHERE t.aAccountID = :accountID AND r.ReminderDateTime > ':currentDateTime';"));
+
+        noOfRemindersQuery.bindValue(":accountID", account->getAccountID());
+        noOfRemindersQuery.bindValue(":currentDateTime", auth->retrieveCurrentDateTime());
+
+        // Executing sql query and checking the status
+        if(!noOfRemindersQuery.exec()){
+            qWarning() << "SQL query execution error";
+            trms_dbConnection->closeDatebaseConnection();
+            qWarning() << noOfRemindersQuery.lastError();
+        }
+        else{
+            if(noOfRemindersQuery.next()){
+                ui->noOfReminders_label->setText(noOfRemindersQuery.value(0).toString());
+            }
+        }
+
+        /* Getting the number of assigned tasks */
+        // Declaring new QSqlQuery object by passing the database name
+        QSqlQuery noOfTasksQuery(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
+
+        // Preparing sql query for execution
+        noOfTasksQuery.prepare(QString("SELECT COUNT(TaskID) FROM Task WHERE aAccountID = :accountID;"));
+
+        noOfTasksQuery.bindValue(":accountID", account->getAccountID());
+
+        // Executing sql query and checking the status
+        if(!noOfTasksQuery.exec()){
+            qWarning() << "SQL query execution error";
+            trms_dbConnection->closeDatebaseConnection();
+            qWarning() << noOfTasksQuery.lastError();
+        }
+        else{
+            if(noOfTasksQuery.next()){
+                ui->noOfTasks_label->setText(noOfTasksQuery.value(0).toString());
+            }
+        }
+    }
+    else if(databaseConnectedStat == false){
+        trms_dbConnection->closeDatebaseConnection();
+        qWarning() << "Database Connection Error";
+    }
+
+
+
+
+
+    /* TASKS TAB */
+
+    ui->showTaskDetails_pushButton->setEnabled(false);
+
+    /* Checking account type to show 'Do Not Disturb' check box */
+    ui->doNotDisturb_frame->setVisible(false);
+    if(account->getAccountType() == "Premium User Account"){
+        ui->doNotDisturb_frame->setVisible(true);
+    }
 
     /* Assigning the user's name in the 'Dashboard' tab */
     ui->name_label->setText(account->getNamePrefix() + " " + account->getFirstName() + "  " + account->getLastName());
@@ -255,6 +332,10 @@ UserAccountWindow::UserAccountWindow(int loginID, QWidget *parent) :
 
 
 
+    // Setting 'No Reminder Assigned' message to hide (false)
+    ui->noRemindersAssigned_label->setVisible(false);
+
+
     // Setting 'No Tasks Available' messages to hide (false)
     ui->category1NoAvailableTasks_label->setVisible(false);
     ui->category2NoAvailableTasks_label->setVisible(false);
@@ -271,7 +352,7 @@ UserAccountWindow::UserAccountWindow(int loginID, QWidget *parent) :
         QSqlQuery category1Query(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
 
         // Preparing sql query for execution
-        category1Query.prepare(QString("SELECT t.TaskID as 'Task ID', 't.Title' as 'Task Title', t.TaskDescription as 'Task Description', c.CategoryName as 'Category Name' FROM "
+        category1Query.prepare(QString("SELECT t.TaskID as 'Task ID', t.Title as 'Task Title', t.TaskDescription as 'Task Description', c.CategoryName as 'Category Name' FROM "
                                      "Task t INNER JOIN Category c ON c.CategoryID = t.cCategoryID "
                                      "INNER JOIN CategoryType ct ON ct.CategoryTypeID = c.ctCategoryTypeID "
                                      "WHERE t.aAccountID == :accountID AND ct.CategoryType = 'Category 1';"));
@@ -405,6 +486,117 @@ UserAccountWindow::UserAccountWindow(int loginID, QWidget *parent) :
     }
 
 
+
+    /* REMINDERS TAB */
+
+    /* Retrieving the current data, reminders on the current date and applying it to the user interface */
+    QDate currentDate = QDate::currentDate();
+    this->changeUIForSelectedDate(currentDate);
+
+
+
+    /* PROFILE TAB */
+
+    /* Profile Image Implementation Source Code */
+    // Getting the profile image
+    QPixmap profileImagePix(":/images/ProfileImage.png");
+    // Getting the width of the profileImage_label
+    int profileLabelWidth = ui->profileImage_label->width();
+    // Getting the height of the profileImage_label
+    int profileLabelHeight = ui->profileImage_label->height();
+    // Setting the profile image of the profileImage_label
+    ui->profileImage_label->setPixmap(profileImagePix.scaled(profileLabelWidth, profileLabelHeight, Qt::KeepAspectRatio));
+
+    /* Assigning user data into the user inferface */
+    ui->nameText_label->setText(account->getNamePrefix() + " " + account->getFirstName() + "  " + account->getMiddleName() + " " + account->getLastName());
+    ui->accountTypeText_label->setText(account->getAccountType());
+    ui->accountCreatedDateTimeText_label->setText(account->getCreatedDateTime());
+
+
+    bool databaseConnectedEmailAddress = trms_dbConnection->openDatebaseConnection();
+    if(databaseConnectedEmailAddress == true){
+
+        // Getting the user email address from the database
+        QSqlQuery emailAddressQuery(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
+
+        // Preparing sql query for execution
+        emailAddressQuery.prepare(QString("SELECT l.EmailAddress FROM "
+                                          "Login l INNER JOIN Account a ON l.loginID = a.lLoginID "
+                                          "WHERE a.AccountID = :accountID;"));
+
+        emailAddressQuery.bindValue(":accountID", account->getAccountID());
+
+        // Executing sql query and checking the status
+        if(!emailAddressQuery.exec()){
+            qWarning() << "SQL query execution error";
+            qWarning() << emailAddressQuery.lastError();
+        }
+        else{
+            while(emailAddressQuery.next()){
+                ui->emailAddressText_label->setText(emailAddressQuery.value(0).toString());
+            }
+        }
+
+        /* Retrieving the account activity details from the database */
+        // Declaring new QSqlQuery object by passing the database name
+        QSqlQuery accountActivityQuery(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
+
+        // Preparing sql query for execution
+        accountActivityQuery.prepare(QString("SELECT la.LoginDateTime as 'Login Date Time', la.LogoutDateTime as 'Logout Date Time', aa.AccountActivity as 'Account Activity' FROM "
+                                             "LoginActivity la INNER JOIN Login l ON l.LoginID = la.lLoginID "
+                                             "INNER JOIN AccountActivity aa ON aa.AccountActivityID = la.aaAccountActivityID "
+                                             "INNER JOIN Account a ON l.LoginID = a.lLoginID "
+                                             "WHERE a.AccountID = :accountID ORDER BY la.LoginDateTime DESC;"));
+
+        accountActivityQuery.bindValue(":accountID", account->getAccountID());
+
+        // Executing sql query and checking the status
+        if(!accountActivityQuery.exec()){
+            qWarning() << "SQL query execution error";
+            trms_dbConnection->closeDatebaseConnection();
+            qWarning() << accountActivityQuery.lastError();
+        }
+        else{
+            if(accountActivityQuery.next()){
+                QSqlQueryModel *accountActivityModel = new QSqlQueryModel();
+                accountActivityModel->setQuery(accountActivityQuery);
+
+                ui->accountActivity_tableView->setModel(accountActivityModel);
+                ui->accountActivity_tableView->resizeColumnsToContents();
+            }
+
+            trms_dbConnection->closeDatebaseConnection();
+        }
+
+    }
+    else if(databaseConnectedEmailAddress == false){
+        qWarning() << "Database Connectivity ERROR";
+    }
+
+
+    /* SETTINGS TAB */
+
+    /* About Image Implementation Source Code */
+    // Getting the about image
+    QPixmap aboutImagePix(":/images/AboutImage.png");
+    // Getting the width of the aboutImage_label
+    int aboutLabelWidth = ui->aboutImage_label->width();
+    // Getting the height of the aboutImage_label
+    int aboutLabelHeight = ui->aboutImage_label->height();
+    // Setting the cover image of the aboutImage_label
+    ui->aboutImage_label->setPixmap(aboutImagePix.scaled(aboutLabelWidth, aboutLabelHeight, Qt::KeepAspectRatio));
+
+    // Assigning account type to the user interface
+    ui->standardAccount_radioButton->setChecked(false);
+    ui->premiumAccount_radioButton->setChecked(false);
+    if(account->getAccountType() == "Standard User Account"){
+        ui->standardAccount_radioButton->setChecked(true);
+    }
+    else if(account->getAccountType() == "Premium User Account"){
+        ui->premiumAccount_radioButton->setChecked(false);
+    }
+
+
 }
 
 UserAccountWindow::~UserAccountWindow()
@@ -418,8 +610,7 @@ void UserAccountWindow::executeReminderStandardUserAccount()
 
     // Getting current datetime
     QString currentDateTime = auth->retrieveCurrentDateTime();
-    qDebug() << account->getAccountID();
-    qDebug() << account->getAccountType();
+
     /* Retrieving all available reminders from the 'Reminders' relation (table) */
     bool databaseConnected = trms_dbConnection->openDatebaseConnection();
     if(databaseConnected == true){
@@ -465,6 +656,63 @@ void UserAccountWindow::executeReminderPremiumUserAccount()
 
 }
 
+void UserAccountWindow::changeUIForSelectedDate(QDate selectedDate)
+{
+
+    // Setting 'No Reminder Assigned' message to hide (false)
+    ui->noRemindersAssigned_label->setVisible(false);
+
+    // Reformatting QDate that was sent as a parameter
+    QString selectedDateReformat = selectedDate.toString("dddd, d MMMM yyyy");
+
+    // Assigning the reformatted QDate value
+    ui->selectedDate_label->setText(selectedDateReformat);
+
+    /* Retrieving the reminders details and task details from the database */
+    bool databaseConnectedCategory = trms_dbConnection->openDatebaseConnection();
+    if(databaseConnectedCategory == true){
+
+        // Declaring new QSqlQuery object by passing the database name
+        QSqlQuery reminderQuery(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
+
+        // Preparing sql query for execution
+        reminderQuery.prepare(QString("SELECT r.ReminderID as 'Reminder ID', r.ReminderDateTime as 'Reminder Date Time', t.TaskID as 'Task ID', "
+                                      "t.Title as 'Task Title', t.TaskDescription as 'Task Description', c.CategoryName as 'Category Name' FROM "
+                                      "Reminder r INNER JOIN Task t ON t.TaskID = r.tTaskID "
+                                      "INNER JOIN Category c ON c.CategoryID = t.cCategoryID "
+                                      "WHERE t.aAccountID == :accountID AND r.ReminderDateTime LIKE :selectedDateTime;"));
+
+        reminderQuery.bindValue(":accountID", account->getAccountID());
+        reminderQuery.bindValue(":selectedDateTime", (selectedDate.toString("yyyy-MM-dd") + "%"));
+
+        // Executing sql query and checking the status
+        if(!reminderQuery.exec()){
+            qWarning() << "SQL query execution error";
+            trms_dbConnection->closeDatebaseConnection();
+            qWarning() << reminderQuery.lastError();
+        }
+        else{
+            if(reminderQuery.next()){
+                QSqlQueryModel *reminderModal = new QSqlQueryModel();
+                reminderModal->setQuery(reminderQuery);
+
+                ui->taskReminders_tableView->setModel(reminderModal);
+              //  ui->category1_tableView->resizeColumnsToContents();
+            }
+            else{
+                ui->noRemindersAssigned_label->setVisible(true);
+            }
+
+            trms_dbConnection->closeDatebaseConnection();
+        }
+    }
+    else if(databaseConnectedCategory == false){
+        trms_dbConnection->closeDatebaseConnection();
+        qWarning() << "Database Connection Error";
+    }
+
+}
+
 void UserAccountWindow::on_addNewTask_pushButton_clicked()
 {
     // Openning the appropriate add new task window according to the account type
@@ -496,7 +744,7 @@ void UserAccountWindow::on_logout_pushButton_clicked()
 
     if(userLogoutResponse == 1){
         /* Recording session end */
-        QString sessionEndStatus = auth->addSessionEndToDB();
+        QString sessionEndStatus = auth->addSessionEndToDB(account->getLoginID());
 
         if(sessionEndStatus == "Session End Recorded"){
             this->hide();
@@ -698,5 +946,149 @@ void UserAccountWindow::on_showTaskDetails_pushButton_clicked()
 
     viewTaskStandardUserAccountDialogForm = new ViewTaskStandardUserAccountDialog(ui->showTaskDetails_lineEdit->text().toInt(), this);
     viewTaskStandardUserAccountDialogForm->show();
+
+}
+
+
+void UserAccountWindow::on_tabWidget_currentChanged(int index)
+{
+    if(index == 0){
+        // DASHBOARD TAB
+
+        /* Retrieving data from database to show statictcs in the dashboard tab */
+        bool databaseConnectedStat = trms_dbConnection->openDatebaseConnection();
+        if(databaseConnectedStat == true){
+
+            /* Geting the number to upcoming reminders */
+            // Declaring new QSqlQuery object by passing the database name
+            QSqlQuery noOfRemindersQuery(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
+
+            // Preparing sql query for execution
+            noOfRemindersQuery.prepare(QString("SELECT COUNT(r.ReminderID) FROM Reminder r INNER JOIN Task t ON t.TaskID = r.tTaskID "
+                                               "WHERE t.aAccountID = :accountID AND r.ReminderDateTime > ':currentDateTime';"));
+
+            noOfRemindersQuery.bindValue(":accountID", account->getAccountID());
+            noOfRemindersQuery.bindValue(":currentDateTime", auth->retrieveCurrentDateTime());
+
+            // Executing sql query and checking the status
+            if(!noOfRemindersQuery.exec()){
+                qWarning() << "SQL query execution error";
+                trms_dbConnection->closeDatebaseConnection();
+                qWarning() << noOfRemindersQuery.lastError();
+            }
+            else{
+                if(noOfRemindersQuery.next()){
+                    ui->noOfReminders_label->setText(noOfRemindersQuery.value(0).toString());
+                }
+            }
+
+            /* Getting the number of assigned tasks */
+            // Declaring new QSqlQuery object by passing the database name
+            QSqlQuery noOfTasksQuery(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
+
+            // Preparing sql query for execution
+            noOfTasksQuery.prepare(QString("SELECT COUNT(TaskID) FROM Task WHERE aAccountID = :accountID;"));
+
+            noOfTasksQuery.bindValue(":accountID", account->getAccountID());
+
+            // Executing sql query and checking the status
+            if(!noOfTasksQuery.exec()){
+                qWarning() << "SQL query execution error";
+                trms_dbConnection->closeDatebaseConnection();
+                qWarning() << noOfTasksQuery.lastError();
+            }
+            else{
+                if(noOfTasksQuery.next()){
+                    ui->noOfTasks_label->setText(noOfTasksQuery.value(0).toString());
+                }
+            }
+        }
+        else if(databaseConnectedStat == false){
+            trms_dbConnection->closeDatebaseConnection();
+            qWarning() << "Database Connection Error";
+        }
+    }
+}
+
+void UserAccountWindow::on_standardAccount_radioButton_toggled(bool checked)
+{
+    if(checked == true){
+        ui->premiumAccount_radioButton->setChecked(false);
+    }
+    else if(checked == false){
+        ui->premiumAccount_radioButton->setChecked(true);
+    }
+}
+
+void UserAccountWindow::on_premiumAccount_radioButton_toggled(bool checked)
+{
+    if(checked == true){
+        ui->standardAccount_radioButton->setChecked(false);
+    }
+    else if(checked == false){
+        ui->standardAccount_radioButton->setChecked(true);
+    }
+}
+
+void UserAccountWindow::on_change_Membership_pushButton_clicked()
+{
+
+    // Updating account record in the database
+    bool databaseConnected = trms_dbConnection->openDatebaseConnection();
+    if(databaseConnected == true){
+
+        // Declaring new QSqlQuery object by passing the database name
+        QSqlQuery accountTypeQuery(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
+
+        // Preparing sql query for execution
+        accountTypeQuery.prepare(QString("UPDATE Account SET atAccountTypeID = :accountTypeID WHERE AccountID = :accountID;"));
+
+        if(ui->standardAccount_radioButton->isChecked()){
+            accountTypeQuery.bindValue(":accountTypeID", 1);
+
+            account->setAccountTypeID(1);
+            account->setAccountType("Standard User Account");
+        }
+        else if(ui->premiumAccount_radioButton->isChecked()){
+            accountTypeQuery.bindValue(":accountTypeID", 2);
+
+            account->setAccountTypeID(2);
+            account->setAccountType("Premium User Account");
+        }
+        accountTypeQuery.bindValue(":accountID", account->getAccountID());
+
+        // Executing sql query and checking the status
+        if(!accountTypeQuery.exec()){
+            qWarning() << "SQL query execution error";
+            trms_dbConnection->closeDatebaseConnection();
+        }
+        else{
+            if(accountTypeQuery.next()){
+                ui->noOfReminders_label->setText(accountTypeQuery.value(0).toString());
+            }
+        }
+    }
+    else if(databaseConnected == false){
+        qWarning() << "Database Connection Error";
+    }
+    trms_dbConnection->closeDatebaseConnection();
+
+}
+
+
+
+void UserAccountWindow::on_editReminder_pushButton_clicked()
+{
+
+    editReminderDetailsStandardUserAccountForm = new EditReminderDetailsStandardUserAccount(ui->editReminder_lineEdit->text().toInt(), this);
+    editReminderDetailsStandardUserAccountForm->show();
+
+}
+
+void UserAccountWindow::on_actionAbout_triggered()
+{
+
+    aboutDialogForm = new AboutDialog(this);
+    aboutDialogForm->show();
 
 }
