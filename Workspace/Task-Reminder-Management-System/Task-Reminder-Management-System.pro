@@ -13,6 +13,7 @@ SOURCES += \
     accountlogic.cpp \
     addnewtaskpremiumuseraccountwindow.cpp \
     addnewtaskstandarduseraccountwindow.cpp \
+    adminaccountlogic.cpp \
     adminaccountwindow.cpp \
     authenticatelogic.cpp \
     databaseconnection.cpp \
@@ -25,6 +26,7 @@ SOURCES += \
     standarduseraccountlogic.cpp \
     useraccountwindow.cpp \
     userregistrationwindow.cpp \
+    viewfeedbackreportdialog.cpp \
     viewtaskstandarduseraccountdialog.cpp
 
 HEADERS += \
@@ -32,6 +34,7 @@ HEADERS += \
     accountlogic.h \
     addnewtaskpremiumuseraccountwindow.h \
     addnewtaskstandarduseraccountwindow.h \
+    adminaccountlogic.h \
     adminaccountwindow.h \
     authenticatelogic.h \
     databaseconnection.h \
@@ -43,6 +46,7 @@ HEADERS += \
     standarduseraccountlogic.h \
     useraccountwindow.h \
     userregistrationwindow.h \
+    viewfeedbackreportdialog.h \
     viewtaskstandarduseraccountdialog.h
 
 FORMS += \
@@ -56,6 +60,7 @@ FORMS += \
     setnewreminderstandarduseraccountdialog.ui \
     useraccountwindow.ui \
     userregistrationwindow.ui \
+    viewfeedbackreportdialog.ui \
     viewtaskstandarduseraccountdialog.ui
 
 # Default rules for deployment.

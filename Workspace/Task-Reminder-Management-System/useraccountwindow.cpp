@@ -29,9 +29,6 @@ UserAccountWindow::UserAccountWindow(int loginID, QWidget *parent) :
     // Creating an object of DatabaseConnection class
     trms_dbConnection = new DatabaseConnection();
 
-    /* Retrieving the relevant user details from the database */
-    bool databaseConnection = trms_dbConnection->openDatebaseConnection();
-
 
     /* Setting timer and sending signals to function every second */
     // Declaring a new object of the 'QObject' class
@@ -56,7 +53,8 @@ UserAccountWindow::UserAccountWindow(int loginID, QWidget *parent) :
     // User interfae will change accordingly to the selected date
     connect(ui->taskReminders_calendarWidget, SIGNAL(clicked(QDate)), this, SLOT(changeUIForSelectedDate(QDate)));
 
-
+    /* Retrieving the relevant user details from the database */
+    bool databaseConnection = trms_dbConnection->openDatebaseConnection();
     if(databaseConnection == true){
         // Declaring new QSqlQuery object by passing the database name
         QSqlQuery userDetailsQuery(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
@@ -68,7 +66,7 @@ UserAccountWindow::UserAccountWindow(int loginID, QWidget *parent) :
                                          "INNER JOIN NamePrefix np ON np.NamePrefixID = a.npNamePrefixID "
                                          "INNER JOIN AccountType at ON at.AccountTypeID = a.atAccountTypeID "
                                          "INNER JOIN BooleanValue bv ON bv.BooleanValueID = a.dvDoNotDistrubBooleanValueID "
-                                         "WHERE LoginID=:loginID;"));
+                                         "WHERE LoginID = :loginID;"));
 
         userDetailsQuery.bindValue(":loginID", loginID);
 
@@ -91,9 +89,6 @@ UserAccountWindow::UserAccountWindow(int loginID, QWidget *parent) :
                 account->setAccountType(userDetailsQuery.value(8).toString());
                 account->setDoNotDistrubBooleanValueID(userDetailsQuery.value(9).toInt());
                 account->setDoNotDistrubBooleanValue(userDetailsQuery.value(10).toBool());
-            }
-            else{
-                qWarning() << "User Account Details Successfully retrieved from Database";
             }
             trms_dbConnection->closeDatebaseConnection();
         }

@@ -211,7 +211,7 @@ void LoginWindow::on_login_pushButton_clicked()
         if(sessionStartStatus == "Session Start Recorded"){
 
             this->hide();
-            adminAccountWindowForm = new AdminAccountWindow(this);
+            adminAccountWindowForm = new AdminAccountWindow(auth->getLoginID(), this);
             adminAccountWindowForm->show();
 
         }

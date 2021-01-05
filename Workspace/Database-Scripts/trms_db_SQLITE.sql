@@ -28,7 +28,7 @@ INSERT INTO Login(EmailAddress, PasswordHash, asAccountStatusID)
 VALUES
 ("mchatte@gmail.com", "8944854914295023676", 1), -- Password: ChattEddie3$
 ("lukieklaus@outlook.com", "12919050737726948275", 1), -- Passoword: KlausWest5#
-("trms.developer@gmail.com", "4821787964794285019", 1); -- Password: HarlowHart$2
+("trmsdeveloper@gmail.com", "4821787964794285019", 1); -- Password: HarlowHart$2
 
 
 -- Creating Table 3 - AccountType
