@@ -6,6 +6,7 @@
 
 #include <databaseconnection.h>
 #include <authenticatelogic.h>
+#include <viewtermsandconditionsdialog.h>
 
 namespace Ui {
 class UserRegistrationWindow;
@@ -38,6 +39,7 @@ private slots:
     void on_lastName_lineEdit_textChanged(const QString &arg1);
     void on_confirmPassword_lineEdit_textChanged(const QString &arg1);
     void on_register_pushButton_clicked();
+    void on_viewTermsAndConditions_pushButton_clicked();
 
 private:
     Ui::UserRegistrationWindow *ui;
@@ -47,6 +49,9 @@ private:
     // Connecting the authenticate.h
     // Retireving the authenticate.h class path to a pointer
     AuthenticateLogic *auth;
+    // Connecting the viewtermsandconditionsdialog.h
+    // Retireving the viewtermsandconditionsdialog.h class path to a pointer
+    ViewTermsAndConditionsDialog *viewTermsAndConditionsDialogForm;
 
 };
 

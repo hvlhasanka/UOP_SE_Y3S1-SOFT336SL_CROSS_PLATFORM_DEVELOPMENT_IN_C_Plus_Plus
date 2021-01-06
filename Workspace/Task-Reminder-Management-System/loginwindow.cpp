@@ -74,13 +74,16 @@ void LoginWindow::on_showPassword_checkBox_stateChanged(int arg1)
 void LoginWindow::on_forgotPassword_pushButton_clicked()
 {
 
+    QMessageBox::information(this, "PLEASE SUBMIT REPORT", "Feature not currently available, please submit a report including your email address.\nApologies for the inconvenience.");
+
+/*
     // Showing message box to explain the procedure
     QString forgotPasswordResponseEmailAddress = QInputDialog::getText(this, "Password Recovery",
                                                                        "Unfortunately you are unable to recover the existing password, \n"
                                                                        "you are required to update the password.\n\n"
                                                                        "Please enter your email address and a pin code will be emailed.\n");
     qWarning() << forgotPasswordResponseEmailAddress;
-   /*
+
     QMessageBox::question(this, "Password Recovery",
                           "Unfortunately you are unable to recover the existing password, "
                           "you are required to update the password."
@@ -273,3 +276,4 @@ void LoginWindow::on_report_pushButton_clicked()
     reportSubmissionWindowFrom->show();
 
 }
+

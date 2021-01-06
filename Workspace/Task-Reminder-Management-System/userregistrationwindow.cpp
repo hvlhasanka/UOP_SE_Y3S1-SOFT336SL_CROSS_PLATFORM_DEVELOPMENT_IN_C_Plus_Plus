@@ -469,3 +469,11 @@ void UserRegistrationWindow::on_register_pushButton_clicked()
 
 
 
+
+void UserRegistrationWindow::on_viewTermsAndConditions_pushButton_clicked()
+{
+
+    viewTermsAndConditionsDialogForm = new ViewTermsAndConditionsDialog(this);
+    viewTermsAndConditionsDialogForm->show();
+
+}

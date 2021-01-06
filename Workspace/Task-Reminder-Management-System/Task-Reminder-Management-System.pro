@@ -27,7 +27,8 @@ SOURCES += \
     useraccountwindow.cpp \
     userregistrationwindow.cpp \
     viewfeedbackreportdialog.cpp \
-    viewtaskstandarduseraccountdialog.cpp
+    viewtaskstandarduseraccountdialog.cpp \
+    viewtermsandconditionsdialog.cpp
 
 HEADERS += \
     aboutdialog.h \
@@ -47,7 +48,8 @@ HEADERS += \
     useraccountwindow.h \
     userregistrationwindow.h \
     viewfeedbackreportdialog.h \
-    viewtaskstandarduseraccountdialog.h
+    viewtaskstandarduseraccountdialog.h \
+    viewtermsandconditionsdialog.h
 
 FORMS += \
     aboutdialog.ui \
@@ -61,7 +63,8 @@ FORMS += \
     useraccountwindow.ui \
     userregistrationwindow.ui \
     viewfeedbackreportdialog.ui \
-    viewtaskstandarduseraccountdialog.ui
+    viewtaskstandarduseraccountdialog.ui \
+    viewtermsandconditionsdialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
