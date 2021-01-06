@@ -44,6 +44,8 @@ public:
                          QString enteredReportFeedback,
                          QString enteredAuthorReachableEmailAddress);
     QString addNewTask();
+    QString editTaskDetails();
+    QString removeTask(int taskID);
     QString setNewReminder();
     QString removeReminder(int reminderID);
 

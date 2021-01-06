@@ -7,6 +7,9 @@ UserRegistrationWindow::UserRegistrationWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    // Creating an object of DatabaseConnection class
+    trms_dbConnection = new DatabaseConnection();
+
     /* Logo Image Implementation Source Code */
     // Getting the logo image
     QPixmap logoImagePix(":/images/TRMS-Logo-Without-Text.jpg");

@@ -133,3 +133,77 @@ QString StandardUserAccountLogic::setNewReminder(int taskID, QString reminderDat
     qWarning() << "Database Connection Closed";
     return 0;
 }
+
+QString StandardUserAccountLogic::editTaskDetails(int accountID, int taskID, QString taskTitle, QString taskDescription, QString categoryName)
+{
+
+    // Assigning database configuration
+    databaseConnection = QSqlDatabase::addDatabase("QSQLITE", "trms_db");
+    databaseConnection.setDatabaseName("C:/Users/Lucas.L.H.H/Documents/GitHub/UOP_SE_Y3S1-SOFT336SL_CROSS_PLATFORM_DEVELOPMENT_IN_C_Plus_Plus/Workspace/Task-Reminder-Management-System/database/trms_db.db");
+
+    // Establishing database connection and checking connection status
+    if (!databaseConnection.open()){
+        qWarning() << "Database Connection Error";
+        qWarning() << databaseConnection.lastError();
+        return "Execution Unsuccessful: Database Connection Error";
+    }
+    else{
+
+        /* Retrieving categoryID for the selected categoryName from the database */
+        int categoryIDDB = 0;
+        // Declaring new QSqlQuery object by passing the database name
+        QSqlQuery categoryIDDBQuery(QSqlDatabase::database("trms_db"));
+
+        // Preparing sql query for execution
+        categoryIDDBQuery.prepare(QString("SELECT CategoryID FROM Category WHERE CategoryName = :categoryName AND aAccountID = :accountID;"));
+
+        categoryIDDBQuery.bindValue(":categoryName", categoryName);
+        categoryIDDBQuery.bindValue(":accountID", accountID);
+
+        // Executing sql query and checking the status
+        if(!categoryIDDBQuery.exec()){
+            qWarning() << "SQL query execution error";
+            qWarning() << categoryIDDBQuery.lastError();
+            return "Execution Unsuccessful: (SQL Query Error)";
+        }
+        else{
+            if(categoryIDDBQuery.next()){
+                categoryIDDB = categoryIDDBQuery.value(0).toInt();
+            }
+        }
+
+
+        /* Adding updated task details value into the 'Task' relation (table) */
+        // Declaring new QSqlQuery object by passing the database name
+        QSqlQuery taskQuery(QSqlDatabase::database("trms_db"));
+
+        // Preparing sql query for execution
+        taskQuery.prepare(QString("UPDATE Task SET Title = :taskTitle, TaskDescription = :taskDescription, LastEditDateTime = :currentDateTime, cCategoryID = :categoryID "
+                                  "WHERE TaskID = :taskID;"));
+
+        taskQuery.bindValue(":taskTitle", taskTitle);
+        taskQuery.bindValue(":taskDescription", taskDescription);
+        taskQuery.bindValue(":currentDateTime", auth->retrieveCurrentDateTime());
+        taskQuery.bindValue(":categoryID", categoryIDDB);
+        taskQuery.bindValue(":taskID", taskID);
+
+        // Executing sql query and checking the status
+        if(!taskQuery.exec()){
+            qWarning() << "SQL query execution error";
+            qWarning() << taskQuery.lastError();
+            return "Execution Unsuccessful: (SQL Query Error)";
+        }
+        else{
+            return "Execution Successful: Task Details Successfully Updated";
+        }
+
+    }
+
+
+    // Closing established database connection
+    databaseConnection.close();
+    databaseConnection.removeDatabase(QSqlDatabase::defaultConnection);
+    qWarning() << "Database Connection Closed";
+    return 0;
+
+}

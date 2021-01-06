@@ -195,6 +195,7 @@ VALUES
 CREATE TABLE Category(
 	CategoryID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   CategoryName VARCHAR(50) NOT NULL,
+  CategoryDescription VARCHAR(100) NOT NULL,
   ctCategoryTypeID INTEGER NOT NULL,
   ccColourID INTEGER NOT NULL,
   aAccountID INTEGER NOT NULL,
@@ -204,36 +205,36 @@ CREATE TABLE Category(
 );
 
 -- Inserting records INTO Table 12 - Category
-INSERT INTO Category(CategoryName, ctCategoryTypeID, ccColourID, aAccountID)
+INSERT INTO Category(CategoryName, CategoryDescription, ctCategoryTypeID, ccColourID, aAccountID)
 VALUES
-("Work", 1, 1, 2),
-("School", 2, 1, 2),
-("Home", 3, 1, 2),
-("Garden", 4, 1, 2),
-("School", 1, 1, 3),
-("Home", 2, 1, 3),
-("Category 3", 3, 1, 3),
-("Category 4", 4, 1, 3),
-("Category 1", 1, 1, 4),
-("Category 2", 2, 1, 4),
-("Category 3", 3, 1, 4),
-("Category 4", 4, 1, 4),
-("Category 1", 1, 1, 5),
-("Category 2", 2, 1, 5),
-("Category 3", 3, 1, 5),
-("Category 4", 4, 1, 5),
-("Category 1", 1, 1, 6),
-("Category 2", 2, 1, 6),
-("Category 3", 3, 1, 6),
-("Category 4", 4, 1, 6),
-("Category 1", 1, 1, 7),
-("Category 2", 2, 1, 7),
-("Category 3", 3, 1, 7),
-("Category 4", 4, 1, 7),
-("Category 1", 1, 1, 8),
-("Category 2", 2, 1, 8),
-("Category 3", 3, 1, 8),
-("Category 4", 4, 1, 8);
+("Work", "Work Related Tasks",1, 1, 2),
+("School", "School Related Tasks", 2, 1, 2),
+("Home", "Home Related Tasks", 3, 1, 2),
+("Garden", "Garden Related Tasks", 4, 1, 2),
+("School", "School Related Tasks", 1, 1, 3),
+("Home", "Home Related Tasks", 2, 1, 3),
+("Category 3", "", 3, 1, 3),
+("Category 4", "", 4, 1, 3),
+("Category 1", "", 1, 1, 4),
+("Category 2", "", 2, 1, 4),
+("Category 3", "", 3, 1, 4),
+("Category 4", "", 4, 1, 4),
+("Category 1", "", 1, 1, 5),
+("Category 2", "", 2, 1, 5),
+("Category 3", "", 3, 1, 5),
+("Category 4", "", 4, 1, 5),
+("Category 1", "", 1, 1, 6),
+("Category 2", "", 2, 1, 6),
+("Category 3", "", 3, 1, 6),
+("Category 4", "", 4, 1, 6),
+("Category 1", "", 1, 1, 7),
+("Category 2", "", 2, 1, 7),
+("Category 3", "", 3, 1, 7),
+("Category 4", "", 4, 1, 7),
+("Category 1", "", 1, 1, 8),
+("Category 2", "", 2, 1, 8),
+("Category 3", "", 3, 1, 8),
+("Category 4", "", 4, 1, 8);
 
 
 -- Creating Table 13 - Task
@@ -255,17 +256,19 @@ CREATE TABLE Task(
 );
 
 -- Inserting records INTO Table 13 - Task
+INSERT INTO Task(Title, TaskDescription, CreatedDateTime, LastEditDateTime, bvImportantBooleanValueID, aAccountID, cCategoryID)
+VALUES
+("Prepare Document", "Research on Big Analysis and prepare an analysis report", "2020-12-25 08:55:28", "2020-12-25 08:55:28",  1, 2, 1),
+("Analyze Data", "Data analysis of collected data", "2020-12-27 08:55:28", "2020-12-27 08:55:28", 2, 2, 1),
+("Review Study Material", "Overview sudy guide for CS101 lecture.", "2020-12-29 09:14:28", "2020-12-30 11:43:28", 1, 2, 2),
+("Analyze Coursework Requirements", "Breakdown coursework requirements for CS101 module.", "2020-12-29 10:43:28", "2020-12-30 08:23:28", 2, 2, 2),
+("Prepare Grocery List", "Don't forget to stick the list on the refrigerator.", "2020-12-28 09:55:28", "2020-12-28 10:11:28", 2, 2, 3),
+("Get Groceries", "Grocery List is on the refrigerator.", "2020-12-29 08:55:28", "2020-12-27 08:55:28", 2, 2, 3);
+
+-- Inserting records INTO Table 13 - Task
 INSERT INTO Task(Title, TaskDescription, StartDateTime, EndDateTime, CreatedDateTime, LastEditDateTime, bvImportantBooleanValueID, aAccountID, cCategoryID)
 VALUES
-("Prepare Document", "Research on Big Analysis and prepare an analysis report", "2021-01-08 09:55:28", "2021-01-08 16:55:28", "2020-12-25 08:55:28", "2020-12-25 08:55:28",  1, 2, 1),
-("Analyze Data", "Data analysis of collected data", "2021-01-08 10:55:28", "2021-01-08 12:55:28", "2020-12-27 08:55:28", "2020-12-27 08:55:28", 2, 2, 1),
-("Review Study Material", "Overview sudy guide for CS101 lecture.", "2021-01-09 08:20:28", "2021-01-09 15:00:28", "2020-12-29 09:14:28", "2020-12-30 11:43:28", 1, 2, 2),
-("Analyze Coursework Requirements", "Breakdown coursework requirements for CS101 module.", "2021-01-09 09:00:28", "2021-01-09 10:00:28", "2020-12-29 10:43:28", "2020-12-30 08:23:28", 2, 2, 2),
-("Prepare Grocery List", "Don't forget to stick the list on the refrigerator.", "2021-01-10 11:22:28", "2021-01-10 12:32:28", "2020-12-28 09:55:28", "2020-12-28 10:11:28", 2, 2, 3),
-("Get Groceries", "Grocery List is on the refrigerator.", "2021-01-11 10:55:28", "2021-01-11 12:55:28", "2020-12-29 08:55:28", "2020-12-27 08:55:28", 2, 2, 3),
 ("Review Report", "Report Final Month Report", "2021-01-08 11:55:28", "2021-01-08 13:55:28", "2020-12-30 08:55:28", "2020-12-31 08:55:28", 2, 3, 1);
-
-
 
 -- MODIFICATION TO EXISTING TABLE: Altering Table 12 - Category to add new column named 'tPinnedTaskID' and assigning it as a foreign key
 ALTER TABLE Category
@@ -405,5 +408,5 @@ VALUES
 -- Inserting records INTO Table 19 - Report
 INSERT INTO Report(ReportSubject, Feedback, SubmittedDateTime, AuthorReachableEmailAddress, rsReviewStatusID, aAccountID)
 VALUES
-("Login Error", "Error message comes up saying, 'Database connectivity error'", "2020-12-29 08:42:28", "jacksonandy@gmail.com", 1, 5),
+("Login Error", "Error message comes up saying 'Database connectivity error'", "2020-12-29 08:42:28", "jacksonandy@gmail.com", 1, 5),
 ("Imporvement Feedback", "The user interface can be more responsive without the user clicking on the 'Refresh' button", "2020-12-30 09:34:28", "carlsonkimmy@outlook.com", 1, 7);

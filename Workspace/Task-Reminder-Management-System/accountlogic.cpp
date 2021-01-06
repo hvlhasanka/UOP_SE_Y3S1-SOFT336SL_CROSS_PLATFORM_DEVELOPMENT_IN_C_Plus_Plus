@@ -143,6 +143,65 @@ QString AccountLogic::submitReport(QString enteredReportSubject, QString entered
 
 }
 
+QString AccountLogic::removeTask(int taskID)
+{
+
+    bool databaseConnected = trms_dbConnection->openDatebaseConnection();
+    if(databaseConnected == true){
+
+        /* Checking whether the selected task has reminder associated with */
+        // Declaring new QSqlQuery object by passing the database name
+        QSqlQuery reminderQuery(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
+
+        // Preparing sql query for execution
+        reminderQuery.prepare(QString("SELECT ReminderID FROM Reminder WHERE tTaskID = :taskID;"));
+
+        reminderQuery.bindValue(":taskID", taskID);
+
+        // Executing sql query and checking the status
+        if(!reminderQuery.exec()){
+            qWarning() << "SQL query execution error";
+            qWarning() << reminderQuery.lastError();
+            trms_dbConnection->closeDatebaseConnection();
+            return "Execution Unsuccessful: SQL query execution error";
+        }
+        else{
+            if(reminderQuery.next()){
+                return "Execution Unsuccessful: Reminders are available for this task";
+            }
+            else{
+                /* Removing record from 'Task' relation (table)  */
+                // Declaring new QSqlQuery object by passing the database name
+                QSqlQuery taskQuery(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
+
+                // Preparing sql query for execution
+                taskQuery.prepare(QString("DELETE FROM Task WHERE TaskID = :taskID;"));
+
+                taskQuery.bindValue(":taskID", taskID);
+
+                // Executing sql query and checking the status
+                if(!taskQuery.exec()){
+                    qWarning() << "SQL query execution error";
+                    qWarning() << taskQuery.lastError();
+                    trms_dbConnection->closeDatebaseConnection();
+                    return "Execution Unsuccessful: SQL query execution error";
+                }
+                else{
+                    trms_dbConnection->closeDatebaseConnection();
+                    return "Task Removal Successful";
+                }
+            }
+        }
+    }
+    else if(databaseConnected == false){
+        trms_dbConnection->closeDatebaseConnection();
+        return "Execution Unsuccessful: Database Connection Error";
+    }
+    trms_dbConnection->closeDatebaseConnection();
+    return "default";
+
+}
+
 QString AccountLogic::removeReminder(int reminderID)
 {
 

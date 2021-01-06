@@ -50,6 +50,10 @@ AddNewTaskStandardUserAccountWindow::AddNewTaskStandardUserAccountWindow(int acc
             trms_dbConnection->closeDatebaseConnection();
         }
     }
+    else if(connectionStatus == false){
+        qWarning() << "Database Connection Error";
+    }
+
 }
 
 AddNewTaskStandardUserAccountWindow::~AddNewTaskStandardUserAccountWindow()

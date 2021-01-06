@@ -18,6 +18,7 @@ SOURCES += \
     authenticatelogic.cpp \
     databaseconnection.cpp \
     editreminderdetailsstandarduseraccount.cpp \
+    edittaskdetailsstandarduseraccountdialog.cpp \
     main.cpp \
     loginwindow.cpp \
     premiumuseraccountlogic.cpp \
@@ -26,6 +27,7 @@ SOURCES += \
     standarduseraccountlogic.cpp \
     useraccountwindow.cpp \
     userregistrationwindow.cpp \
+    viewcategorydetailsdialog.cpp \
     viewfeedbackreportdialog.cpp \
     viewtaskstandarduseraccountdialog.cpp \
     viewtermsandconditionsdialog.cpp
@@ -40,6 +42,7 @@ HEADERS += \
     authenticatelogic.h \
     databaseconnection.h \
     editreminderdetailsstandarduseraccount.h \
+    edittaskdetailsstandarduseraccountdialog.h \
     loginwindow.h \
     premiumuseraccountlogic.h \
     reportsubmissionwindow.h \
@@ -47,6 +50,7 @@ HEADERS += \
     standarduseraccountlogic.h \
     useraccountwindow.h \
     userregistrationwindow.h \
+    viewcategorydetailsdialog.h \
     viewfeedbackreportdialog.h \
     viewtaskstandarduseraccountdialog.h \
     viewtermsandconditionsdialog.h
@@ -57,11 +61,13 @@ FORMS += \
     addnewtaskpremiumuseraccountwindow.ui \
     addnewtaskstandarduseraccountwindow.ui \
     editreminderdetailsstandarduseraccount.ui \
+    edittaskdetailsstandarduseraccountdialog.ui \
     loginwindow.ui \
     reportsubmissionwindow.ui \
     setnewreminderstandarduseraccountdialog.ui \
     useraccountwindow.ui \
     userregistrationwindow.ui \
+    viewcategorydetailsdialog.ui \
     viewfeedbackreportdialog.ui \
     viewtaskstandarduseraccountdialog.ui \
     viewtermsandconditionsdialog.ui

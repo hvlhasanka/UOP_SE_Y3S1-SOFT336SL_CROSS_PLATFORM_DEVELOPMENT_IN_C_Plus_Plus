@@ -23,6 +23,7 @@ private slots:
     void on_reviewed_pushButton_clicked();
 
 private:
+    // Private variables
     int passedReportID;
     Ui::ViewFeedbackReportDialog *ui;
     // Connecting the databaseconnecion.h

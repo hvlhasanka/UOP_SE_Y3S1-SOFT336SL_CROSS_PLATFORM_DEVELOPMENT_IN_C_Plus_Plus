@@ -14,7 +14,8 @@
 #include "databaseconnection.h"
 #include "viewtaskstandarduseraccountdialog.h"
 #include "editreminderdetailsstandarduseraccount.h"
-#include "aboutdialog.h";
+#include "aboutdialog.h"
+#include "viewcategorydetailsdialog.h"
 
 namespace Ui {
 class UserAccountWindow;
@@ -48,8 +49,16 @@ private slots:
     void on_actionAbout_triggered();
     void on_actionLogout_triggered();
     void on_actionExit_triggered();
+    void on_category1_toolButton_clicked();
+    void on_category2_toolButton_clicked();
+    void on_category3_toolButton_clicked();
+    void on_category4_toolButton_clicked();
 
 private:
+    QString category1Name;
+    QString category2Name;
+    QString category3Name;
+    QString category4Name;
     Ui::UserAccountWindow *ui;
     // Connecting the authenticatelogic.h
     // Retireving the authenticatelogic.h class path to a pointer
@@ -78,6 +87,9 @@ private:
     // Connecting the aboutdialog.h
     // Retireving the aboutdialog.h class path to a pointer
     AboutDialog *aboutDialogForm;
+    // Connecting the viewcategorydetailsdialog.h
+    // Retireving the viewcategorydetailsdialog.h class path to a pointer
+    ViewCategoryDetailsDialog *viewCategoryDetailsDialogForm;
     QSystemTrayIcon *reminderAlert;
     QTimer *timer;
 };

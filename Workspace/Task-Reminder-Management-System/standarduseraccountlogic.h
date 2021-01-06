@@ -18,10 +18,16 @@ public:
                        QString selectedTaskCategoryName);
     QString setNewReminder(int taskID,
                            QString reminderDateTime);
+    QString editTaskDetails(int accountID,
+                            int taskID,
+                            QString taskTitle,
+                            QString taskDescription,
+                            QString categoryName);
 
 private:
     // Private variables
     int passedAccountID;
+    // Pointer declaration
     // Connecting the databaseconnecion.h
     // Retireving the databaseconnecion.h class path to a pointer
     DatabaseConnection *trms_dbConnection;

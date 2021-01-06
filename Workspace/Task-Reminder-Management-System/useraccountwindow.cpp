@@ -27,7 +27,7 @@ UserAccountWindow::UserAccountWindow(int loginID, QWidget *parent) :
     auth = new AuthenticateLogic();
 
     // Creating an object of DatabaseConnection class
-    trms_dbConnection = new DatabaseConnection();
+    trms_dbConnection = new DatabaseConnection(); 
 
 
     /* Setting timer and sending signals to function every second */
@@ -243,7 +243,8 @@ UserAccountWindow::UserAccountWindow(int loginID, QWidget *parent) :
         }
         else{
             if(category1Query.next()){
-                ui->category1_label->setText(category1Query.value(0).toString());
+                category1Name = category1Query.value(0).toString();
+                ui->category1_label->setText(category1Name);
             }
             trms_dbConnection->closeDatebaseConnection();
         }
@@ -268,7 +269,8 @@ UserAccountWindow::UserAccountWindow(int loginID, QWidget *parent) :
         }
         else{
             if(category2Query.next()){
-                ui->category2_label->setText(category2Query.value(0).toString());
+                category2Name = category2Query.value(0).toString();
+                ui->category2_label->setText(category2Name);
             }
             trms_dbConnection->closeDatebaseConnection();
         }
@@ -292,7 +294,8 @@ UserAccountWindow::UserAccountWindow(int loginID, QWidget *parent) :
         }
         else{
             if(category3Query.next()){
-                ui->category3_label->setText(category3Query.value(0).toString());
+                category3Name = category3Query.value(0).toString();
+                ui->category3_label->setText(category3Name);
             }
             trms_dbConnection->closeDatebaseConnection();
         }
@@ -317,7 +320,8 @@ UserAccountWindow::UserAccountWindow(int loginID, QWidget *parent) :
         }
         else{
             if(category4Query.next()){
-                ui->category4_label->setText(category4Query.value(0).toString());
+                category4Name = category4Query.value(0).toString();
+                ui->category4_label->setText(category4Name);
             }
             trms_dbConnection->closeDatebaseConnection();
         }
@@ -608,6 +612,8 @@ void UserAccountWindow::executeReminderStandardUserAccount()
 
     // Getting current datetime
     QString currentDateTime = auth->retrieveCurrentDateTime();
+
+    qWarning() << "Reminder Execution Check (QTimer): " + currentDateTime;
 
     /* Retrieving all available reminders from the 'Reminders' relation (table) */
     bool databaseConnected = trms_dbConnection->openDatebaseConnection();
@@ -946,7 +952,7 @@ void UserAccountWindow::on_showTaskDetails_lineEdit_textChanged(const QString &a
 void UserAccountWindow::on_showTaskDetails_pushButton_clicked()
 {
 
-    viewTaskStandardUserAccountDialogForm = new ViewTaskStandardUserAccountDialog(ui->showTaskDetails_lineEdit->text().toInt(), this);
+    viewTaskStandardUserAccountDialogForm = new ViewTaskStandardUserAccountDialog(account->getAccountID(), ui->showTaskDetails_lineEdit->text().toInt(), this);
     viewTaskStandardUserAccountDialogForm->show();
 
 }
@@ -1155,4 +1161,32 @@ void UserAccountWindow::on_actionExit_triggered()
 
     }
 
+}
+
+void UserAccountWindow::on_category1_toolButton_clicked()
+{
+    // Creating an object of ViewCategoryDetailsDialog class
+    viewCategoryDetailsDialogForm = new ViewCategoryDetailsDialog(account->getAccountID(), category1Name, this);
+    viewCategoryDetailsDialogForm->show();
+}
+
+void UserAccountWindow::on_category2_toolButton_clicked()
+{
+    // Creating an object of ViewCategoryDetailsDialog class
+    viewCategoryDetailsDialogForm = new ViewCategoryDetailsDialog(account->getAccountID(), category2Name, this);
+    viewCategoryDetailsDialogForm->show();
+}
+
+void UserAccountWindow::on_category3_toolButton_clicked()
+{
+    // Creating an object of ViewCategoryDetailsDialog class
+    viewCategoryDetailsDialogForm = new ViewCategoryDetailsDialog(account->getAccountID(), category3Name, this);
+    viewCategoryDetailsDialogForm->show();
+}
+
+void UserAccountWindow::on_category4_toolButton_clicked()
+{
+    // Creating an object of ViewCategoryDetailsDialog class
+    viewCategoryDetailsDialogForm = new ViewCategoryDetailsDialog(account->getAccountID(), category4Name, this);
+    viewCategoryDetailsDialogForm->show();
 }

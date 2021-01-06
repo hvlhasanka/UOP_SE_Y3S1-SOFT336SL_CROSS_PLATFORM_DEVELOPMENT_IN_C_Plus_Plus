@@ -23,6 +23,7 @@ private:
     // Connecting the databaseconnecion.h
     // Retireving the databaseconnecion.h class path to a pointer
     DatabaseConnection *trms_dbConnection;
+
 };
 
 #endif // EDITREMINDERDETAILSSTANDARDUSERACCOUNT_H

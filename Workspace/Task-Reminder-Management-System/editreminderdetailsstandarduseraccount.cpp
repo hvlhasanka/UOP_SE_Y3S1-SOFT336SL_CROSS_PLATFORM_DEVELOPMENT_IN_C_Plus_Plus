@@ -24,8 +24,8 @@ EditReminderDetailsStandardUserAccount::EditReminderDetailsStandardUserAccount(i
 
     /* Getting reminderDatetime from the database */
     /* Retrieving data from database to show statictcs in the dashboard tab */
-    bool databaseConnectedStat = trms_dbConnection->openDatebaseConnection();
-    if(databaseConnectedStat == true){
+    bool databaseConnectionStatus = trms_dbConnection->openDatebaseConnection();
+    if(databaseConnectionStatus == true){
 
         // Declaring new QSqlQuery object by passing the database name
         QSqlQuery reminderDateTimeQuery(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
@@ -46,7 +46,7 @@ EditReminderDetailsStandardUserAccount::EditReminderDetailsStandardUserAccount(i
             }
         }
     }
-    else if(databaseConnectedStat == false){
+    else if(databaseConnectionStatus == false){
         qWarning() << "Database Connection Error";
     }
     trms_dbConnection->closeDatebaseConnection();

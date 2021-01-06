@@ -1,18 +1,25 @@
 #include "viewtaskstandarduseraccountdialog.h"
 #include "ui_viewtaskstandarduseraccountdialog.h"
 
-ViewTaskStandardUserAccountDialog::ViewTaskStandardUserAccountDialog(int taskID, QWidget *parent) :
+ViewTaskStandardUserAccountDialog::ViewTaskStandardUserAccountDialog(int accountID, int taskID, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ViewTaskStandardUserAccountDialog)
 {
     ui->setupUi(this);
 
+    passedTaskID = taskID;
 
     // Creating an object of DatabaseConnection class
     trms_dbConnection = new DatabaseConnection();
 
     // Creating an object of SetNewReminderStandardUserAccountDialog class
-    setNewReminderStandardUserAccountDialogForm = new SetNewReminderStandardUserAccountDialog(taskID);
+    setNewReminderStandardUserAccountDialogForm = new SetNewReminderStandardUserAccountDialog(passedTaskID, this);
+
+    // Creating an object of EditTaskDetailsStandardUserAccountDialog class
+    editTaskDetailsStandardUserAccountDialogForm = new EditTaskDetailsStandardUserAccountDialog(accountID, passedTaskID, this);
+
+    // Creating an object of AccountLogic class
+    account = new AccountLogic();
 
     /* Retrieving the relevant details from the database */
     bool databaseConnection = trms_dbConnection->openDatebaseConnection();
@@ -27,7 +34,7 @@ ViewTaskStandardUserAccountDialog::ViewTaskStandardUserAccountDialog(int taskID,
                                          "INNER JOIN CategoryColour cc ON cc.ColourID = c.ccColourID "
                                          "WHERE t.TaskID = :taskID;"));
 
-        taskDetailsQuery.bindValue(":taskID", taskID);
+        taskDetailsQuery.bindValue(":taskID", passedTaskID);
 
         // Executing sql query and checking the status
         if(!taskDetailsQuery.exec()){
@@ -67,5 +74,33 @@ void ViewTaskStandardUserAccountDialog::on_setReminder_pushButton_clicked()
 {
 
     setNewReminderStandardUserAccountDialogForm->show();
+
+}
+
+void ViewTaskStandardUserAccountDialog::on_editTaskDetails_pushButton_clicked()
+{
+
+    editTaskDetailsStandardUserAccountDialogForm->show();
+
+}
+
+void ViewTaskStandardUserAccountDialog::on_removeTask_pushButton_clicked()
+{
+
+    QString removeTaskStatus = account->removeTask(passedTaskID);
+
+    if(removeTaskStatus == "Task Removal Successful"){
+        QMessageBox::information(this, "TASK REMOVED", "Task has been successfully removed.");
+        this->hide();
+    }
+    else if(removeTaskStatus == "Execution Unsuccessful: Reminders are available for this task"){
+        QMessageBox::critical(this, "TASK REMOVAL ERROR", "Unable to remove task due to connected reminders. Please remove the connected reminders and try again.");
+    }
+    else if(removeTaskStatus == "Execution Unsuccessful: SQL query execution error"){
+        QMessageBox::critical(this, "ERROR", "SQL query execution error, please submit a report.\nApologies for the inconvenience.");
+    }
+    else if(removeTaskStatus == "Execution Unsuccessful: Database Connection Error"){
+        QMessageBox::critical(this, "ERROR", "Database connectivity error, please submit a report.\nApologies for the inconvenience.");
+    }
 
 }
