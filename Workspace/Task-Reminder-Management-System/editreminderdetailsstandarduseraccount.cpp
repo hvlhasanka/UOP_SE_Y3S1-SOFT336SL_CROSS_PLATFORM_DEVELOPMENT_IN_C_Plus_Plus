@@ -57,3 +57,8 @@ EditReminderDetailsStandardUserAccount::~EditReminderDetailsStandardUserAccount(
 {
     delete ui;
 }
+
+void EditReminderDetailsStandardUserAccount::on_setReminder_pushButton_clicked()
+{
+
+}

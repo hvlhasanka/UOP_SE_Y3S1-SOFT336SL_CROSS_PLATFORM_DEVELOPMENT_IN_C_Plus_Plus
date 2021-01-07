@@ -48,12 +48,12 @@ void AccountLogic::setAccountType(QString accountType){
     this->accountType = accountType;
 }
 
-void AccountLogic::setDoNotDistrubBooleanValueID(int doNotDistrubBooleanValueID){
-    this->doNotDistrubBooleanValueID = doNotDistrubBooleanValueID;
+void AccountLogic::setDoNotDisturbBooleanValueID(int doNotDisturbBooleanValueID){
+    this->doNotDisturbBooleanValueID = doNotDisturbBooleanValueID;
 }
 
-void AccountLogic::setDoNotDistrubBooleanValue(bool doNotDistrubBooleanValue){
-    this->doNotDistrubBooleanValue = doNotDistrubBooleanValue;
+void AccountLogic::setDoNotDisturbBooleanValue(bool doNotDisturbBooleanValue){
+    this->doNotDisturbBooleanValue = doNotDisturbBooleanValue;
 }
 
 // Getters
@@ -94,12 +94,12 @@ QString AccountLogic::getAccountType(){
     return accountType;
 }
 
-int AccountLogic::getDoNotDistrubBooleanValueID(){
-    return doNotDistrubBooleanValueID;
+int AccountLogic::getDoNotDisturbBooleanValueID(){
+    return doNotDisturbBooleanValueID;
 }
 
-bool AccountLogic::getDoNotDistrubBooleanValue(){
-    return doNotDistrubBooleanValue;
+bool AccountLogic::getDoNotDisturbBooleanValue(){
+    return doNotDisturbBooleanValue;
 }
 
 /* Function Methods */

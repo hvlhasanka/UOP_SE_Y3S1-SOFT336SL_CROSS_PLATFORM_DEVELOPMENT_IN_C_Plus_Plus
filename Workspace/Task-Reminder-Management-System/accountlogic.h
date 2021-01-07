@@ -21,8 +21,8 @@ public:
     void setCreatedDateTime(QString createdDateTime);
     void setAccountTypeID(int accountTypeID);
     void setAccountType(QString accountType);
-    void setDoNotDistrubBooleanValueID(int doNotDistrubBooleanValueID);
-    void setDoNotDistrubBooleanValue(bool doNotDistrubBooleanValue);
+    void setDoNotDisturbBooleanValueID(int doNotDistrubBooleanValueID);
+    void setDoNotDisturbBooleanValue(bool doNotDistrubBooleanValue);
     void setAccountActivityID(int accountActivityID);
     void setAccountActivity(QString accountActivity);
     // Getters
@@ -35,19 +35,29 @@ public:
     QString getCreatedDateTime();
     int getAccountTypeID();
     QString getAccountType();
-    int getDoNotDistrubBooleanValueID();
-    bool getDoNotDistrubBooleanValue();
+    int getDoNotDisturbBooleanValueID();
+    bool getDoNotDisturbBooleanValue();
     int getAccountActivityID();
     QString getAccountActivity();
     // Public Function Methods
     QString submitReport(QString enteredReportSubject,
                          QString enteredReportFeedback,
                          QString enteredAuthorReachableEmailAddress);
-    QString addNewTask();
-    QString editTaskDetails();
     QString removeTask(int taskID);
-    QString setNewReminder();
     QString removeReminder(int reminderID);
+    QString editAccountDetails(int accountID,
+                               QString newNamePrefix,
+                               QString newFirstName,
+                               QString newMiddleName,
+                               QString newLastName,
+                               QString newEmailAddress);
+    QString removeAccount(int accountID);
+    QString editCategoryDetails(int accountID,
+                                QString currentCategoryName,
+                                QString newCategoryName,
+                                QString newCategoryDescription,
+                                QString newCategoryType,
+                                QString newHexColourCode);
 
 private:
     // Private methods
@@ -69,8 +79,8 @@ protected:
     QString createdDateTime;
     int accountTypeID;
     QString accountType;
-    int doNotDistrubBooleanValueID;
-    bool doNotDistrubBooleanValue;
+    int doNotDisturbBooleanValueID;
+    bool doNotDisturbBooleanValue;
     int accountActivityID;
     QString accountActivity;
 

@@ -16,13 +16,17 @@ public:
     QString addNewTask(QString enteredTaskTitle,
                        QString enteredTaskDescription,
                        QString selectedTaskCategoryName);
-    QString setNewReminder(int taskID,
-                           QString reminderDateTime);
     QString editTaskDetails(int accountID,
                             int taskID,
-                            QString taskTitle,
-                            QString taskDescription,
-                            QString categoryName);
+                            QString newTaskTitle,
+                            QString newTaskDescription,
+                            QString selectedCategoryName);
+    QString setNewReminder(int taskID,
+                           QString reminderDateTime);
+    QString editReminderDetails(int reminderID,
+                                QString newReminderDateTime);
+    QString changeAccountType(int accountID,
+                              int accountTypeID);
 
 private:
     // Private variables

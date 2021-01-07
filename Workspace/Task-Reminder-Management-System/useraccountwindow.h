@@ -16,6 +16,7 @@
 #include "editreminderdetailsstandarduseraccount.h"
 #include "aboutdialog.h"
 #include "viewcategorydetailsdialog.h"
+#include "standarduseraccountlogic.h"
 
 namespace Ui {
 class UserAccountWindow;
@@ -54,6 +55,8 @@ private slots:
     void on_category3_toolButton_clicked();
     void on_category4_toolButton_clicked();
 
+    void on_removeReminder_pushButton_clicked();
+
 private:
     QString category1Name;
     QString category2Name;
@@ -90,6 +93,9 @@ private:
     // Connecting the viewcategorydetailsdialog.h
     // Retireving the viewcategorydetailsdialog.h class path to a pointer
     ViewCategoryDetailsDialog *viewCategoryDetailsDialogForm;
+    // Connecting the standarduseraccountlogic.h
+    // Retireving the standarduseraccountlogic.h class path to a pointer
+    StandardUserAccountLogic *standardUserAccountLogicForm;
     QSystemTrayIcon *reminderAlert;
     QTimer *timer;
 };

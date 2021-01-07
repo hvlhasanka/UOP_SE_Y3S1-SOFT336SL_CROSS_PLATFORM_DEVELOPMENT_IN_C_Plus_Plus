@@ -48,7 +48,7 @@ INSERT INTO AccountType(AccountType)
 VALUES
 ("Standard User Account"),
 ("Premium User Account"),
-("AdminAccount");
+("Admin Account");
 
 
 -- Creating Table 4 - NamePrefix

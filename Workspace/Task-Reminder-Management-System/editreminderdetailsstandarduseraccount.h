@@ -17,6 +17,9 @@ public:
     explicit EditReminderDetailsStandardUserAccount(int reminderID, QWidget *parent = nullptr);
     ~EditReminderDetailsStandardUserAccount();
 
+private slots:
+    void on_setReminder_pushButton_clicked();
+
 private:
     int passedReminderID;
     Ui::EditReminderDetailsStandardUserAccount *ui;

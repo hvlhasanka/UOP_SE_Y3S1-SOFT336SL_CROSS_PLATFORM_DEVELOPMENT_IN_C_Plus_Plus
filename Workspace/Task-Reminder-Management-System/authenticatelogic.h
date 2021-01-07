@@ -52,14 +52,22 @@ public:
     bool validateEnteredEmailAddress(QString enteredEmailAddress);
     bool validateEnteredPassword(QString enteredPasswordValue);
     string generatePasswordHash(string passwordValue);
-    QString loginCredentialVerification(QString enteredEmailAddress, QString enteredPasswordHash);
+    QString loginCredentialVerification(QString enteredEmailAddress,
+                                        QString enteredPasswordHash);
     QString checkEmailAddressAvailability(QString enteredEmailAddress);
-    QString registerNewUser(QString selectedNamePrefix, QString enteredFirstName,
-                            QString enteredMiddleName, QString enteredLastName,
-                            QString enteredEmailAddress, QString generatedConfirmPasswordHash,
+    QString registerNewUser(QString selectedNamePrefix,
+                            QString enteredFirstName,
+                            QString enteredMiddleName,
+                            QString enteredLastName,
+                            QString enteredEmailAddress,
+                            QString generatedConfirmPasswordHash,
                             QString selectedAccountType);
     QString addSessionStartToDB();
     QString addSessionEndToDB(int loginID);
+    QString updateEmailAddress(int accountID,
+                               QString newEmailAddress);
+    QString updatePassword(int accountID,
+                           QString newPasswordHash);
 
 private:
     // Private variables

@@ -134,7 +134,42 @@ QString StandardUserAccountLogic::setNewReminder(int taskID, QString reminderDat
     return 0;
 }
 
-QString StandardUserAccountLogic::editTaskDetails(int accountID, int taskID, QString taskTitle, QString taskDescription, QString categoryName)
+QString StandardUserAccountLogic::changeAccountType(int accountID, int accountTypeID)
+{
+
+    // Updating account record in the database
+    bool databaseConnected = trms_dbConnection->openDatebaseConnection();
+    if(databaseConnected == true){
+
+        // Declaring new QSqlQuery object by passing the database name
+        QSqlQuery accountTypeQuery(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
+
+        // Preparing sql query for execution
+        accountTypeQuery.prepare(QString("UPDATE Account SET atAccountTypeID = :accountTypeID WHERE AccountID = :accountID;"));
+
+        accountTypeQuery.bindValue(":accountTypeID", accountTypeID);
+        accountTypeQuery.bindValue(":accountID", accountID);
+
+        // Executing sql query and checking the status
+        if(!accountTypeQuery.exec()){
+            qWarning() << "SQL query execution error";
+            trms_dbConnection->closeDatebaseConnection();
+            return "Execution Unsuccessful: (SQL Query Error)";
+        }
+        else{
+            trms_dbConnection->closeDatebaseConnection();
+            return "Execution Successful: Account Type Updated";
+        }
+    }
+    else if(databaseConnected == false){
+        trms_dbConnection->closeDatebaseConnection();
+        qWarning() << "Database Connection Error";
+        return "Execution Unsuccessful: Database Connection Error";
+    }
+    return "default";
+}
+
+QString StandardUserAccountLogic::editTaskDetails(int accountID, int taskID, QString newTaskTitle, QString newTaskDescription, QString selectedCategoryName)
 {
 
     // Assigning database configuration
@@ -157,7 +192,7 @@ QString StandardUserAccountLogic::editTaskDetails(int accountID, int taskID, QSt
         // Preparing sql query for execution
         categoryIDDBQuery.prepare(QString("SELECT CategoryID FROM Category WHERE CategoryName = :categoryName AND aAccountID = :accountID;"));
 
-        categoryIDDBQuery.bindValue(":categoryName", categoryName);
+        categoryIDDBQuery.bindValue(":categoryName", selectedCategoryName);
         categoryIDDBQuery.bindValue(":accountID", accountID);
 
         // Executing sql query and checking the status
@@ -181,8 +216,8 @@ QString StandardUserAccountLogic::editTaskDetails(int accountID, int taskID, QSt
         taskQuery.prepare(QString("UPDATE Task SET Title = :taskTitle, TaskDescription = :taskDescription, LastEditDateTime = :currentDateTime, cCategoryID = :categoryID "
                                   "WHERE TaskID = :taskID;"));
 
-        taskQuery.bindValue(":taskTitle", taskTitle);
-        taskQuery.bindValue(":taskDescription", taskDescription);
+        taskQuery.bindValue(":taskTitle", newTaskTitle);
+        taskQuery.bindValue(":taskDescription", newTaskDescription);
         taskQuery.bindValue(":currentDateTime", auth->retrieveCurrentDateTime());
         taskQuery.bindValue(":categoryID", categoryIDDB);
         taskQuery.bindValue(":taskID", taskID);

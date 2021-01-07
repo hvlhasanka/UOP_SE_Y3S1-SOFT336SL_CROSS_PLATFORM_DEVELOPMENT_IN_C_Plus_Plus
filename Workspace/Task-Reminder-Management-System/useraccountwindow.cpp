@@ -29,6 +29,9 @@ UserAccountWindow::UserAccountWindow(int loginID, QWidget *parent) :
     // Creating an object of DatabaseConnection class
     trms_dbConnection = new DatabaseConnection(); 
 
+    // Creating an object of DatabaseConnection class
+    standardUserAccountLogicForm = new StandardUserAccountLogic();
+
 
     /* Setting timer and sending signals to function every second */
     // Declaring a new object of the 'QObject' class
@@ -87,8 +90,8 @@ UserAccountWindow::UserAccountWindow(int loginID, QWidget *parent) :
                 account->setCreatedDateTime(userDetailsQuery.value(6).toString());
                 account->setAccountTypeID(userDetailsQuery.value(7).toInt());
                 account->setAccountType(userDetailsQuery.value(8).toString());
-                account->setDoNotDistrubBooleanValueID(userDetailsQuery.value(9).toInt());
-                account->setDoNotDistrubBooleanValue(userDetailsQuery.value(10).toBool());
+                account->setDoNotDisturbBooleanValueID(userDetailsQuery.value(9).toInt());
+                account->setDoNotDisturbBooleanValue(userDetailsQuery.value(10).toBool());
             }
             trms_dbConnection->closeDatebaseConnection();
         }
@@ -1051,49 +1054,40 @@ void UserAccountWindow::on_premiumAccount_radioButton_toggled(bool checked)
 void UserAccountWindow::on_change_Membership_pushButton_clicked()
 {
 
-    // Updating account record in the database
-    bool databaseConnected = trms_dbConnection->openDatebaseConnection();
-    if(databaseConnected == true){
+    if(ui->standardAccount_radioButton->isChecked()){
+        QString updateAccountTypeStatus = standardUserAccountLogicForm->changeAccountType(account->getAccountID(), 1);
 
-        // Declaring new QSqlQuery object by passing the database name
-        QSqlQuery accountTypeQuery(QSqlDatabase::database(trms_dbConnection->getDatabaseName()));
-
-        // Preparing sql query for execution
-        accountTypeQuery.prepare(QString("UPDATE Account SET atAccountTypeID = :accountTypeID WHERE AccountID = :accountID;"));
-
-        if(ui->standardAccount_radioButton->isChecked()){
-            accountTypeQuery.bindValue(":accountTypeID", 1);
-
-            account->setAccountTypeID(1);
-            account->setAccountType("Standard User Account");
+        if(updateAccountTypeStatus == "Execution Successful: Account Type Updated"){
+            QMessageBox::information(this, "ACCOUNT TYPE UPDATED", "Account type has been successfully updated");
         }
-        else if(ui->premiumAccount_radioButton->isChecked()){
-            accountTypeQuery.bindValue(":accountTypeID", 2);
+        else if(updateAccountTypeStatus == "Execution Unsuccessful: (SQL Query Error)"){
+            QMessageBox::critical(this, "ERROR", "SQL query execution error, please submit a report.\nApologies for the inconvenience.");
+        }
+        else if(updateAccountTypeStatus == "Execution Unsuccessful: Database Connection Error"){
+            QMessageBox::critical(this, "ERROR", "Database connectivity error, please submit a report.\nApologies for the inconvenience.");
+        }
 
-            account->setAccountTypeID(2);
-            account->setAccountType("Premium User Account");
-        }
-        accountTypeQuery.bindValue(":accountID", account->getAccountID());
-
-        // Executing sql query and checking the status
-        if(!accountTypeQuery.exec()){
-            qWarning() << "SQL query execution error";
-            trms_dbConnection->closeDatebaseConnection();
-        }
-        else{
-            if(accountTypeQuery.next()){
-                ui->noOfReminders_label->setText(accountTypeQuery.value(0).toString());
-            }
-        }
+        account->setAccountTypeID(1);
+        account->setAccountType("Standard User Account");
     }
-    else if(databaseConnected == false){
-        qWarning() << "Database Connection Error";
+    else if(ui->premiumAccount_radioButton->isChecked()){
+        QString updateAccountTypeStatus = standardUserAccountLogicForm->changeAccountType(account->getAccountID(), 2);
+
+        if(updateAccountTypeStatus == "Execution Successful: Account Type Updated"){
+            QMessageBox::information(this, "ACCOUNT TYPE UPDATED", "Account type has been successfully updated");
+        }
+        else if(updateAccountTypeStatus == "Execution Unsuccessful: (SQL Query Error)"){
+            QMessageBox::critical(this, "ERROR", "SQL query execution error, please submit a report.\nApologies for the inconvenience.");
+        }
+        else if(updateAccountTypeStatus == "Execution Unsuccessful: Database Connection Error"){
+            QMessageBox::critical(this, "ERROR", "Database connectivity error, please submit a report.\nApologies for the inconvenience.");
+        }
+
+        account->setAccountTypeID(2);
+        account->setAccountType("Premium User Account");
     }
-    trms_dbConnection->closeDatebaseConnection();
 
 }
-
-
 
 void UserAccountWindow::on_editReminder_pushButton_clicked()
 {
@@ -1189,4 +1183,10 @@ void UserAccountWindow::on_category4_toolButton_clicked()
     // Creating an object of ViewCategoryDetailsDialog class
     viewCategoryDetailsDialogForm = new ViewCategoryDetailsDialog(account->getAccountID(), category4Name, this);
     viewCategoryDetailsDialogForm->show();
+}
+
+
+void UserAccountWindow::on_removeReminder_pushButton_clicked()
+{
+
 }

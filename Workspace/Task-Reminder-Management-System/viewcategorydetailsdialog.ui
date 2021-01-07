@@ -11,7 +11,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>TRMS - Catogory Details</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="assets.qrc">
+    <normaloff>:/images/TRMS-Logo-Without-Text.ico</normaloff>:/images/TRMS-Logo-Without-Text.ico</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: rgb(31, 192, 196);</string>
@@ -95,7 +99,7 @@
   <widget class="QLabel" name="categoryTypeText_label">
    <property name="geometry">
     <rect>
-     <x>190</x>
+     <x>170</x>
      <y>300</y>
      <width>131</width>
      <height>31</height>
@@ -114,6 +118,8 @@
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="assets.qrc"/>
+ </resources>
  <connections/>
 </ui>
