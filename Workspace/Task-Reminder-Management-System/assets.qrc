@@ -1,0 +1,25 @@
+<RCC>
+    <qresource prefix="/">
+        <file>database/trms_db.db</file>
+        <file>images/Cover-Image.jpg</file>
+        <file>images/Splash-Screen.jpg</file>
+        <file>images/TRMS-Logo.png</file>
+        <file>images/TRMS-Logo-WithBackground.jpg</file>
+        <file>images/TRMS-Logo-Without-Text.jpg</file>
+        <file>images/TRMS-Logo-Without-Text.ico</file>
+        <file>images/Do-Not-Distrub.png</file>
+        <file>images/Logout.png</file>
+        <file>images/refresh.png</file>
+        <file>images/Dashboard.png</file>
+        <file>images/Profile.png</file>
+        <file>images/Reminders.png</file>
+        <file>images/Settings.png</file>
+        <file>images/Tasks.png</file>
+        <file>images/DashboardAdmin.png</file>
+        <file>images/ProfileImage.png</file>
+        <file>images/About.png</file>
+        <file>images/AboutImage.png</file>
+        <file>images/Exit.png</file>
+        <file>images/Report.png</file>
+    </qresource>
+</RCC>
